@@ -1,0 +1,1 @@
+# Aksl.Wpf.SideBar.1.0.0
