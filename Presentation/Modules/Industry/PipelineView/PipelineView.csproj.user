@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="Pipeline\PipelineHubView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="CoolingPie\CoolingPieView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CoolingPie\CoolingPieHubView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PipelineSystem\PipelineSystemHubView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pipeline\PipelineView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pipeline\PipelineHubView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

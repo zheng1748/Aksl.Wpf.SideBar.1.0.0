@@ -1,0 +1,20 @@
+﻿Aksl.Modules.TabBar
+1.0.0.0
+
+library
+C#
+.cs
+C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Modules\Navigations\TabBar\obj\Debug\net8.0-windows8.0\
+Aksl.Modules.TabBar
+none
+false
+TRACE;DEBUG;NET;NET8_0;NETCOREAPP
+
+52118646011
+
+161310259308
+210-2131459476
+Navigations\Pipelines\PipelinesTabBarHubView.xaml;Tab\TabItemHeaderView.xaml;Tab\TabItemView.xaml;Tab\TabView .xaml;Views\TabBarHubView.xaml;
+
+True
+

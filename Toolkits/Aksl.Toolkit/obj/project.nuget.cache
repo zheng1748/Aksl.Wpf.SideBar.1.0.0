@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "6DinXyDK4zT6o/HM5CHn7WyIt4PblZBFeAk15D8LsUJTKJ+8nnyBu285Rv69CrRZEforDOJlUq0Ub4csnLeUKA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Toolkits\\Aksl.Toolkit\\Aksl.Toolkit.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zheng\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.77\\microsoft.xaml.behaviors.wpf.1.1.77.nupkg.sha512",
+    "C:\\Users\\zheng\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
+    "C:\\Users\\zheng\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.2\\system.threading.tasks.extensions.4.5.2.nupkg.sha512",
+    "C:\\Users\\zheng\\.nuget\\packages\\unity.abstractions\\5.11.7\\unity.abstractions.5.11.7.nupkg.sha512",
+    "C:\\Users\\zheng\\.nuget\\packages\\unity.container\\5.11.11\\unity.container.5.11.11.nupkg.sha512"
+  ],
+  "logs": []
+}

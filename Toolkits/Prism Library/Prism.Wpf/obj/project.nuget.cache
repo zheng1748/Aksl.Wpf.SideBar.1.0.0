@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "fM48m9MDb9X2MXYTCXEZfsSAo4CErqhQ5mUHBmzU28L81/q1nTpnytNqwuzmpiOBlZCCtdVP1i470Riw9N+1aw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Toolkits\\Prism Library\\Prism.Wpf\\Prism.Wpf.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zheng\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.77\\microsoft.xaml.behaviors.wpf.1.1.77.nupkg.sha512"
+  ],
+  "logs": []
+}

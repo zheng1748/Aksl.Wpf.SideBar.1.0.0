@@ -1,0 +1,20 @@
+﻿Aksl.Modules.HamburgerMenu
+1.0.0.0
+
+library
+C#
+.cs
+C:\Users\zheng\Documents\GitHub\Aksl.8.0\Wpf\Aksl.Wpf.Unity.8.0.1\Presentation\Modules\Navigations\HamburgerMenuTabView\obj\Debug\net8.0-windows8.0\
+Aksl.Modules.HamburgerMenu
+none
+false
+TRACE;DEBUG;NET;NET8_0;NETCOREAPP
+
+4-1403684753
+
+16102331950
+2101716572904
+Navigations\Industry\IndustryHamburgerMenuHubView .xaml;Views\HamburgerMenuHubView.xaml;Views\HamburgerMenuItemView.xaml;Views\HamburgerMenuView.xaml;
+
+True
+
