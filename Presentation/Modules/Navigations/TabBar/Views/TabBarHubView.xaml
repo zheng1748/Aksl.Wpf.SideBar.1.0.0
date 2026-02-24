@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="Aksl.Modules.TabBar.Views.TabBarHubView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ei="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:views="clr-namespace:Aksl.Modules.TabBar.Views"
+             xmlns:a="clr-namespace:Aksl.Modules.TabBar"
+             xmlns:sv="clr-namespace:Aksl.Modules.TabBar"
+             mc:Ignorable="d"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <UserControl.Resources>
+
+        <Storyboard x:Key="waitingBarStoryboard">
+            <DoubleAnimation Storyboard.TargetName="waitingBar"
+                             Storyboard.TargetProperty="Value"
+                             From="0"
+                             To="100"
+                             Duration="0:0:5" />
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid Visibility="{Binding Path=IsLoading,Converter={StaticResource booleanNegationToVisibilityConverter}}">
+            <views:TabView DataContext="{Binding Path=TabViewModel}" />
+        </Grid>
+
+        <Grid Visibility="{Binding Path=IsLoading,Converter={StaticResource booleanToVisibilityConverter}}">
+            <ProgressBar Name="waitingBar"
+                         Value="100"
+                         Width="200"
+                         Height="30">
+                <ProgressBar.Triggers>
+                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                        <BeginStoryboard Storyboard="{StaticResource waitingBarStoryboard}" />
+                    </EventTrigger>
+                </ProgressBar.Triggers>
+            </ProgressBar>
+        </Grid>
+    </Grid>
+</UserControl>

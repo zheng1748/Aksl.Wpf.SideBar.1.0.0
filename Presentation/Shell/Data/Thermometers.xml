@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MenuItem Id="0"
+		  Name="Thermometers"
+		  Title="Root"
+		  Level="0" >
+	<MenuItem Id="2"
+			  Name="ThermometerTry"
+			  Title="温度计测试"
+			  Level="2"
+			  IsCacheable="False"
+			  IconKind="ThermometerAlert"
+			  ItemType="Item"
+			  ModuleName="ThermometerModule"
+			  ViewName="Aksl.Modules.Thermometer.Views.ThermometerHubView,Aksl.Modules.Thermometer"> 
+	</MenuItem>
+</MenuItem>
+
+

@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:Aksl.Toolkit.Converters;assembly=Aksl.Toolkit">
+    
+    <converters:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+    <converters:BooleanNegationToVisibilityConverter x:Key="booleanNegationToVisibilityConverter" />
+    <converters:NullToVisibilityConverter x:Key="nullToVisibilityConverter" />
+    <converters:BooleanNegationConverter x:Key="booleanNegationConverter" />
+    <converters:StringEmptyToBooleanConverter x:Key="stringEmptyToBooleanConverter" />
+    <converters:EnumToStringConverter x:Key="enumToStringConverter" />
+    <converters:EnumDescriptionConverter x:Key="enumDescriptionConverter" />
+    <converters:WindowStateMaximizedToCollapsedConverter x:Key="windowStateMaximizedToCollapsedConverter" />
+    <converters:WindowStateMaximizedToVisibleConverter  x:Key="windowStateMaximizedToVisibleConverter" />
+    
+    <!--<converters:ValueWhenConverter x:Key="ValueWhenConverter" />-->
+</ResourceDictionary>

@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="Aksl.Modules.LiveCharts.Bars.Views.AutoUpdateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ei="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+             xmlns:views="clr-namespace:Aksl.Modules.LiveCharts.Bars.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="500"
+             d:DesignWidth="900"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <UserControl.Resources>
+
+    </UserControl.Resources>
+
+    <Grid Margin="5,5,5,5">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal">
+            <Button x:Name="addItemButton"
+                    Margin="6"
+                    Content="Add item">
+                <ei:Interaction.Triggers>
+                    <ei:EventTrigger EventName="Click">
+                        <ei:CallMethodAction TargetObject="{Binding DataContext,ElementName=addItemButton}"
+                                             MethodName="AddItemClick" />
+                    </ei:EventTrigger>
+                </ei:Interaction.Triggers>
+            </Button>
+            <Button x:Name="removeItemButton"
+                    Margin="6"
+                    Content="Remove item">
+                <ei:Interaction.Triggers>
+                    <ei:EventTrigger EventName="Click">
+                        <ei:CallMethodAction TargetObject="{Binding DataContext,ElementName=removeItemButton}"
+                                             MethodName="RemoveItemClick" />
+                    </ei:EventTrigger>
+                </ei:Interaction.Triggers>
+            </Button>
+            <Button x:Name="replaceItemButton"
+                    Margin="6"
+                    Content="Replace item">
+                <ei:Interaction.Triggers>
+                    <ei:EventTrigger EventName="Click">
+                        <ei:CallMethodAction TargetObject="{Binding DataContext,ElementName=replaceItemButton}"
+                                             MethodName="ReplaceItemClick" />
+                    </ei:EventTrigger>
+                </ei:Interaction.Triggers>
+            </Button>
+            <Button x:Name="addSeriesButton"
+                    Margin="6"
+                    Content="Add Series">
+                <ei:Interaction.Triggers>
+                    <ei:EventTrigger EventName="Click">
+                        <ei:CallMethodAction TargetObject="{Binding DataContext,ElementName=addSeriesButton}"
+                                             MethodName="AddSeriesClick" />
+                    </ei:EventTrigger>
+                </ei:Interaction.Triggers>
+            </Button>
+            <Button x:Name="removeSeries"
+                    Margin="6"
+                    Content="Remove Series">
+                <ei:Interaction.Triggers>
+                    <ei:EventTrigger EventName="Click">
+                        <ei:CallMethodAction TargetObject="{Binding DataContext,ElementName=removeSeries}"
+                                             MethodName="RemoveSeriesClick" />
+                    </ei:EventTrigger>
+                </ei:Interaction.Triggers>
+            </Button>
+            <Button x:Name="constantchangesSeries"
+                    Margin="6"
+                    Content="Constant changes">
+                <ei:Interaction.Triggers>
+                    <ei:EventTrigger EventName="Click">
+                        <ei:CallMethodAction TargetObject="{Binding DataContext,ElementName=constantchangesSeries}"
+                                             MethodName="ConstantChangesClick" />
+                    </ei:EventTrigger>
+                </ei:Interaction.Triggers>
+            </Button>
+
+        </StackPanel>
+
+        <lvc:CartesianChart Grid.Row="1"
+                            Series="{Binding Series}"></lvc:CartesianChart>
+    </Grid>
+
+</UserControl>

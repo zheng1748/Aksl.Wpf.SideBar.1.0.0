@@ -1,0 +1,156 @@
+﻿<UserControl x:Class="Aksl.Modules.AirCompresser.Views.AirCompresserView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ei="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:prism="http://prismlibrary.com/"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             x:Name="airCompresserViewContainer">
+    <UserControl.Resources>
+
+        <Storyboard x:Key="normalState"
+                    RepeatBehavior="Forever">
+            <ColorAnimation Duration="0:0:0.5"
+                            From="White"
+                            To="Red"
+                            BeginTime="0:0:0"
+                            Storyboard.TargetName="alarm"
+                            Storyboard.TargetProperty="Fill.Color">
+
+            </ColorAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="errorState"
+                    RepeatBehavior="Forever">
+            <ColorAnimation Duration="0:0:0.1"
+                            From="LightGreen"
+                            To="LightGreen"
+                            BeginTime="0:0:0"
+                            Storyboard.TargetName="alarm"
+                            Storyboard.TargetProperty="Fill.Color">
+            </ColorAnimation>
+        </Storyboard>
+
+    </UserControl.Resources>
+    
+    <Viewbox HorizontalAlignment="Center"
+             VerticalAlignment="Center">
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="DisplayCompressStates">
+                <VisualState x:Name="Normal">
+                    <Storyboard RepeatBehavior="Forever">
+                        <ColorAnimation Storyboard.TargetName="alarm"
+                                        Storyboard.TargetProperty="Fill.Color"
+                                        Duration="0:0:0.5"
+                                        From="White"
+                                        To="Red"
+                                        BeginTime="0:0:0">
+                        </ColorAnimation>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Error">
+                    <Storyboard RepeatBehavior="Forever">
+                        <ColorAnimation Storyboard.TargetName="alarm"
+                                        Storyboard.TargetProperty="Fill.Color"
+                                        Duration="0:0:0.1"
+                                        From="LightGreen"
+                                        To="LightGreen"
+                                        BeginTime="0:0:0">
+                        </ColorAnimation>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <ei:Interaction.Triggers>
+            <ei:DataTrigger Binding="{Binding Path=CompressStatus,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
+                            Comparison="Equal"
+                            Value="Normal">
+                <ei:GoToStateAction StateName="Normal"
+                                    UseTransitions="True" />
+                <!--<ei:ControlStoryboardAction ControlStoryboardOption="Play" 
+                                            Storyboard="{StaticResource normalState}" />
+                <ei:ControlStoryboardAction ControlStoryboardOption="Pause"
+                                            Storyboard="{StaticResource errorState}" />-->
+            </ei:DataTrigger>
+            <ei:DataTrigger Binding="{Binding Path=CompressStatus,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
+                            Comparison="Equal"
+                            Value="Error">
+                <ei:GoToStateAction StateName="Error"
+                                    UseTransitions="True" />
+                <!--<ei:ControlStoryboardAction ControlStoryboardOption="Pause"
+                                            Storyboard="{StaticResource normalState}" />
+                <ei:ControlStoryboardAction ControlStoryboardOption="Play"
+                                            Storyboard="{StaticResource errorState}" />-->
+            </ei:DataTrigger>
+        </ei:Interaction.Triggers>
+
+        <Grid>
+            <Path x:Name="left"
+                  Data="M0,0,0,200,80,300,80,70"
+                  Fill="Gray">
+            </Path>
+            <Path x:Name="top"
+                  Data="M0,0,80,70,400,60,320 -10"
+                  Fill="Gray">
+            </Path>
+            <Path x:Name="front"
+                  Data="M80,300,80,70,400,60,400,280"
+                  Fill="LightGray">
+            </Path>
+            <Line x:Name="l1"
+                  X1="180"
+                  X2="180"
+                  Y1="66"
+                  Y2="280"
+                  StrokeThickness="1"
+                  Stroke="Gray">
+            </Line>
+            <Line x:Name="l2"
+                  X1="280"
+                  X2="280"
+                  Y1="66"
+                  Y2="280"
+                  StrokeThickness="1"
+                  Stroke="Gray">
+            </Line>
+            <Ellipse x:Name="c1"
+                     Width="10"
+                     Height="10"
+                     Fill="DarkGray">
+            </Ellipse>
+            <Ellipse x:Name="c2"
+                     Width="10"
+                     Height="10"
+                     Fill="DarkGray"
+                     Margin="0,3,80,0">
+            </Ellipse>
+            <Border x:Name="bottom"
+                    Height="22"
+                    Background="DarkGray"
+                    Margin="80,0,0,0"
+                    VerticalAlignment="Bottom">
+                <Border.RenderTransform>
+                    <SkewTransform AngleY="-4">
+                    </SkewTransform>
+                </Border.RenderTransform>
+            </Border>
+            <Ellipse x:Name="alarm"
+                     Width="18"
+                     Height="18"
+                     Margin="0,80,10,0"
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Top">
+                <Ellipse.Fill>
+                    <SolidColorBrush Color="LightGray">
+                    </SolidColorBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+        </Grid>
+
+    </Viewbox>
+</UserControl>

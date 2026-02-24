@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="Aksl.Modules.ExpandHamburgerMenuTreeBar.Views.TreeBarItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ei="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:materialDesign="clr-namespace:Aksl.Toolkit.Controls;assembly=Aksl.Toolkit.Controls"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+
+        <Style x:Key="labelStyle"
+               TargetType="{x:Type Label}">
+            <Setter Property="IsEnabled"
+                    Value="{Binding IsEnabled,Mode=TwoWay}" />
+            <Setter Property="Content">
+                <Setter.Value>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="{Binding Path=IconKind,Mode=OneWay}"
+                                                 Foreground="Gray"
+                                                 Background="Transparent"
+                                                 HorizontalAlignment="Center"
+                                                 VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding Path=Title,Mode=OneWay}"
+                                   IsEnabled="{Binding Path=IsEnabled}"
+                                   Margin="10,0,0,0"
+                                   VerticalAlignment="Center"
+                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="NoWrap">
+                        </TextBlock>
+                    </StackPanel>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+                    <Setter Property="Background"
+                            Value="Transparent" />
+                </Trigger>
+                <DataTrigger Binding="{Binding IsSelected,Mode=TwoWay}"
+                             Value="True">
+                    <Setter Property="Background"
+                            Value="#EEEEEEEE" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Horizontal">
+        <Label x:Name="treeBarItemLabel"
+               Style="{StaticResource labelStyle}">
+            <ei:Interaction.Triggers>
+                <ei:DataTrigger Binding="{Binding Path=IsTopLevelItem,Mode=OneWay}"
+                                Comparison="Equal"
+                                Value="True">
+                    <ei:ChangePropertyAction PropertyName="FontSize"
+                                             Value="16.5" />
+                    <ei:ChangePropertyAction PropertyName="FontWeight"
+                                             Value="Bold" />
+                </ei:DataTrigger>
+                <ei:DataTrigger Binding="{Binding Path=IsTopLevelHeader,Mode=OneWay}"
+                                Comparison="Equal"
+                                Value="True">
+                    <ei:ChangePropertyAction PropertyName="FontSize"
+                                             Value="16.5" />
+                    <ei:ChangePropertyAction PropertyName="FontWeight"
+                                             Value="Bold" />
+                </ei:DataTrigger>
+                <ei:DataTrigger Binding="{Binding Path=IsSubmenuItem,Mode=OneWay}"
+                                Comparison="Equal"
+                                Value="True">
+                    <ei:ChangePropertyAction PropertyName="FontSize"
+                                             Value="14.5" />
+                    <ei:ChangePropertyAction PropertyName="FontWeight"
+                                             Value="Light" />
+                </ei:DataTrigger>
+                <ei:DataTrigger Binding="{Binding Path=IsSubmenuHeader,Mode=OneWay}"
+                                Comparison="Equal"
+                                Value="True">
+                    <ei:ChangePropertyAction PropertyName="FontSize"
+                                             Value="15.5" />
+                    <ei:ChangePropertyAction PropertyName="FontWeight"
+                                             Value="Bold" />
+                </ei:DataTrigger>
+            </ei:Interaction.Triggers>
+        </Label>
+    </StackPanel>
+</UserControl>

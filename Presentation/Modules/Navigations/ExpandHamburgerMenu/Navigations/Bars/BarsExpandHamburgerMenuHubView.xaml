@@ -1,0 +1,625 @@
+﻿<UserControl x:Class="Aksl.Modules.ExpandHamburgerMenu.Views.BarsExpandHamburgerMenuHubView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ei="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:views="clr-namespace:Aksl.Modules.ExpandHamburgerMenu.Views"
+             xmlns:a="clr-namespace:Aksl.Modules.ExpandHamburgerMenu"
+             xmlns:sv="clr-namespace:Aksl.Modules.ExpandHamburgerMenu"
+             mc:Ignorable="d"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <UserControl.Resources>
+
+        <Storyboard x:Key="waitingBarStoryboard">
+            <DoubleAnimation Storyboard.TargetName="waitingBar"
+                             Storyboard.TargetProperty="Value"
+                             From="0"
+                             To="100"
+                             Duration="0:0:5" />
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid Visibility="{Binding Path=IsLoading,Converter={StaticResource booleanNegationToVisibilityConverter}}">
+
+            <Grid Background="WhiteSmoke">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="ColumnDefinition1"
+                                      Width="Auto" />
+                    <ColumnDefinition x:Name="ColumnDefinition2"
+                                      Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="DisplayModeStates">
+                        <VisualState x:Name="ClosedLeft">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <DoubleAnimation Storyboard.TargetName="PaneRoot"
+                                                 Storyboard.TargetProperty="Width"
+                                                 To="0"
+                                                 Duration="0:0:0" />
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerPane"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Right}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Right}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="ClosedRight">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <DoubleAnimation Storyboard.TargetName="PaneRoot"
+                                                 Storyboard.TargetProperty="Width"
+                                                 To="0"
+                                                 Duration="0:0:0" />
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerPane"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Left}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Left}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="ClosedCompactLeft">
+                            <Storyboard>
+                                <a:GridLengthAnimation Storyboard.TargetName="ColumnDefinition1"
+                                                       Storyboard.TargetProperty="Width"
+                                                       To="{x:Static sv:TemplateSettings.CompactPaneGridLength}"
+                                                       Duration="0" />
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <DoubleAnimation Storyboard.TargetName="PaneRoot"
+                                                 Storyboard.TargetProperty="Width"
+                                                 To="{x:Static sv:TemplateSettings.CompactPaneLength}"
+                                                 Duration="0:0:0" />
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Left}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerPane"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Left}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Right}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <Int32AnimationUsingKeyFrames Storyboard.TargetName="ContentRoot"
+                                                              Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                                    <DiscreteInt32KeyFrame KeyTime="0:0:0"
+                                                           Value="1" />
+                                </Int32AnimationUsingKeyFrames>
+                                <Int32AnimationUsingKeyFrames Storyboard.TargetName="ContentRoot"
+                                                              Storyboard.TargetProperty="(Grid.Column)">
+                                    <DiscreteInt32KeyFrame KeyTime="0:0:0"
+                                                           Value="1" />
+                                </Int32AnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="ClosedCompactRight">
+                            <Storyboard>
+                                <a:GridLengthAnimation Storyboard.TargetName="ColumnDefinition1"
+                                                       Storyboard.TargetProperty="Width"
+                                                       To="*"
+                                                       Duration="0" />
+                                <a:GridLengthAnimation Storyboard.TargetName="ColumnDefinition2"
+                                                       Storyboard.TargetProperty="Width"
+                                                       To="{x:Static sv:TemplateSettings.CompactPaneGridLength}"
+                                                       Duration="0" />
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <DoubleAnimation Storyboard.TargetName="PaneRoot"
+                                                 Storyboard.TargetProperty="Width"
+                                                 To="{x:Static sv:TemplateSettings.CompactPaneLength}"
+                                                 Duration="0:0:0" />
+                                <Int32AnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                              Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                                    <DiscreteInt32KeyFrame KeyTime="0"
+                                                           Value="2" />
+                                </Int32AnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Right}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerPane"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Right}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Right}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Left}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <Int32AnimationUsingKeyFrames Storyboard.TargetName="ContentRoot"
+                                                              Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                                    <DiscreteInt32KeyFrame KeyTime="0"
+                                                           Value="1" />
+                                </Int32AnimationUsingKeyFrames>
+                                <Int32AnimationUsingKeyFrames Storyboard.TargetName="ContentRoot"
+                                                              Storyboard.TargetProperty="(Grid.Column)">
+                                    <DiscreteInt32KeyFrame KeyTime="0:0:0"
+                                                           Value="0" />
+                                </Int32AnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="OpenOverlayLeft">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="Width">
+                                    <DiscreteDoubleKeyFrame KeyTime="0"
+                                                            Value="0" />
+                                    <SplineDoubleKeyFrame KeySpline="0.1,0.9,0.2,1"
+                                                          KeyTime="0:0:0.35"
+                                                          Value="{x:Static sv:TemplateSettings.OpenPaneLength}" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerPane"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Left}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Right}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LightDismissLayer"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="OpenOverlayRight">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="Width">
+                                    <DiscreteDoubleKeyFrame KeyTime="0"
+                                                            Value="0" />
+                                    <SplineDoubleKeyFrame KeySpline="0.1,0.9,0.2,1"
+                                                          KeyTime="0:0:0.35"
+                                                          Value="{x:Static sv:TemplateSettings.OpenPaneLength}" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Right}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Left}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LightDismissLayer"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="OpenInlineLeft">
+                            <Storyboard>
+                                <a:GridLengthAnimation Storyboard.TargetName="ColumnDefinition1"
+                                                       Storyboard.TargetProperty="Width"
+                                                       To="{x:Static sv:TemplateSettings.OpenPaneGridLength}"
+                                                       Duration="0" />
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <Int32AnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                              Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                                    <DiscreteInt32KeyFrame KeyTime="0"
+                                                           Value="1" />
+                                </Int32AnimationUsingKeyFrames>
+                                <Int32AnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                              Storyboard.TargetProperty="(Grid.Column)">
+                                    <DiscreteInt32KeyFrame KeyTime="0"
+                                                           Value="0" />
+                                </Int32AnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <Int32AnimationUsingKeyFrames Storyboard.TargetName="ContentRoot"
+                                                              Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                                    <DiscreteInt32KeyFrame KeyTime="0"
+                                                           Value="1" />
+                                </Int32AnimationUsingKeyFrames>
+                                <Int32AnimationUsingKeyFrames Storyboard.TargetName="ContentRoot"
+                                                              Storyboard.TargetProperty="(Grid.Column)">
+                                    <DiscreteInt32KeyFrame KeyTime="0"
+                                                           Value="1" />
+                                </Int32AnimationUsingKeyFrames>
+                                <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="LightDismissLayer"
+                                                             Storyboard.TargetProperty="Visibility">
+                                  <DiscreteObjectKeyFrame KeyTime="0"
+                                                          Value="{x:Static Visibility.Visible}" />
+                              </ObjectAnimationUsingKeyFrames>-->
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="OpenInlineRight">
+                            <Storyboard>
+                                <a:GridLengthAnimation Storyboard.TargetName="ColumnDefinition1"
+                                                       Storyboard.TargetProperty="Width"
+                                                       To="*"
+                                                       Duration="0" />
+                                <a:GridLengthAnimation Storyboard.TargetName="ColumnDefinition2"
+                                                       Storyboard.TargetProperty="Width"
+                                                       To="{x:Static sv:TemplateSettings.OpenPaneGridLength}"
+                                                       Duration="0" />
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <Int32AnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                              Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                                    <DiscreteInt32KeyFrame KeyTime="0"
+                                                           Value="1" />
+                                </Int32AnimationUsingKeyFrames>
+                                <Int32AnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                              Storyboard.TargetProperty="(Grid.Column)">
+                                    <DiscreteInt32KeyFrame KeyTime="0"
+                                                           Value="1" />
+                                </Int32AnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Right}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerPane"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Right}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Left}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <Int32AnimationUsingKeyFrames Storyboard.TargetName="ContentRoot"
+                                                              Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                                    <DiscreteInt32KeyFrame KeyTime="0"
+                                                           Value="1" />
+                                </Int32AnimationUsingKeyFrames>
+                                <Int32AnimationUsingKeyFrames Storyboard.TargetName="ContentRoot"
+                                                              Storyboard.TargetProperty="(Grid.Column)">
+                                    <DiscreteInt32KeyFrame KeyTime="0"
+                                                           Value="0" />
+                                </Int32AnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="OpenCompactOverlayLeft">
+                            <Storyboard>
+                                <a:GridLengthAnimation Storyboard.TargetName="ColumnDefinition1"
+                                                       Storyboard.TargetProperty="Width"
+                                                       To="{x:Static sv:TemplateSettings.CompactPaneGridLength}"
+                                                       Duration="0" />
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="Width">
+                                    <DiscreteDoubleKeyFrame KeyTime="0"
+                                                            Value="{x:Static sv:TemplateSettings.CompactPaneLength}" />
+                                    <SplineDoubleKeyFrame KeySpline="0.1,0.9,0.2,1"
+                                                          KeyTime="0:0:0.35"
+                                                          Value="{x:Static sv:TemplateSettings.OpenPaneLength}" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <Int32AnimationUsingKeyFrames Storyboard.TargetName="ContentRoot"
+                                                              Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                                    <DiscreteInt32KeyFrame KeyTime="0"
+                                                           Value="1" />
+                                </Int32AnimationUsingKeyFrames>
+                                <Int32AnimationUsingKeyFrames Storyboard.TargetName="ContentRoot"
+                                                              Storyboard.TargetProperty="(Grid.Column)">
+                                    <DiscreteInt32KeyFrame KeyTime="0"
+                                                           Value="1" />
+                                </Int32AnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LightDismissLayer"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="OpenCompactOverlayRight">
+                            <Storyboard>
+                                <a:GridLengthAnimation Storyboard.TargetName="ColumnDefinition1"
+                                                       Storyboard.TargetProperty="Width"
+                                                       To="*"
+                                                       Duration="0" />
+                                <a:GridLengthAnimation Storyboard.TargetName="ColumnDefinition2"
+                                                       Storyboard.TargetProperty="Width"
+                                                       To="{x:Static sv:TemplateSettings.CompactPaneGridLength}"
+                                                       Duration="0" />
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <!--<DoubleAnimation Storyboard.TargetName="PaneRoot"
+                     Storyboard.TargetProperty="Width"
+                     To="{x:Static sv:TemplateSettings.OpenPaneLength}"
+                     Duration="0:0:0" />-->
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="Width">
+                                    <DiscreteDoubleKeyFrame KeyTime="0"
+                                                            Value="{x:Static sv:TemplateSettings.CompactPaneLength}" />
+                                    <SplineDoubleKeyFrame KeySpline="0.1,0.9,0.2,1"
+                                                          KeyTime="0:0:0.35"
+                                                          Value="{x:Static sv:TemplateSettings.OpenPaneLength}" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Right}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerPane"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Right}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder"
+                                                               Storyboard.TargetProperty="HorizontalAlignment">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static HorizontalAlignment.Left}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <Int32AnimationUsingKeyFrames Storyboard.TargetName="ContentRoot"
+                                                              Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                                    <DiscreteInt32KeyFrame KeyTime="0"
+                                                           Value="1" />
+                                </Int32AnimationUsingKeyFrames>
+                                <Int32AnimationUsingKeyFrames Storyboard.TargetName="ContentRoot"
+                                                              Storyboard.TargetProperty="(Grid.Column)">
+                                    <DiscreteInt32KeyFrame KeyTime="0:0:0"
+                                                           Value="0" />
+                                </Int32AnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LightDismissLayer"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+                <ei:Interaction.Triggers>
+                    <ei:DataTrigger Binding="{Binding Path=VisualState}"
+                                    Comparison="Equal"
+                                    Value="ClosedLeft">
+                        <ei:GoToStateAction StateName="ClosedLeft"
+                                            UseTransitions="True" />
+                    </ei:DataTrigger>
+                    <ei:DataTrigger Binding="{Binding Path=VisualState}"
+                                    Comparison="Equal"
+                                    Value="ClosedRight">
+                        <ei:GoToStateAction StateName="ClosedRight"
+                                            UseTransitions="True" />
+                    </ei:DataTrigger>
+                    <ei:DataTrigger Binding="{Binding Path=VisualState}"
+                                    Comparison="Equal"
+                                    Value="ClosedCompactLeft">
+                        <!--<ei:ControlStoryboardAction ControlStoryboardOption="Play"
+                        Storyboard="{StaticResource ClosedCompactLeft}" />-->
+                        <ei:GoToStateAction StateName="ClosedCompactLeft"
+                                            UseTransitions="True" />
+                    </ei:DataTrigger>
+                    <ei:DataTrigger Binding="{Binding Path=VisualState}"
+                                    Comparison="Equal"
+                                    Value="ClosedCompactRight">
+                        <ei:GoToStateAction StateName="ClosedCompactRight"
+                                            UseTransitions="True" />
+                    </ei:DataTrigger>
+                    <ei:DataTrigger Binding="{Binding Path=VisualState}"
+                                    Comparison="Equal"
+                                    Value="OpenOverlayLeft">
+                        <ei:GoToStateAction StateName="OpenOverlayLeft"
+                                            UseTransitions="True" />
+                    </ei:DataTrigger>
+                    <ei:DataTrigger Binding="{Binding Path=VisualState}"
+                                    Comparison="Equal"
+                                    Value="OpenOverlayRight">
+                        <ei:GoToStateAction StateName="OpenOverlayRight"
+                                            UseTransitions="True" />
+                    </ei:DataTrigger>
+                    <ei:DataTrigger Binding="{Binding Path=VisualState}"
+                                    Comparison="Equal"
+                                    Value="OpenInlineLeft">
+                        <ei:GoToStateAction StateName="OpenInlineLeft"
+                                            UseTransitions="True" />
+                    </ei:DataTrigger>
+                    <ei:DataTrigger Binding="{Binding Path=VisualState}"
+                                    Comparison="Equal"
+                                    Value="OpenInlineRight">
+                        <ei:GoToStateAction StateName="OpenInlineRight"
+                                            UseTransitions="True" />
+                    </ei:DataTrigger>
+                    <ei:DataTrigger Binding="{Binding Path=VisualState}"
+                                    Comparison="Equal"
+                                    Value="OpenCompactOverlayLeft">
+                        <ei:GoToStateAction StateName="OpenCompactOverlayLeft"
+                                            UseTransitions="True" />
+                    </ei:DataTrigger>
+                    <ei:DataTrigger Binding="{Binding Path=VisualState}"
+                                    Comparison="Equal"
+                                    Value="OpenCompactOverlayRight">
+                        <ei:GoToStateAction StateName="OpenCompactOverlayRight"
+                                            UseTransitions="True" />
+                    </ei:DataTrigger>
+                </ei:Interaction.Triggers>
+
+                <Grid x:Name="ContentRoot"
+                      Grid.ColumnSpan="2">
+                    <Border>
+                        <ContentControl x:Name="hamburgerMenuWorkspaceRegion"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Margin="0,0,0,0"
+                                        prism:RegionManager.RegionName="{Binding Path=WorkspaceRegionName,Mode=OneWay}">
+                            <ContentControl.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform />
+                                    <SkewTransform />
+                                    <RotateTransform />
+                                    <TranslateTransform />
+                                </TransformGroup>
+                            </ContentControl.RenderTransform>
+                        </ContentControl>
+                    </Border>
+                    <Rectangle x:Name="LightDismissLayer"
+                               Fill="Transparent"
+                               Visibility="Collapsed" />
+                </Grid>
+
+                <Grid x:Name="PaneRoot"
+                      Grid.ColumnSpan="2"
+                      Background="{Binding Path=PaneBackground,Mode=OneWay}"
+                      Visibility="Collapsed"
+                      HorizontalAlignment="Left"
+                      Margin="0,0,0,0"
+                      Width="320">
+                    <Grid x:Name="InnerPane"
+                          HorizontalAlignment="Left">
+                        <ContentControl HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Margin="0,0,2,2"
+                                        RenderTransformOrigin="0.5,0.5">
+                            <Border SnapsToDevicePixels="True"
+                                    Background="WhiteSmoke"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="2"
+                                    CornerRadius="5">
+                                <Expander ExpandDirection="Left"
+                                          IsExpanded="{Binding Path=IsPaneOpen,Mode=TwoWay}">
+                                    <Expander.Header>
+                                        <TextBlock Foreground="#99000000"
+                                                   FontFamily="Verdana"
+                                                   FontWeight="Bold"
+                                                   FontSize="16"
+                                                   Text="{Binding Path=ExpanderHeaderTitle,Mode=OneWay}">
+                                            <TextBlock.LayoutTransform>
+                                                <RotateTransform Angle="90" />
+                                            </TextBlock.LayoutTransform>
+                                        </TextBlock>
+                                    </Expander.Header>
+                                    <views:HamburgerMenuView DataContext="{Binding Path=HamburgerMenu}" />
+                                </Expander>
+                            </Border>
+                        </ContentControl>
+                        <Rectangle x:Name="HCPaneBorder"
+                                   Fill="Transparent"
+                                   HorizontalAlignment="Right"
+                                   Visibility="Collapsed"
+                                   Width="1" />
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Visibility="{Binding Path=IsLoading,Converter={StaticResource booleanToVisibilityConverter}}">
+            <ProgressBar Name="waitingBar"
+                         Value="100"
+                         Width="200"
+                         Height="30">
+                <ProgressBar.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard Storyboard="{StaticResource waitingBarStoryboard}" />
+                    </EventTrigger>
+                </ProgressBar.Triggers>
+            </ProgressBar>
+        </Grid>
+    </Grid>
+</UserControl>

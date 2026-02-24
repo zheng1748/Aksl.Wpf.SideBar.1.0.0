@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Aksl.Modules.Home.Views.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:views="clr-namespace:Aksl.Modules.Home.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid Margin="4,4,4,4"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <TextBlock Text="hello Home"
+                   FontSize="32"
+                   Foreground="Red"
+                   FontWeight="Black"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
+    </Grid>
+</UserControl>

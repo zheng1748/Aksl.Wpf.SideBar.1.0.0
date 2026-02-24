@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Aksl.Modules.MenuSub.Views.HierarchicalMenuItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ei="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:views="clr-namespace:Aksl.Modules.MenuSub.Views"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+
+    </UserControl.Resources>
+
+    <ContentControl>
+        <ei:Interaction.Triggers>
+            <ei:DataTrigger Binding="{Binding IsTopLevel,Mode=OneWay}"
+                            Comparison="Equal"
+                            Value="True">
+                <ei:ChangePropertyAction PropertyName="Content">
+                    <ei:ChangePropertyAction.Value>
+                        <views:TopLevelMenuItemView />
+                    </ei:ChangePropertyAction.Value>
+                </ei:ChangePropertyAction>
+            </ei:DataTrigger>
+            <ei:DataTrigger Binding="{Binding IsSubmenu,Mode=OneWay}"
+                            Comparison="Equal"
+                            Value="True">
+                <ei:ChangePropertyAction PropertyName="Content">
+                    <ei:ChangePropertyAction.Value>
+                        <views:SubMenuItemView />
+                    </ei:ChangePropertyAction.Value>
+                </ei:ChangePropertyAction>
+            </ei:DataTrigger>
+        </ei:Interaction.Triggers>
+    </ContentControl>
+</UserControl>

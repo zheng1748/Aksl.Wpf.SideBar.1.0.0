@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<TargetFramework>net8.0-windows8.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+	<AssemblyName>Aksl.Modules.Thermometer</AssemblyName>
+	<RootNamespace>Aksl.Modules.Thermometer</RootNamespace>
+    <Authors>zheng ming</Authors>
+    <Company>Aksl</Company>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Infrastructure\Aksl.Infrastructure\Aksl.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\..\Toolkits\Aksl.Toolkit.Controls\Aksl.Toolkit.Controls.csproj" />
+    <ProjectReference Include="..\..\..\..\Toolkits\Aksl.Toolkit\Aksl.Toolkit.csproj" />
+    <ProjectReference Include="..\..\..\..\Toolkits\Prism Library\Prism.Core\Prism.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\Toolkits\Prism Library\Prism.Unity.Wpf\Prism.Unity.Wpf.csproj" />
+    <ProjectReference Include="..\..\..\..\Toolkits\Prism Library\Prism.Wpf\Prism.Wpf.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ThermometerHubView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+	
+</Project>

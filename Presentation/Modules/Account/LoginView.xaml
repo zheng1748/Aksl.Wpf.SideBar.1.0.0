@@ -1,0 +1,283 @@
+﻿<UserControl x:Class="Aksl.Modules.Account.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ei="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:behaviors="clr-namespace:Aksl.Xaml.Behaviors;assembly=Aksl.Toolkit"
+             xmlns:materialDesign="clr-namespace:Aksl.Toolkit.Controls;assembly=Aksl.Toolkit.Controls"
+             xmlns:aksl="clr-namespace:Aksl.Toolkit.UI.Controls;assembly=Aksl.Toolkit"
+             mc:Ignorable="d"
+             x:Name="loginViewContainer"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <UserControl.Resources>
+
+        <ControlTemplate x:Key="userNameRrrorTemplate">
+            <DockPanel>
+                <!--<Border BorderBrush="Red"
+             BorderThickness="1"
+             CornerRadius="2">-->
+                <AdornedElementPlaceholder x:Name="Placeholder" />
+                <!--</Border>-->
+                <TextBlock Text="*"
+                           Foreground="Red"
+                           FontSize="10"
+                           VerticalAlignment="Center" />
+                <TextBlock Foreground="Red"
+                           Text="{Binding ElementName=Placeholder,Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"
+                           FontSize="10"
+                           TextAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="2,0,0,0" />
+            </DockPanel>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="passwordBoxErrorTemplate">
+            <DockPanel>
+                <!--<Border BorderBrush="Red"
+      BorderThickness="1"
+      CornerRadius="2">-->
+                <AdornedElementPlaceholder x:Name="Placeholder" />
+                <!--</Border>-->
+                <TextBlock Text="*"
+                           Foreground="Red"
+                           FontSize="10"
+                           VerticalAlignment="Center" />
+                <TextBlock Foreground="Red"
+                           Text="{Binding ElementName=Placeholder,Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"
+                           FontSize="10"
+                           TextWrapping="Wrap"
+                           TextAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="2,0,0,0" />
+            </DockPanel>
+        </ControlTemplate>
+
+        <Style x:Key="userNameTextBox"
+               TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize"
+                    Value="12" />
+            <Setter Property="TextWrapping"
+                    Value="Wrap" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+            <Setter Property="Margin"
+                    Value="20,2,180,2" />
+            <Setter Property="Foreground"
+                    Value="Black" />
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="BorderBrush"
+                    Value="Transparent" />
+            <Setter Property="BorderThickness"
+                    Value="0" />
+            <Setter Property="CaretBrush"
+                    Value="DimGray" />
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError"
+                         Value="true">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="userNameTextBoxWater"
+               TargetType="{x:Type TextBox}">
+            <Setter Property="TextWrapping"
+                    Value="Wrap" />
+            <Setter Property="FontSize"
+                    Value="12" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+            <Setter Property="Margin"
+                    Value="20,2,180,2" />
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="BorderBrush"
+                    Value="DimGray" />
+            <Setter Property="BorderThickness"
+                    Value="0 0 0 1" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=UserName,Mode=OneWay,Converter={StaticResource stringEmptyToBooleanConverter}}"
+                             Value="False">
+                    <Setter Property="Foreground"
+                            Value="Transparent" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=UserName,Mode=OneWay,Converter={StaticResource stringEmptyToBooleanConverter}}"
+                             Value="True">
+                    <Setter Property="Foreground"
+                            Value="DimGray" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="passwordBoxInError"
+               TargetType="PasswordBox">
+            <Setter Property="FontSize"
+                    Value="12" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+            <Setter Property="Margin"
+                    Value="20,2,180,2" />
+            <Setter Property="Foreground"
+                    Value="Black" />
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="BorderBrush"
+                    Value="Transparent" />
+            <Setter Property="BorderThickness"
+                    Value="0" />
+            <Setter Property="CaretBrush"
+                    Value="DimGray" />
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError"
+                         Value="true">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="passwordTextBoxWater"
+               TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize"
+                    Value="12" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+            <Setter Property="Margin"
+                    Value="20,2,180,2" />
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="BorderBrush"
+                    Value="DimGray" />
+            <Setter Property="BorderThickness"
+                    Value="0 0 0 1" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Password,Mode=OneWay,
+           Converter={StaticResource stringEmptyToBooleanConverter}}"
+                             Value="False">
+                    <Setter Property="Foreground"
+                            Value="Transparent" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Password,Mode=OneWay,Converter={StaticResource stringEmptyToBooleanConverter}}"
+                             Value="True">
+                    <Setter Property="Foreground"
+                            Value="DimGray" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <!--<ei:Interaction.Triggers>
+     <ei:EventTrigger EventName="Loaded">
+         <ei:CallMethodAction TargetObject="{Binding DataContext,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
+                              MethodName="LoginViewLoaded" />
+     </ei:EventTrigger>
+ </ei:Interaction.Triggers>-->
+    <Grid Margin="20,20,20,20"
+          Width="650"
+          Height="340">
+
+        <aksl:WindowTitle Title="{Binding Path=Title}" />
+
+        <Border Margin="0"
+                Background="WhiteSmoke"
+                BorderThickness="2"
+                CornerRadius="5"
+                BorderBrush="Black">
+            <Grid Visibility="{Binding Path=IsLoading,Converter={StaticResource booleanNegationToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Button x:Name="closeButton"
+                        Grid.Row="0"
+                        Content="X"
+                        FontSize="10"
+                        HorizontalAlignment="Right"
+                        Margin="2,2,2,2">
+                    <ei:Interaction.Triggers>
+                        <ei:EventTrigger EventName="Click">
+                            <ei:CallMethodAction TargetObject="{Binding DataContext,ElementName=closeButton}"
+                                                 MethodName="ButtonCloseClick" />
+                        </ei:EventTrigger>
+                    </ei:Interaction.Triggers>
+                </Button>
+
+                <Grid Grid.Row="1"
+                      Margin="20,5,20,5"
+                      FocusManager.FocusedElement="{Binding ElementName=userNameTextBox}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBox Grid.Row="0"
+                             x:Name="userNameTextBox"
+                             Text="{Binding Path=UserName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
+                             Style="{StaticResource userNameTextBox}"
+                             Validation.ErrorTemplate="{StaticResource userNameRrrorTemplate}"
+                             Panel.ZIndex="2"
+                             FocusManager.IsFocusScope="True" />
+
+                    <TextBox Grid.Row="0"
+                             Text="Username"
+                             Style="{StaticResource userNameTextBoxWater}"
+                             FocusManager.IsFocusScope="False" />
+                </Grid>
+
+                <Grid Grid.Row="2"
+                      Margin="20,5,20,5"
+                      FocusManager.FocusedElement="{Binding ElementName=passwordBox}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <PasswordBox Grid.Row="0"
+                                 x:Name="passwordBox"
+                                 behaviors:PasswordManager.AutoPassword="True"
+                                 behaviors:PasswordManager.Password="{Binding Path=Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
+                                 Style="{StaticResource passwordBoxInError}"
+                                 Validation.ErrorTemplate="{StaticResource passwordBoxErrorTemplate}"
+                                 Panel.ZIndex="2"
+                                 FocusManager.IsFocusScope="True" />
+                    <TextBox Grid.Row="0"
+                             Text="Password"
+                             Style="{StaticResource passwordTextBoxWater}"
+                             FocusManager.IsFocusScope="False" />
+                </Grid>
+
+                <Button  Grid.Row="3"
+                         Width="52"
+                         Height="48"
+                         Content="{materialDesign:PackIcon Kind=AccountAdd,Size=32}"
+                         Command="{Binding Path=LoginCommand}"
+                         FontSize="18"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         ToolTip="Login" />
+
+            </Grid>
+        </Border>
+
+        <Grid Visibility="{Binding Path=IsLoading,Converter={StaticResource booleanToVisibilityConverter}}"
+              Margin="10,10,10,10">
+            <Label Name="statusLabel"
+                   Content="{Binding Path=StatusMessage,Mode=OneWay}"
+                   Width="320"
+                   Height="30"
+                   FontSize="16"
+                   FontWeight="Bold"
+                   VerticalContentAlignment="Center"
+                   HorizontalContentAlignment="Left"
+                   Background="Green"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,30">
+            </Label>
+        </Grid>
+    </Grid>
+</UserControl>

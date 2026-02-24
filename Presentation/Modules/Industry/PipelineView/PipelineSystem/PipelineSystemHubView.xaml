@@ -1,0 +1,151 @@
+﻿<UserControl x:Class="Aksl.Modules.Pipeline.Views.PipelineSystemHubView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:views="clr-namespace:Aksl.Modules.Pipeline.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="950"
+             d:DesignWidth="800"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="8" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                        Margin="5,5,5,5">
+            <Button Content="West To East"
+                        Command="{Binding Path=WestToEastFlowCommand}"
+                        Width="200"
+                        Height="30"
+                        Margin="10,10,0,10" />
+                <Button Content="East To West"
+                        Command="{Binding Path=EastToWestFlowCommand}"
+                        Width="200"
+                        Height="30"
+                        Margin="10,10,0,10" />
+                <Button Content="Pause"
+                        Command="{Binding Path=PauseFlowCommand}"
+                        Width="200"
+                        Height="30"
+                        Margin="10,10,0,10" />
+            </StackPanel>
+        </Grid>
+
+        <ScrollViewer Grid.Row="2"
+                      Margin="20"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"
+                      CanContentScroll="True">
+            <Canvas Margin="10">
+                <views:PipelineView x:Name="topPipelineView"
+                                    DataContext="{Binding Path=TopPipeline}"
+                                    Panel.ZIndex="4"
+                                    Canvas.Top="-10"
+                                    Canvas.Left="0"
+                                    Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Canvas}},Path=ActualWidth}"
+                                    Height="30"
+                                    WaterDirection="{Binding Path=SelectedWaterDirection,Mode=TwoWay}"
+                                    LiquidColor="Red"
+                                    CapRadius="20" />
+                <views:PipelineView x:Name="rightPipelineView"
+                                    DataContext="{Binding Path=RightPipeline}"
+                                    Panel.ZIndex="3"
+                                    Canvas.Right="-10"
+                                    Canvas.Top="10"
+                                    Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Canvas}},Path=ActualHeight}"
+                                    WaterDirection="{Binding Path=SelectedWaterDirection,Mode=TwoWay}"
+                                    LiquidColor="Red"
+                                    Height="30"
+                                    CapRadius="20">
+                    <views:PipelineView.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform X="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Canvas}},Path=ActualHeight}"
+                                                Y="0" />
+                            <RotateTransform Angle="90"
+                                             CenterX="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Canvas}},Path=ActualHeight}"
+                                             CenterY="0" />
+                        </TransformGroup>
+                    </views:PipelineView.RenderTransform>
+                </views:PipelineView>
+                <views:PipelineView x:Name="bottomPipelineView"
+                                    DataContext="{Binding Path=BottomPipeline}"
+                                    Panel.ZIndex="2"
+                                    Canvas.Bottom="-15"
+                                    Canvas.Right="0"
+                                    Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Canvas}},Path=ActualWidth}"
+                                    WaterDirection="{Binding Path=SelectedWaterDirection,Mode=TwoWay}"
+                                    LiquidColor="Red"
+                                    Height="30"
+                                    CapRadius="20" />
+                <views:PipelineView x:Name="leftPipelineView"
+                                    DataContext="{Binding Path= LeftPipeline}"
+                                    Panel.ZIndex="1"
+                                    Canvas.Left="15"
+                                    Canvas.Top="0"
+                                    Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Canvas}},Path=ActualHeight}"
+                                    WaterDirection="{Binding Path=SelectedWaterDirection,Mode=TwoWay}"
+                                    LiquidColor="Red"
+                                    Height="30"
+                                    CapRadius="20">
+                    <views:PipelineView.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="90" />
+                        </TransformGroup>
+                    </views:PipelineView.RenderTransform>
+                </views:PipelineView>
+                <views:CoolingPieView DataContext="{Binding Path=TopLeftCoolingPie}"
+                                      CenterX="{Binding Path=CenterX,Mode=TwoWay}"
+                                      CenterY="{Binding Path=CenterY,Mode=TwoWay}"
+                                      FanStatus="{Binding Path=SelectedFanStatus,Mode=TwoWay}"
+                                      TurnDirection="{Binding Path=SelectedTurnDirection,Mode=TwoWay}"
+                                      Canvas.Left="-10"
+                                      Canvas.Top="-10"
+                                      Panel.ZIndex="5"
+                                      Width="40"
+                                      Height="40">
+                </views:CoolingPieView>
+                <views:CoolingPieView DataContext="{Binding Path=TopRightCoolingPie}"
+                                      CenterX="{Binding Path=CenterX,Mode=TwoWay}"
+                                      CenterY="{Binding Path=CenterY,Mode=TwoWay}"
+                                      FanStatus="{Binding Path=SelectedFanStatus,Mode=TwoWay}"
+                                      TurnDirection="{Binding Path=SelectedTurnDirection,Mode=TwoWay}"
+                                      Canvas.Right="-10"
+                                      Canvas.Top="-10"
+                                      Panel.ZIndex="5"
+                                      Width="40"
+                                      Height="40">
+                </views:CoolingPieView>
+                <views:CoolingPieView DataContext="{Binding Path=BottomLeftCoolingPie}"
+                                      CenterX="{Binding Path=CenterX,Mode=TwoWay}"
+                                      CenterY="{Binding Path=CenterY,Mode=TwoWay}"
+                                      FanStatus="{Binding Path=SelectedFanStatus,Mode=TwoWay}"
+                                      TurnDirection="{Binding Path=SelectedTurnDirection,Mode=TwoWay}"
+                                      Canvas.Left="-10"
+                                      Canvas.Bottom="-10"
+                                      Panel.ZIndex="5"
+                                      Width="40"
+                                      Height="40">
+                </views:CoolingPieView>
+                <views:CoolingPieView DataContext="{Binding Path=BottomRightCoolingPie}"
+                                      CenterX="{Binding Path=CenterX,Mode=TwoWay}"
+                                      CenterY="{Binding Path=CenterY,Mode=TwoWay}"
+                                      FanStatus="{Binding Path=SelectedFanStatus,Mode=TwoWay}"
+                                      TurnDirection="{Binding Path=SelectedTurnDirection,Mode=TwoWay}"
+                                      Canvas.Right="-10"
+                                      Canvas.Bottom="-10"
+                                      Panel.ZIndex="5"
+                                      Width="40"
+                                      Height="40">
+                </views:CoolingPieView>
+            </Canvas>
+        </ScrollViewer>
+
+    </Grid>
+    
+</UserControl>

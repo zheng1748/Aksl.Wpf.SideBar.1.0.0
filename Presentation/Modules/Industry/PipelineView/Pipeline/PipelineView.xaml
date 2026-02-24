@@ -1,0 +1,124 @@
+﻿<UserControl x:Class="Aksl.Modules.Pipeline.Views.PipelineView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:ei="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d"
+             d:DesignHeight="150" 
+             d:DesignWidth="600"
+             x:Name="pipelineViewContainer">
+    <UserControl.Resources>
+        <Storyboard x:Key="westToEastFlowState"
+                    RepeatBehavior="Forever"
+                    Storyboard.TargetName="liquidLine"
+                    Storyboard.TargetProperty="StrokeDashOffset">
+            <DoubleAnimation Duration="0:0:1"
+                             From="0"
+                             To="-5">
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Key="eastToWestFlowState"
+                    RepeatBehavior="Forever"
+                    Storyboard.TargetName="liquidLine"
+                    Storyboard.TargetProperty="StrokeDashOffset">
+            <DoubleAnimation Duration="0:0:1"
+                             From="0"
+                             To="5">
+            </DoubleAnimation>
+        </Storyboard>
+
+        <LinearGradientBrush x:Key="borderBackground"
+                             StartPoint="0.5,0"
+                             EndPoint="0.5,1">
+            <GradientStop Color="#FFCBCBCB"
+                          Offset="0.1"></GradientStop>
+            <GradientStop Color="White"
+                          Offset="0.5"></GradientStop>
+            <GradientStop Color="#FFCBCBCB"
+                          Offset="0.8"></GradientStop>
+        </LinearGradientBrush>
+
+        <Style x:Key="borderStyle"
+               TargetType="{x:Type Border}">
+            <Setter Property="Background"
+                    Value="{StaticResource borderBackground}" />
+            <Setter Property="CornerRadius"
+                    Value="{Binding CapRadius,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl}}}" />
+            <Style.Triggers>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="lineStyle"
+               TargetType="{x:Type Line}">
+            <Setter Property="X1"
+                    Value="0" />
+            <Setter Property="Y1"
+                    Value="0" />
+            <Setter Property="X2"
+                    Value="{Binding RelativeSource={RelativeSource Self},Path=ActualWidth}" />
+            <Setter Property="Y2"
+                    Value="0" />
+            <Setter Property="Stroke"
+                    Value="{Binding LiquidColor,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl}}}" />
+            <Setter Property="StrokeThickness"
+                    Value="10" />
+            <Setter Property="StrokeDashArray"
+                    Value="2,3" />
+            <Setter Property="StrokeDashCap"
+                    Value="Round" />
+            <Setter Property="StrokeStartLineCap"
+                    Value="Round" />
+            <Setter Property="StrokeEndLineCap"
+                    Value="Round" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="Opacity"
+                    Value="0.5" />
+            <Setter Property="Stretch"
+                    Value="Fill" />
+            <Style.Triggers>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <!--TargetObject="{Binding Path=DataContext,ElementName=pipelineContainer}"-->
+    <!--<ei:Interaction.Triggers>
+        <ei:EventTrigger EventName="Loaded">
+            <ei:ChangePropertyAction TargetObject="{Binding Path=DataContext,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
+                                     PropertyName="Direction"
+                                     Value="{Binding WaterDirection,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl}}}" />
+        </ei:EventTrigger>
+    </ei:Interaction.Triggers>-->
+    <!--Binding="{Binding Path=Direction,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl}}"-->
+    <Border Style="{StaticResource borderStyle}">
+        <ei:Interaction.Triggers>
+            <ei:DataTrigger Binding="{Binding Path=WaterDirection,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
+                            Comparison="Equal"
+                            Value="WestToEast">
+                <ei:ControlStoryboardAction ControlStoryboardOption="Play" 
+                                            Storyboard="{StaticResource westToEastFlowState}" />
+            </ei:DataTrigger>
+            <ei:DataTrigger Binding="{Binding Path=WaterDirection,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
+                            Comparison="Equal"
+                            Value="EastToWest">
+                <ei:ControlStoryboardAction ControlStoryboardOption="Play"
+                                            Storyboard="{StaticResource eastToWestFlowState}" />
+            </ei:DataTrigger>
+            <ei:DataTrigger Binding="{Binding Path=WaterDirection,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
+                            Comparison="Equal"
+                            Value="Pause">
+                <ei:ControlStoryboardAction ControlStoryboardOption="Pause"
+                                            Storyboard="{StaticResource westToEastFlowState}" />
+                <ei:ControlStoryboardAction ControlStoryboardOption="Pause"
+                                            Storyboard="{StaticResource eastToWestFlowState}" />
+            </ei:DataTrigger>
+        </ei:Interaction.Triggers>
+        <Border x:Name="borderLine" 
+                Margin="10,2">
+            <Line x:Name="liquidLine"
+                  Style="{StaticResource lineStyle}" />
+        </Border>
+    </Border>
+</UserControl>

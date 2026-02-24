@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows8.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+	<AssemblyName>Aksl.Wpf.SideBar</AssemblyName>
+	<RootNamespace>Aksl.Modules.Shell</RootNamespace>
+	<Authors>zheng ming</Authors>
+	<Company>Aksl</Company>
+	<ApplicationIcon>Assets\cookcsharp.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Configuration\appsettings.json" />
+    <None Remove="Data\AirCompressers.xml" />
+    <None Remove="Data\AllMenus.xml" />
+    <None Remove="Data\CoolingTowers.xml" />
+    <None Remove="Data\Industry.xml" />
+    <None Remove="Data\Others.xml" />
+    <None Remove="Data\Pipelines.xml" />
+    <None Remove="Data\Thermometers.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Configuration\appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Data\AirCompressers.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\CoolingTowers.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Industry.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Others.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Data\AllMenus.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Pipelines.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Thermometers.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="CommonServiceLocator" Version="2.0.7" />
+	  <PackageReference Include="System.Drawing.Common" Version="9.0.10" />
+	  <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-rc5.4" />
+	  <PackageReference Include="Unity" Version="5.11.10" />
+	  <PackageReference Include="Unity.Container" Version="5.11.11" />
+	  <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
+
+	  <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
+	  <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+
+	  <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+
+	  <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+
+	  <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+
+	  <PackageReference Include="System.Buffers" Version="4.5.1" />
+	  <PackageReference Include="System.Memory" Version="4.5.5" />
+	  <PackageReference Include="System.IO.Pipelines" Version="8.0.0" />
+
+	  <PackageReference Include="System.Threading.Channels" Version="8.0.0" />
+	  <PackageReference Include="System.Threading.Tasks.Dataflow" Version="8.0.0" />
+	  <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Aksl.Infrastructure\Aksl.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Toolkits\Aksl.Toolkit.Controls\Aksl.Toolkit.Controls.csproj" />
+    <ProjectReference Include="..\..\Toolkits\Aksl.Toolkit\Aksl.Toolkit.csproj" />
+    <ProjectReference Include="..\..\Toolkits\Prism Library\Prism.Core\Prism.Core.csproj" />
+    <ProjectReference Include="..\..\Toolkits\Prism Library\Prism.Unity.Wpf\Prism.Unity.Wpf.csproj" />
+    <ProjectReference Include="..\..\Toolkits\Prism Library\Prism.Wpf\Prism.Wpf.csproj" />
+    <ProjectReference Include="..\Modules\Account\Account.csproj" />
+    <ProjectReference Include="..\Modules\Home\Home.csproj" />
+    <ProjectReference Include="..\Modules\Industry\AirCompresserView\AirCompresserView.csproj" />
+    <ProjectReference Include="..\Modules\Industry\CoolingTowerView\CoolingTowerView.csproj" />
+    <ProjectReference Include="..\Modules\Industry\PipelineView\PipelineView.csproj" />
+    <ProjectReference Include="..\Modules\Industry\ThermometerrView\ThermometerView.csproj" />
+    <ProjectReference Include="..\Modules\Navigations\ExpandHamburgerMenuNavigationBar\ExpandHamburgerMenuNavigationBar.csproj" />
+    <ProjectReference Include="..\Modules\Navigations\ExpandHamburgerMenuSub\ExpandHamburgerMenuSub.csproj" />
+    <ProjectReference Include="..\Modules\Navigations\ExpandHamburgerMenuTab\ExpandHamburgerMenuTab.csproj" />
+    <ProjectReference Include="..\Modules\Navigations\ExpandHamburgerMenuTreeBar\ExpandHamburgerMenuTreeBar.csproj" />
+    <ProjectReference Include="..\Modules\Navigations\ExpandHamburgerMenu\ExpandHamburgerMenu.csproj" />
+    <ProjectReference Include="..\Modules\Navigations\MenuSub\MenuSub.csproj" />
+    <ProjectReference Include="..\Modules\Navigations\TabBar\TabBar.csproj" />
+    <ProjectReference Include="..\Modules\Others\OthersView\OthersView.csproj" />
+    <ProjectReference Include="..\Modules\SideBars\HamburgerMenuNavigationSideBar\HamburgerMenuNavigationSideBar.csproj" />
+    <ProjectReference Include="..\Modules\SideBars\HamburgerMenuPopupSideBar\HamburgerMenuPopupSideBar.csproj" />
+    <ProjectReference Include="..\Modules\SideBars\HamburgerMenuSideBar\HamburgerMenuSideBar.csproj" />
+    <ProjectReference Include="..\Modules\SideBars\HamburgerMenuTreeSideBar\HamburgerMenuTreeSideBar.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\Converters.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+  </ItemGroup>
+
+</Project>

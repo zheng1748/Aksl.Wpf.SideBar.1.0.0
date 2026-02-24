@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Aksl.Modules.HamburgerMenuSideBarTab.Views.TabItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="200"
+             d:DesignWidth="500">
+    <UserControl.Resources>
+
+        <Style x:Key="contentControlStyle"
+               TargetType="{x:Type ContentControl}">
+            <Setter Property="Margin"
+                    Value="0,0,0,0" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Stretch" />
+            <Setter Property="VerticalAlignment"
+                    Value="Stretch" />
+            <Setter Property="Content"
+                    Value="{Binding ViewElement,Mode=OneWay}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSelected,Mode=OneWay}"
+                             Value="True">
+                    <Setter Property="Background"
+                            Value="#EEEEEEEE" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <ContentControl Style="{StaticResource contentControlStyle}">
+    </ContentControl>
+
+</UserControl>

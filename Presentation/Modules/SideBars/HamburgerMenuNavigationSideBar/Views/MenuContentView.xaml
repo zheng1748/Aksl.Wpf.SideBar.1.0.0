@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="Aksl.Modules.HamburgerMenuNavigationSideBar.Views.MenuContentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:Aksl.Modules.HamburgerMenuNavigationSideBar.Views"
+             xmlns:viewmodels="clr-namespace:Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="menuSource"
+                              Source="{Binding Path=MenuItems}" />
+
+        <DataTemplate x:Key="menuDataTemplate"
+                      DataType="{x:Type viewmodels:MenuItemViewModel}">
+            <views:MenuItemView />
+        </DataTemplate>
+
+        <Style x:Key="menuListViewItemStyle"
+               TargetType="{x:Type ListViewItem}">
+            <!--<Setter Property="IsSelected"
+                    Value="{Binding IsSelected,Mode=TwoWay}" />-->
+            <Setter Property="FontSize"
+                    Value="16" />
+            <Setter Property="Margin"
+                    Value="0,0,0,0" />
+            <!--<Setter Property="Margin"
+               "2,2,2,2" />-->
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected"
+                                   Value="True" />
+                        <Condition Property="Selector.IsSelectionActive"
+                                   Value="True" />
+                    </MultiTrigger.Conditions>
+                    <!--<Setter Property="Background"
+                  Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+          <Setter Property="Foreground"
+                  Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
+          <Setter Property="Foreground"
+                  Value="Black" />-->
+                    <Setter Property="Foreground"
+                            Value="Black" />
+                    <Setter Property="FontSize"
+                            Value="16.3" />
+                </MultiTrigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected"
+                                   Value="True" />
+                        <Condition Property="Selector.IsSelectionActive"
+                                   Value="False" />
+                    </MultiTrigger.Conditions>
+                    <!--<Setter Property="Background"
+                  Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+          <Setter Property="Foreground"
+                  Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />-->
+                    <Setter Property="Foreground"
+                            Value="Black" />
+                    <Setter Property="FontSize"
+                            Value="16.3" />
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <ListView x:Name="menuListView"
+              ItemsSource="{Binding Source={StaticResource menuSource}}"
+              ItemContainerStyle="{StaticResource menuListViewItemStyle}"
+              ItemTemplate="{Binding Source={StaticResource menuDataTemplate}}"
+              SelectionMode="Single"
+              SelectedItem="{Binding Path=SelectedMenuItem,Mode=TwoWay}">
+    </ListView>
+</UserControl>

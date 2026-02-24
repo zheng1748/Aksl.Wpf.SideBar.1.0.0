@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MenuItem Id="0"
+		  Name="CoolingTowers"
+		  Title="Root"
+		  Level="0" >
+	<MenuItem Id="2"
+			  Name="CoolingTowerTry"
+			  Title="冷却塔测试"
+			  Level="2"
+			  IsCacheable="True"
+			  IconKind="TowerFire"
+			  ItemType="Item"
+			  ModuleName="CoolingTowerModule"
+			  ViewName="Aksl.Modules.CoolingTower.Views.CoolingTowerHubView,Aksl.Modules.CoolingTower" >
+	</MenuItem>
+</MenuItem>
+
+
