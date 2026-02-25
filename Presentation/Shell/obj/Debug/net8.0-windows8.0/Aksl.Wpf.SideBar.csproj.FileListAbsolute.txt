@@ -123,3 +123,4 @@ C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Shell\bin\De
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Shell\bin\Debug\net8.0-windows8.0\Aksl.Modules.Others.pdb
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Shell\bin\Debug\net8.0-windows8.0\Aksl.Modules.HamburgerMenuPopupSideBar.dll
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Shell\bin\Debug\net8.0-windows8.0\Aksl.Modules.HamburgerMenuPopupSideBar.pdb
+C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Shell\obj\Debug\net8.0-windows8.0\Aksl.Wpf.SideBar.sourcelink.json

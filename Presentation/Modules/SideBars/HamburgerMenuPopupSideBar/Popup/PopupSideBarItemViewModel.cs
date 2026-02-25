@@ -33,11 +33,11 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
         private readonly IMenuService _menuService;
         protected readonly PopupSideBarItemViewModel _parent;
         protected ObservableCollection<PopupSideBarItemViewModel> _children;
-        private readonly MenuItem _menuItem;
+        private readonly Infrastructure.MenuItem _menuItem;
         #endregion
 
         #region Constructors
-        public PopupSideBarItemViewModel(MenuItem menuItem, PopupSideBarItemViewModel parent)
+        public PopupSideBarItemViewModel(Infrastructure.MenuItem menuItem, PopupSideBarItemViewModel parent)
         {
             _menuItem = menuItem;
             Parent = parent;
@@ -117,7 +117,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 
                 if (listViewItem != null)
                 {
-                    listViewItem.MouseLeave += async (sender, e) =>
+                    listViewItem.MouseLeave += (sender, e) =>
                     {
                         if (sender is System.Windows.Controls.ListViewItem listViewItem)
                         {
@@ -133,7 +133,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                             VisualTreeFinder visualTreeFinder = new();
                             var parentsToListViewItem = visualTreeFinder.FindVisualParents<DependencyObject>(listViewItem);
                             var listView = parentsToListViewItem.FirstOrDefault(d => d is System.Windows.Controls.ListView) as System.Windows.Controls.ListView;
-
+                        
                             var popupRoot = parentsToListViewItem.FirstOrDefault(d => d.GetType().Name == "PopupRoot") as FrameworkElement;
 
                             if (popupRoot is not null)
@@ -143,21 +143,38 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                                 {
                                     System.Windows.Point popupChildPoint = e.GetPosition(popup.Child);
 
-                                    bool isMouseInPopup = IsMouseInPopup(popupChildPoint, popup);
-                                    Debug.Print($"{isMouseInPopup}:MouseLeave");
-                                    if (!isMouseInPopup)
-                                    {
-                                        PopupViewModel popupViewModel = popup.DataContext as PopupViewModel;
+                                    //bool isMouseInPopup = IsMouseInPopup(popupChildPoint, popup);
+                                    //Debug.Print($"{isMouseInPopup}:MouseLeave");
+                                    //if (!isMouseInPopup)
+                                    //{
+                                    //    PopupViewModel popupViewModel = popup.DataContext as PopupViewModel;
 
-                                        if (popupViewModel is not null)
-                                        {
-                                            popupViewModel.PlacementTarget = null;
-                                            popupViewModel.IsOpen = false;
-                                        }
+                                    //    if (popupViewModel is not null)
+                                    //    {
+                                    //        popupViewModel.PlacementTarget = null;
+                                    //        popupViewModel.IsOpen = false;
+                                    //    }
+                                    //}
+
+                                    Point listViewPoint = e.GetPosition(listViewItem);
+                                    bool isMouseInListView = IsMouseOverInListView(listViewPoint, listView);
+                                  //  Debug.Print($"{isMouseInListView}:MouseLeave");
+                                    if (!isMouseInListView)
+                                    {
+                                        //PopupViewModel popupViewModel = popup.DataContext as PopupViewModel;
+
+                                        //if (popupViewModel is not null)
+                                        //{
+                                        //    popupViewModel.PlacementTarget = null;
+                                        //    popupViewModel.IsOpen = false;
+                                        //}
                                     }
 
-                                    await Task.Delay(TimeSpan.FromMilliseconds(10)).ConfigureAwait(false);
+                                  //  await Task.Delay(TimeSpan.FromMilliseconds(10)).ConfigureAwait(false);
                                 }
+
+                                int index= listView.GetIndexUnderCursor();
+                                Debug.Print($"{index}:MouseLeave");
 
                                 bool IsMouseInPopup(Point mousePoint, Popup popup)
                                 {
@@ -167,6 +184,36 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                                         return bounds.Contains(mousePoint);
                                     }
                                     return false;
+                                }
+
+                                bool IsMouseOverInListView(Point mousePoint,System.Windows.Controls.ListView target)
+                                {
+                                    Rect bounds = VisualTreeHelper.GetDescendantBounds(target);
+                                    return bounds.Contains(mousePoint);
+                                }
+
+                                int IndexUnderCursor()
+                                {
+                                    int index = -1;
+                                    for (int i = 0; i < listView.Items.Count; ++i)
+                                    {
+                                        System.Windows.Controls.ListViewItem item = listView.ItemContainerGenerator.ContainerFromIndex(i) as System.Windows.Controls.ListViewItem;
+                                      
+                                        if (IsMouseOver(item))
+                                        {
+                                            index = i;
+                                            break;
+                                        }
+                                    }
+                                    return index;
+                                }
+
+                                bool IsMouseOver(FrameworkElement target)
+                                {
+                                    Rect bounds = VisualTreeHelper.GetDescendantBounds(target);
+                                    // Point mousePos = e.GetPosition(element);
+                                    Point mousePos = MouseUtilities.GetMousePosition(target);
+                                    return bounds.Contains(mousePos);
                                 }
                             }
                         }
