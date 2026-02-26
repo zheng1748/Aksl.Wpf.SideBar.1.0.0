@@ -109,7 +109,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                 VisualTreeFinder visualTreeFinder = new();
                 var listViewItem = visualTreeFinder.FindVisualParent<System.Windows.Controls.ListViewItem>(uc);
 
-                if (listViewItem != null)
+                if (listViewItem is not null)
                 {
                     listViewItem.MouseLeave += (sender, e) =>
                     {
@@ -117,10 +117,9 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                         {
                             listViewItem.Background = new SolidColorBrush(Colors.White);
 
-                            VisualTreeFinder visualTreeFinder = new();
                             var parentsToListViewItem = visualTreeFinder.FindVisualParents<DependencyObject>(listViewItem);
                             var listView = parentsToListViewItem.FirstOrDefault(d => d is System.Windows.Controls.ListView) as System.Windows.Controls.ListView;
-                        
+                     
                             var popupRoot = parentsToListViewItem.FirstOrDefault(d => d.GetType().Name == "PopupRoot") as FrameworkElement;
                             if (popupRoot is not null)
                             {
@@ -128,12 +127,14 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                                 if (popup is not null)
                                 {
                                     int index = listView.GetIndexUnderCursor();
-                                    Debug.Print($"{index}:MouseLeave");
+                                    Debug.Print($"{sender.GetType()}'s Index Under Cursor {index} When MouseLeave");
                                     if (index <= -1)
                                     {
                                         var popupViewModel = popup.DataContext as PopupViewModel;
                                         if (popupViewModel is not null)
                                         {
+                                            popupViewModel.ClearSelectedPopupSideBarItems();
+
                                             popupViewModel.PlacementTarget = null;
                                             popupViewModel.IsOpen = false;
                                         }

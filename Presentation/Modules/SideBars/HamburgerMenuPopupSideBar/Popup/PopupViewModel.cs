@@ -11,6 +11,7 @@ using Prism.Unity;
 using Unity;
 
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 {
@@ -22,14 +23,14 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
         #region Constructors
         public PopupViewModel()
         {
-            AllLeafPopupSideBarItems=new();
+            AllLeafPopupSideBarItems = new();
         }
         #endregion
 
         #region Properties
         public ObservableCollection<PopupSideBarItemViewModel> AllLeafPopupSideBarItems { get; set; }
 
-        private bool _allowsTransparency =true;
+        private bool _allowsTransparency = true;
         public bool AllowsTransparency
         {
             get => _allowsTransparency;
@@ -39,7 +40,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
         private bool _isOpen = false;
         public bool IsOpen
         {
-            get =>_isOpen;
+            get => _isOpen;
             set => SetProperty<bool>(ref _isOpen, value);
         }
 
@@ -50,7 +51,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
             set => SetProperty<bool>(ref _staysOpen, value);
         }
 
-        private System.Windows.Controls.Primitives.PlacementMode _placementMode =  System.Windows.Controls.Primitives.PlacementMode.Right;
+        private System.Windows.Controls.Primitives.PlacementMode _placementMode = System.Windows.Controls.Primitives.PlacementMode.Right;
         public System.Windows.Controls.Primitives.PlacementMode Placement
         {
             get => _placementMode;
@@ -64,11 +65,21 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
             set => SetProperty<System.Windows.UIElement>(ref _placementTarget, value);
         }
 
-        private System.Windows.Controls.Primitives.PopupAnimation _popupAnimation =  System.Windows.Controls.Primitives.PopupAnimation.Slide;
+        private System.Windows.Controls.Primitives.PopupAnimation _popupAnimation = System.Windows.Controls.Primitives.PopupAnimation.Slide;
         public System.Windows.Controls.Primitives.PopupAnimation PopupAnimation
         {
             get => _popupAnimation;
             set => SetProperty<System.Windows.Controls.Primitives.PopupAnimation>(ref _popupAnimation, value);
+        }
+        #endregion
+
+        #region Clear Selected Event
+        public void ClearSelectedPopupSideBarItems()
+        {
+           AllLeafPopupSideBarItems.Where(pi => pi.IsSelected).ToList().ForEach(psbi => 
+           {
+               psbi.IsSelected = false;
+           });
         }
         #endregion
     }

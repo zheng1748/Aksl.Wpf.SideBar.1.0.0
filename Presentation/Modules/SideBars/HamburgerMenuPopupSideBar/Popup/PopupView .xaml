@@ -11,17 +11,46 @@
              prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources>
 
-        <DataTemplate x:Key="popupSideBarItemDataTemplate"
+        <DataTemplate x:Key="PopupSideBarItemDataTemplate"
                       DataType="{x:Type viewmodels:PopupSideBarItemViewModel}">
             <views:PopupSideBarItemView />
-            <!--<TextBlock Text="{Binding Path=Title,Mode=OneWay}"
-                       IsEnabled="{Binding Path=IsEnabled}"
-                       Margin="10,0,0,0"
-                       VerticalAlignment="Center"
-                       TextTrimming="CharacterEllipsis"
-                       TextWrapping="NoWrap">
-            </TextBlock>-->
         </DataTemplate>
+
+        <Style x:Key="PopupSideBarItemListViewItem"
+               TargetType="{x:Type ListViewItem}">
+            <Setter Property="IsSelected"
+                    Value="{Binding IsSelected,Mode=TwoWay}" />
+            <Setter Property="FontSize"
+                    Value="16" />
+            <Setter Property="Margin"
+                    Value="0,0,0,0" />
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected"
+                                   Value="True" />
+                        <Condition Property="Selector.IsSelectionActive"
+                                   Value="True" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Foreground"
+                            Value="Black" />
+                    <Setter Property="FontSize"
+                            Value="16.3" />
+                </MultiTrigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected"
+                                   Value="True" />
+                        <Condition Property="Selector.IsSelectionActive"
+                                   Value="False" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Foreground"
+                            Value="Black" />
+                    <Setter Property="FontSize"
+                            Value="15.5" />
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
 
     <Popup AllowsTransparency="{Binding Path=AllowsTransparency,Mode=OneWay}" 
@@ -32,8 +61,9 @@
            PopupAnimation="{Binding Path=PopupAnimation,Mode=OneWay}"
            HorizontalOffset="-5">
         <ListView Name="PopupSideBarItemListView"
+                  ItemContainerStyle="{StaticResource PopupSideBarItemListViewItem}"
                   ItemsSource="{Binding Path=AllLeafPopupSideBarItems}"
-                  ItemTemplate="{Binding Source={StaticResource popupSideBarItemDataTemplate}}"
+                  ItemTemplate="{Binding Source={StaticResource PopupSideBarItemDataTemplate}}"
                   SelectionMode="Single">
         </ListView>
     </Popup>

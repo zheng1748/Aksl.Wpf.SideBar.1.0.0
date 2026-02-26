@@ -30,11 +30,11 @@
             <!--<Setter Property="Background"
                     Value="#D3D3D3" />-->
             <Style.Triggers>
-                <Trigger Property="IsMouseOver"
+                <!--<Trigger Property="IsMouseOver"
                          Value="True">
                     <Setter Property="Background"
                             Value="Honeydew" />
-                </Trigger>
+                </Trigger>-->
                 <!--<DataTrigger Binding="{Binding Path=IsSelected}">
                     <Setter Property="Background"
                             Value="Red" />
