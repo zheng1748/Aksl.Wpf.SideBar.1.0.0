@@ -21,11 +21,11 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
         #region Popup Properties
         public PopupViewModel ThePopupViewModel { get; set; }
 
-        private bool _isOpen = false;
-        public bool IsOpen
+        private bool _isPopupOpen = false;
+        public bool IsPopupOpen
         {
-            get => _isOpen;
-            set => SetProperty<bool>(ref _isOpen, value);
+            get => _isPopupOpen;
+            set => SetProperty<bool>(ref _isPopupOpen, value);
         }
 
         private PopupSideBarItemViewModel _popupSideBarItemViewModel = default;
@@ -197,7 +197,12 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                         {
                             if (e.PropertyName == nameof(PopupViewModel.IsOpen))
                             {
-                                IsOpen = pvm.IsOpen;
+                                IsPopupOpen = pvm.IsOpen;
+                            }
+
+                            if (e.PropertyName == nameof(PopupViewModel.SelectedPopupSideBarItem))
+                            {
+                                SelectedPopupSideBarItem = pvm.SelectedPopupSideBarItem;
                             }
                         }
                     };

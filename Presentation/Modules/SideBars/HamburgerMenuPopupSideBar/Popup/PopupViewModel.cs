@@ -96,7 +96,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                     {
                         if (e.PropertyName == nameof(PopupSideBarItemViewModel.IsSelected))
                         {
-                            if (psivm.IsSelected)
+                            if (psivm.IsSelected && SelectedPopupSideBarItem != psivm)
                             {
                                 SelectedPopupSideBarItem = psivm;
                             }
@@ -110,10 +110,13 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
         #region Clear Selected Method
         public void ClearSelectedPopupSideBarItems()
         {
-           AllLeafPopupSideBarItems.Where(pi => pi.IsSelected).ToList().ForEach(psbi => 
-           {
-               psbi.IsSelected = false;
-           });
+            SelectedPopupSideBarItem.IsSelected = false;
+            SelectedPopupSideBarItem = null;
+           // AllLeafPopupSideBarItems.Where(pi => pi.IsSelected).ToList().ForEach(psbi => 
+           //{
+           //    SelectedPopupSideBarItem=null;
+           //    psbi.IsSelected = false;
+           //});
         }
         #endregion
     }

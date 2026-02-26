@@ -63,7 +63,10 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
         }
 
         public HamburgerMenuSideBarItemViewModel HamburgerMenuSideBarItemOnPopupIsOpen { get; set; }
-
+        public PopupViewModel NowPopupViewModel { get; set; }
+        public PopupViewModel PreviewPopupViewModel { get; set; }
+        public PopupSideBarItemViewModel SelectedPopupSideBarItem { get; set; }
+       
         private bool _isPaneOpen = false;
         public bool IsPaneOpen
         {
@@ -103,7 +106,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                 AllLeafHamburgerMenuSideBarItems.AddRange(allLeafHierarchicalMenuItemViewModels);
             }
 
-            var allDistinctLeafHamburgerMenuSideBarItems = AllLeafHamburgerMenuSideBarItems.DistinctBy(item=> (item.Name, item.Title));
+            var allDistinctLeafHamburgerMenuSideBarItems = AllLeafHamburgerMenuSideBarItems.DistinctBy(item => (item.Name, item.Title));
             AllLeafHamburgerMenuSideBarItems = new ObservableCollection<HamburgerMenuSideBarItemViewModel>(allDistinctLeafHamburgerMenuSideBarItems);
 
             SetWorkspaceViewEventName();
@@ -113,7 +116,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                 foreach (var hsmi in AllLeafHamburgerMenuSideBarItems)
                 {
                     hsmi.WorkspaceViewEventName = this.WorkspaceViewEventName;
-                    
+
                     AddPropertyChangedOnPopupIsOpen(hsmi);
                 }
             }
@@ -125,28 +128,47 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                 {
                     if (sender is HamburgerMenuSideBarItemViewModel hmbvm)
                     {
-                        if (e.PropertyName == nameof(HamburgerMenuSideBarItemViewModel.IsOpen))
+                        if (e.PropertyName == nameof(HamburgerMenuSideBarItemViewModel.IsPopupOpen))
                         {
-                            if (HamburgerMenuSideBarItemOnPopupIsOpen is null)
+                            if (hmbvm.IsPopupOpen)
                             {
-                                HamburgerMenuSideBarItemOnPopupIsOpen = hmbvm;
-                            }
-                            else
-                            {
-                               // Debug.Print($"PopupViewModel's IsOpen :{hmbvm.IsOpen},SelectedPopupSideBarItem :{hmbvm.ThePopupViewModel.SelectedPopupSideBarItem?.GetType()}");
-
-                                if (HamburgerMenuSideBarItemOnPopupIsOpen is not null && HamburgerMenuSideBarItemOnPopupIsOpen != hmbvm)
+                                if (NowPopupViewModel is null)
                                 {
-                                    Debug.Print($"HamburgerMenuSideBarItemOnPopupIsOpen != hmbvm ={HamburgerMenuSideBarItemOnPopupIsOpen != hmbvm}");
+                                    NowPopupViewModel = hmbvm.ThePopupViewModel;
+                                }
 
-                                    if (!hmbvm.ThePopupViewModel.IsOpen && hmbvm.ThePopupViewModel.SelectedPopupSideBarItem is not null)
+                                if (NowPopupViewModel is not null && NowPopupViewModel != hmbvm.ThePopupViewModel)
+                                {
+                                    PreviewPopupViewModel = NowPopupViewModel;
+                                    NowPopupViewModel = hmbvm.ThePopupViewModel;
+                                }
+                            }
+                        }
+
+                        if (e.PropertyName == nameof(HamburgerMenuSideBarItemViewModel.SelectedPopupSideBarItem))
+                        {
+                            if (SelectedPopupSideBarItem is null)
+                            {
+                                SelectedPopupSideBarItem = hmbvm.SelectedPopupSideBarItem;
+                            }
+
+                            if (SelectedPopupSideBarItem  is not null && SelectedPopupSideBarItem != hmbvm.SelectedPopupSideBarItem)
+                            {
+                                var previewSelectedPopupSideBarItem= SelectedPopupSideBarItem;
+
+                                if (PreviewPopupViewModel is not null && !PreviewPopupViewModel.IsOpen)
+                                {
+                                    //Debug.Print($"PreviewPopupViewModel.SelectedPopupSideBarItem == previewSelectedPopupSideBarItem :{PreviewPopupViewModel.SelectedPopupSideBarItem == previewSelectedPopupSideBarItem}");
+
+                                    if (PreviewPopupViewModel.SelectedPopupSideBarItem == previewSelectedPopupSideBarItem)
                                     {
-                                        // Debug.Print($"HamburgerMenuSideBarItemViewModel's Property");
-                                        // hmbvm.ThePopupViewModel.ClearSelectedPopupSideBarItems();
+                                        PreviewPopupViewModel.ClearSelectedPopupSideBarItems();
                                     }
 
-                                    HamburgerMenuSideBarItemOnPopupIsOpen = hmbvm;
+                                    previewSelectedPopupSideBarItem = null;
                                 }
+                                SelectedPopupSideBarItem = null;
+                                SelectedPopupSideBarItem = hmbvm.SelectedPopupSideBarItem;
                             }
                         }
                     }
