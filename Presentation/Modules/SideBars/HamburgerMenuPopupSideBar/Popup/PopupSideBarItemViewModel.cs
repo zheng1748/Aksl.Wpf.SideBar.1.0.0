@@ -175,6 +175,16 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 
                                 int index= listView.GetIndexUnderCursor();
                                 Debug.Print($"{index}:MouseLeave");
+                                if (index<=-1)
+                                {
+                                    var popupViewModel = popup.DataContext as PopupViewModel;
+
+                                    if (popupViewModel is not null)
+                                    {
+                                        popupViewModel.PlacementTarget = null;
+                                        popupViewModel.IsOpen = false;
+                                    }
+                                }
 
                                 bool IsMouseInPopup(Point mousePoint, Popup popup)
                                 {
