@@ -16,6 +16,7 @@ using Unity;
 using Aksl.Infrastructure;
 using Aksl.Toolkit.Controls;
 using Aksl.Toolkit.UI;
+using Aksl.Infrastructure.Events;
 
 namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 {
@@ -68,6 +69,8 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                 {
                     if (IsLeaf && _isSelected)
                     {
+                        var buildHWorkspaceViewEvent = _eventAggregator.GetEvent(WorkspaceViewEventName) as OnBuildWorkspaceViewEventbase;
+                        buildHWorkspaceViewEvent.Publish(new() { CurrentMenuItem = _menuItem });
                     }
                 }
             }
@@ -83,13 +86,6 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 
                 return kind;
             }
-        }
-
-        private bool _isPaneOpen = false;
-        public bool IsPaneOpen
-        {
-            get => _isPaneOpen;
-            set => SetProperty<bool>(ref _isPaneOpen, value);
         }
 
         protected bool _isEnabled = true;
@@ -115,7 +111,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                     {
                         if (sender is System.Windows.Controls.ListViewItem listViewItem)
                         {
-                            listViewItem.Background = new SolidColorBrush(Colors.White);
+                           // listViewItem.Background = new SolidColorBrush(Colors.White);
 
                             var parentsToListViewItem = visualTreeFinder.FindVisualParents<DependencyObject>(listViewItem);
                             var listView = parentsToListViewItem.FirstOrDefault(d => d is System.Windows.Controls.ListView) as System.Windows.Controls.ListView;
@@ -133,7 +129,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                                         var popupViewModel = popup.DataContext as PopupViewModel;
                                         if (popupViewModel is not null)
                                         {
-                                            popupViewModel.ClearSelectedPopupSideBarItems();
+                                           // popupViewModel.ClearSelectedPopupSideBarItems();
 
                                             popupViewModel.PlacementTarget = null;
                                             popupViewModel.IsOpen = false;
@@ -147,6 +143,5 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
             }
         }
         #endregion
-
     }
 }

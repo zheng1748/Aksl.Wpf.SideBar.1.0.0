@@ -75,7 +75,22 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
         //public string IconPath => _menuItem.IconPath;
         public string Name => _menuItem.Name;
         public string Title => _menuItem.Title;
-        public string WorkspaceViewEventName { get; set; }
+
+        private string _workspaceViewEventName = default;
+        public string WorkspaceViewEventName 
+        {
+            get => _workspaceViewEventName;
+            set
+            {
+                if (SetProperty<string>(ref _workspaceViewEventName, value))
+                {
+                    foreach (var hsmi in PopupViewModel.AllLeafPopupSideBarItems)
+                    {
+                        hsmi.WorkspaceViewEventName = _workspaceViewEventName;
+                    }
+                }
+            }
+        }
         public int Level => _menuItem.Level;
         public string NavigationNam => _menuItem.NavigationName;
         public bool IsSelectedOnInitialize => _menuItem.IsSelectedOnInitialize;
@@ -96,7 +111,6 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                 {
                     if (IsLeaf && _isSelected && !HasSubMenu)
                     {
-                        // _eventAggregator.GetEvent<OnBuildHamburgerMenuSideBarWorkspaceViewEvent>().Publish(new() { CurrentMenuItem = _menuItem });
                         var buildHWorkspaceViewEvent = _eventAggregator.GetEvent(WorkspaceViewEventName) as OnBuildWorkspaceViewEventbase;
                         buildHWorkspaceViewEvent.Publish(new() { CurrentMenuItem = _menuItem });
                     }
