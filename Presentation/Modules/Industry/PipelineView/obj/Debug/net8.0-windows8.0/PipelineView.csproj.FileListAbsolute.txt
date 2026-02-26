@@ -401,3 +401,4 @@ C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Modules\Indu
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Modules\Industry\PipelineView\obj\Debug\net8.0-windows8.0\refint\Aksl.Modules.Pipeline.dll
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Modules\Industry\PipelineView\obj\Debug\net8.0-windows8.0\Aksl.Modules.Pipeline.pdb
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Modules\Industry\PipelineView\obj\Debug\net8.0-windows8.0\ref\Aksl.Modules.Pipeline.dll
+C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Modules\Industry\PipelineView\obj\Debug\net8.0-windows8.0\PipelineView.sourcelink.json

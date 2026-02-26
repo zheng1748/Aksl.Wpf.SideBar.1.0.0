@@ -171,3 +171,4 @@ C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Modules\Navi
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Modules\Navigations\MenuSub\obj\Debug\net8.0-windows8.0\ref\Aksl.Modules.MenuSub.dll
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Modules\Navigations\MenuSub\obj\Debug\net8.0-windows8.0\Navigations\Axes\IndustryMenuSubHubView.g.cs
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Modules\Navigations\MenuSub\obj\Debug\net8.0-windows8.0\Navigations\Axes\IndustryMenuSubHubView.baml
+C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Modules\Navigations\MenuSub\obj\Debug\net8.0-windows8.0\MenuSub.sourcelink.json

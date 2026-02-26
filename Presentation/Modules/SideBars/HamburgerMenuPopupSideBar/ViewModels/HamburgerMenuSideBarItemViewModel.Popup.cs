@@ -1,28 +1,18 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows.Input;
-
-using Prism;
-using Prism.Events;
-using Prism.Ioc;
-using Prism.Mvvm;
-using Prism.Unity;
-using Unity;
-
-using Aksl.Infrastructure;
-using Aksl.Infrastructure.Events;
-using Aksl.Toolkit.Controls;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Aksl.Modules.TabBar.ViewModels;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Security.Policy;
-using Aksl.Toolkit.UI;
-using System.Windows.Media;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls.Primitives;
-using Aksl.Modules.HamburgerMenuPopupSideBar.Views;
+using System.Windows.Input;
+using System.Windows.Media;
+
+using Prism.Mvvm;
+
+using Aksl.Infrastructure;
+using Aksl.Toolkit.UI;
 
 namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 {

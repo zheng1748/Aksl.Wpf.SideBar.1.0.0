@@ -5,7 +5,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Aksl.Modules.HamburgerMenuPopupSideBar
+namespace Aksl.Toolkit.UI
 {
     public static class ListViewItemExtensions
     {

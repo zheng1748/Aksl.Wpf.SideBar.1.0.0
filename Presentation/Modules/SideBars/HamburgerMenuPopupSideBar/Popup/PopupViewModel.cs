@@ -10,13 +10,9 @@ using Prism.Mvvm;
 using Prism.Unity;
 using Unity;
 
-using Aksl.Toolkit.Controls;
-using Aksl.Modules.HamburgerMenuPopupSideBar;
-using Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 
-namespace Aksl.Modules.TabBar.ViewModels
+namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 {
     public class PopupViewModel : BindableBase
     {

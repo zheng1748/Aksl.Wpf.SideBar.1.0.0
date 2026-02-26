@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Input;
 
 using Prism;
 using Prism.Events;
@@ -13,15 +12,6 @@ using Unity;
 using Aksl.Infrastructure;
 using Aksl.Infrastructure.Events;
 using Aksl.Toolkit.Controls;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Aksl.Modules.TabBar.ViewModels;
-using System.Diagnostics;
-using System.Security.Policy;
-using Aksl.Toolkit.UI;
-using System.Windows.Media;
-using System.Windows;
-
 
 namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 {
@@ -47,8 +37,8 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 
         public HamburgerMenuSideBarItemViewModel(MenuItem menuItem, HamburgerMenuSideBarItemViewModel parent)
         {
-            _menuService = (PrismApplication.Current as PrismApplicationBase).Container.Resolve<IMenuService>();
             _eventAggregator = (PrismApplication.Current as PrismApplicationBase).Container.Resolve<IEventAggregator>();
+            _menuService = (PrismApplication.Current as PrismApplicationBase).Container.Resolve<IMenuService>();
 
             _menuItem = menuItem;
             Parent = parent;

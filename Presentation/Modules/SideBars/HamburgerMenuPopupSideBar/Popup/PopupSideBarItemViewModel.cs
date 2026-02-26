@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
-using System.Windows.Input;
+using System.Windows;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 using Prism;
 using Prism.Events;
@@ -11,17 +14,8 @@ using Prism.Unity;
 using Unity;
 
 using Aksl.Infrastructure;
-using Aksl.Infrastructure.Events;
 using Aksl.Toolkit.Controls;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Aksl.Modules.TabBar.ViewModels;
-using System.Diagnostics;
-using System.Security.Policy;
 using Aksl.Toolkit.UI;
-using System.Windows.Media;
-using System.Windows;
-using System.Windows.Controls.Primitives;
 
 namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 {
