@@ -30,6 +30,13 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
         #region Properties
         public ObservableCollection<PopupSideBarItemViewModel> AllLeafPopupSideBarItems { get; set; }
 
+        private PopupSideBarItemViewModel _popupSideBarItemViewModel = default;
+        public PopupSideBarItemViewModel SelectedPopupSideBarItem
+        {
+            get => _popupSideBarItemViewModel;
+            set => SetProperty<PopupSideBarItemViewModel>(ref _popupSideBarItemViewModel, value);
+        }
+
         private bool _allowsTransparency = true;
         public bool AllowsTransparency
         {
@@ -73,7 +80,34 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
         }
         #endregion
 
-        #region Clear Selected Event
+        #region Clear Selected Method
+        public void AddPropertyChanged()
+        {
+            foreach (var psivm in AllLeafPopupSideBarItems)
+            {
+                AddPopupSideBarItemPropertyChanged(psivm);
+            }
+
+            void AddPopupSideBarItemPropertyChanged(PopupSideBarItemViewModel popupSideBarItemViewModel)
+            {
+                popupSideBarItemViewModel.PropertyChanged += (sender, e) =>
+                {
+                    if (sender is PopupSideBarItemViewModel psivm)
+                    {
+                        if (e.PropertyName == nameof(PopupSideBarItemViewModel.IsSelected))
+                        {
+                            if (psivm.IsSelected)
+                            {
+                                SelectedPopupSideBarItem = psivm;
+                            }
+                        }
+                    }
+                };
+            }
+        }
+        #endregion
+
+        #region Clear Selected Method
         public void ClearSelectedPopupSideBarItems()
         {
            AllLeafPopupSideBarItems.Where(pi => pi.IsSelected).ToList().ForEach(psbi => 

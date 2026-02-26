@@ -19,7 +19,21 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
     public partial class HamburgerMenuSideBarItemViewModel : BindableBase
     {
         #region Popup Properties
-        public PopupViewModel PopupViewModel { get; set; }
+        public PopupViewModel ThePopupViewModel { get; set; }
+
+        private bool _isOpen = false;
+        public bool IsOpen
+        {
+            get => _isOpen;
+            set => SetProperty<bool>(ref _isOpen, value);
+        }
+
+        private PopupSideBarItemViewModel _popupSideBarItemViewModel = default;
+        public PopupSideBarItemViewModel SelectedPopupSideBarItem
+        {
+            get => _popupSideBarItemViewModel;
+            set => SetProperty<PopupSideBarItemViewModel>(ref _popupSideBarItemViewModel, value);
+        }
         #endregion
 
         #region Loaded Event
@@ -30,7 +44,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                 VisualTreeFinder visualTreeFinder = new();
                 var listViewItem = visualTreeFinder.FindVisualParent<System.Windows.Controls.ListViewItem>(uc);
 
-                if (listViewItem != null)
+                if (listViewItem is not null)
                 {
                     listViewItem.MouseEnter += async (sender, e) =>
                     {
@@ -43,12 +57,12 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 
                             // Debug.Print($"{listViewItem.GetType()}:MouseEnter");
 
-                            PopupViewModel.PlacementTarget = listViewItem;
-                            if (PopupViewModel.IsOpen)
+                            ThePopupViewModel.PlacementTarget = listViewItem;
+                            if (ThePopupViewModel.IsOpen)
                             {
-                                PopupViewModel.IsOpen = false;
+                                ThePopupViewModel.IsOpen = false;
                             }
-                            PopupViewModel.IsOpen = true;
+                            ThePopupViewModel.IsOpen = true;
 
                             await Task.Delay(TimeSpan.FromMilliseconds(100)).ConfigureAwait(false);
                         }
@@ -66,7 +80,6 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                                 // Debug.Print($"{listViewItem.GetType()}:MouseLeave:{result.VisualHit}");
                             }
 
-                            VisualTreeFinder visualTreeFinder = new();
                             var childsInListViewItem = visualTreeFinder.FindVisualChilds<DependencyObject>(listViewItem);
                             var popup = childsInListViewItem.FirstOrDefault(d => (d is Popup)) as Popup;
                             if (popup is not null)
@@ -76,8 +89,8 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                                 bool isMouseInPopup = IsMouseInPopup(popupChildPoint, popup);
                                 if (!isMouseInPopup)
                                 {
-                                    PopupViewModel.PlacementTarget = null;
-                                    PopupViewModel.IsOpen = false;
+                                    ThePopupViewModel.PlacementTarget = null;
+                                    ThePopupViewModel.IsOpen = false;
                                 }
                                 //Debug.Print($"{isMouseInPopup}:MouseLeave");
                             }
@@ -101,40 +114,40 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
         #endregion
 
         #region ExecuteMouseEnter Event
-        public void ExecuteMouseEnter(object sender, MouseEventArgs e)
-        {
-            if (sender is System.Windows.Controls.UserControl uc)
-            {
-                System.Windows.Point pos = e.GetPosition(uc);
-                HitTestResult result = VisualTreeHelper.HitTest(uc, pos);
+        //public void ExecuteMouseEnter(object sender, MouseEventArgs e)
+        //{
+        //    if (sender is System.Windows.Controls.UserControl uc)
+        //    {
+        //        System.Windows.Point pos = e.GetPosition(uc);
+        //        HitTestResult result = VisualTreeHelper.HitTest(uc, pos);
 
-                VisualTreeFinder visualTreeFinder = new();
+        //        VisualTreeFinder visualTreeFinder = new();
 
-                var listViewItem = visualTreeFinder.FindVisualParent<System.Windows.Controls.ListViewItem>(uc);
+        //        var listViewItem = visualTreeFinder.FindVisualParent<System.Windows.Controls.ListViewItem>(uc);
 
-                Debug.Print($"{uc.GetType()}:MouseEnter");
+        //        Debug.Print($"{uc.GetType()}:MouseEnter");
 
-                PopupViewModel.PlacementTarget = listViewItem;
-                //if (PopupViewModel.IsOpen)
-                //{
-                //    PopupViewModel.IsOpen = false;
-                //}
-                PopupViewModel.IsOpen = !PopupViewModel.IsOpen;
-            }
-        }
+        //        PopupViewModel.PlacementTarget = listViewItem;
+        //        //if (PopupViewModel.IsOpen)
+        //        //{
+        //        //    PopupViewModel.IsOpen = false;
+        //        //}
+        //        PopupViewModel.IsOpen = !PopupViewModel.IsOpen;
+        //    }
+        //}
         #endregion
 
         #region ExecuteMouseLeave Event
-        public void ExecuteMouseLeave(object sender, MouseEventArgs e)
-        {
-            if (sender is System.Windows.Controls.UserControl uc)
-            {
-                Debug.Print($"{uc.GetType()}:MouseLeave");
+        //public void ExecuteMouseLeave(object sender, MouseEventArgs e)
+        //{
+        //    if (sender is System.Windows.Controls.UserControl uc)
+        //    {
+        //        Debug.Print($"{uc.GetType()}:MouseLeave");
 
-                PopupViewModel.PlacementTarget = null;
-                PopupViewModel.IsOpen = false;
-            }
-        }
+        //        PopupViewModel.PlacementTarget = null;
+        //        PopupViewModel.IsOpen = false;
+        //    }
+        //}
         #endregion
 
         #region Create PopupSideBarItem ViewModels Method
@@ -172,7 +185,23 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                 var allDistinctLeafPopupSideBarItems = allLeafPopupSideBarItems.DistinctBy(item => (item.Name, item.Title));
                 allLeafPopupSideBarItems = new ObservableCollection<PopupSideBarItemViewModel>(allDistinctLeafPopupSideBarItems);
 
-                PopupViewModel.AllLeafPopupSideBarItems = allLeafPopupSideBarItems;
+                ThePopupViewModel.AllLeafPopupSideBarItems = allLeafPopupSideBarItems;
+                ThePopupViewModel.AddPropertyChanged();
+                AddPopupPropertyChanged();
+
+                void AddPopupPropertyChanged()
+                {
+                    ThePopupViewModel.PropertyChanged += (sender, e) =>
+                    {
+                        if (sender is PopupViewModel pvm)
+                        {
+                            if (e.PropertyName == nameof(PopupViewModel.IsOpen))
+                            {
+                                IsOpen = pvm.IsOpen;
+                            }
+                        }
+                    };
+                }
             }
         }
         #endregion

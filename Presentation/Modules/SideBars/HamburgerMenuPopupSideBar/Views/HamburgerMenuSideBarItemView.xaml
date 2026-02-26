@@ -114,7 +114,7 @@
                        TextWrapping="NoWrap">
             </TextBlock>
 
-            <views:PopupView DataContext="{Binding Path=PopupViewModel}">
+            <views:PopupView DataContext="{Binding Path=ThePopupViewModel}">
             </views:PopupView>
         </Grid>
     </Border>

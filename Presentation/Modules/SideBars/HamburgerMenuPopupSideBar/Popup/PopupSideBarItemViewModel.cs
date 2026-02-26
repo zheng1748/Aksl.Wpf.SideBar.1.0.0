@@ -52,7 +52,6 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
         public string WorkspaceViewEventName { get; set; }
         public int Level => _menuItem.Level;
         public string NavigationNam => _menuItem.NavigationName;
-        public bool IsSelectedOnInitialize => _menuItem.IsSelectedOnInitialize;
         public PopupSideBarItemViewModel Parent { get; set; }
         public ObservableCollection<PopupSideBarItemViewModel> Children => _children;
         public bool HasChildren => (_children is not null) && _children.Any();
@@ -129,7 +128,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                                         var popupViewModel = popup.DataContext as PopupViewModel;
                                         if (popupViewModel is not null)
                                         {
-                                           // popupViewModel.ClearSelectedPopupSideBarItems();
+                                          //  popupViewModel.ClearSelectedPopupSideBarItems();
 
                                             popupViewModel.PlacementTarget = null;
                                             popupViewModel.IsOpen = false;

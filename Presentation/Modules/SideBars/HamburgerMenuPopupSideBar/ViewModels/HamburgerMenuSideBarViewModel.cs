@@ -8,6 +8,8 @@ using Prism.Events;
 using Prism.Mvvm;
 
 using Aksl.Infrastructure;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 {
@@ -60,6 +62,8 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
             }
         }
 
+        public HamburgerMenuSideBarItemViewModel HamburgerMenuSideBarItemOnPopupIsOpen { get; set; }
+
         private bool _isPaneOpen = false;
         public bool IsPaneOpen
         {
@@ -109,7 +113,44 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                 foreach (var hsmi in AllLeafHamburgerMenuSideBarItems)
                 {
                     hsmi.WorkspaceViewEventName = this.WorkspaceViewEventName;
+                    
+                    AddPropertyChangedOnPopupIsOpen(hsmi);
                 }
+            }
+
+
+            void AddPropertyChangedOnPopupIsOpen(HamburgerMenuSideBarItemViewModel hamburgerMenuSideBarItemViewModel)
+            {
+                hamburgerMenuSideBarItemViewModel.PropertyChanged += (sender, e) =>
+                {
+                    if (sender is HamburgerMenuSideBarItemViewModel hmbvm)
+                    {
+                        if (e.PropertyName == nameof(HamburgerMenuSideBarItemViewModel.IsOpen))
+                        {
+                            if (HamburgerMenuSideBarItemOnPopupIsOpen is null)
+                            {
+                                HamburgerMenuSideBarItemOnPopupIsOpen = hmbvm;
+                            }
+                            else
+                            {
+                               // Debug.Print($"PopupViewModel's IsOpen :{hmbvm.IsOpen},SelectedPopupSideBarItem :{hmbvm.ThePopupViewModel.SelectedPopupSideBarItem?.GetType()}");
+
+                                if (HamburgerMenuSideBarItemOnPopupIsOpen is not null && HamburgerMenuSideBarItemOnPopupIsOpen != hmbvm)
+                                {
+                                    Debug.Print($"HamburgerMenuSideBarItemOnPopupIsOpen != hmbvm ={HamburgerMenuSideBarItemOnPopupIsOpen != hmbvm}");
+
+                                    if (!hmbvm.ThePopupViewModel.IsOpen && hmbvm.ThePopupViewModel.SelectedPopupSideBarItem is not null)
+                                    {
+                                        // Debug.Print($"HamburgerMenuSideBarItemViewModel's Property");
+                                        // hmbvm.ThePopupViewModel.ClearSelectedPopupSideBarItems();
+                                    }
+
+                                    HamburgerMenuSideBarItemOnPopupIsOpen = hmbvm;
+                                }
+                            }
+                        }
+                    }
+                };
             }
 
             IsLoading = false;
