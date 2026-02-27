@@ -197,12 +197,18 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                         {
                             if (e.PropertyName == nameof(PopupViewModel.IsOpen))
                             {
-                                IsPopupOpen = pvm.IsOpen;
+                                if (IsPopupOpen != pvm.IsOpen)
+                                {
+                                    IsPopupOpen = pvm.IsOpen;
+                                }
                             }
 
                             if (e.PropertyName == nameof(PopupViewModel.SelectedPopupSideBarItem))
                             {
-                                SelectedPopupSideBarItem = pvm.SelectedPopupSideBarItem;
+                                if (SelectedPopupSideBarItem != pvm.SelectedPopupSideBarItem)
+                                {
+                                    SelectedPopupSideBarItem = pvm.SelectedPopupSideBarItem;
+                                }
                             }
                         }
                     };

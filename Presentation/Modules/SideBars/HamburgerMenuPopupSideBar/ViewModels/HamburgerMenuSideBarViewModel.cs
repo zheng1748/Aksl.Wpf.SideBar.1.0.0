@@ -158,7 +158,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 
                                 if (PreviewPopupViewModel is not null && !PreviewPopupViewModel.IsOpen)
                                 {
-                                    if (PreviewPopupViewModel.SelectedPopupSideBarItem == previewSelectedPopupSideBarItem)
+                                    if (PreviewPopupViewModel.SelectedPopupSideBarItem is not null && PreviewPopupViewModel.SelectedPopupSideBarItem == previewSelectedPopupSideBarItem)
                                     {
                                         PreviewPopupViewModel.ClearSelectedPopupSideBarItems();
                                     }
