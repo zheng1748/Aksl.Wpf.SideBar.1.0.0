@@ -114,8 +114,8 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 
                             var parentsToListViewItem = visualTreeFinder.FindVisualParents<DependencyObject>(listViewItem);
                             var listView = parentsToListViewItem.FirstOrDefault(d => d is System.Windows.Controls.ListView) as System.Windows.Controls.ListView;
-                     
-                            var popupRoot = parentsToListViewItem.FirstOrDefault(d => d.GetType().Name == "PopupRoot") as FrameworkElement;
+                           
+                           var popupRoot = parentsToListViewItem.FirstOrDefault(d => d.GetType().Name == "PopupRoot") as FrameworkElement;
                             if (popupRoot is not null)
                             {
                                 var popup = visualTreeFinder.FindLogicalParent<System.Windows.Controls.Primitives.Popup>(popupRoot);
