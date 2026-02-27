@@ -34,6 +34,13 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
             get => _popupSideBarItemViewModel;
             set => SetProperty<PopupSideBarItemViewModel>(ref _popupSideBarItemViewModel, value);
         }
+
+        private PopupViewModelPair _popupViewModelPair = default;
+        public PopupViewModelPair ThePopupViewModelPair
+        {
+            get => _popupViewModelPair;
+            set => SetProperty<PopupViewModelPair>(ref _popupViewModelPair, value);
+        }
         #endregion
 
         #region Loaded Event
@@ -182,7 +189,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                     allLeafPopupSideBarItems.AddRange(allLeafPopupSideBarItemViewModels);
                 }
 
-                var allDistinctLeafPopupSideBarItems = allLeafPopupSideBarItems.DistinctBy(item => (item.Name, item.Title));
+                var allDistinctLeafPopupSideBarItems = allLeafPopupSideBarItems.DistinctBy(item => (item.Name, item.Title)).ToList();
                 allLeafPopupSideBarItems = new ObservableCollection<PopupSideBarItemViewModel>(allDistinctLeafPopupSideBarItems);
 
                 ThePopupViewModel.AllLeafPopupSideBarItems = allLeafPopupSideBarItems;
@@ -195,18 +202,17 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                     {
                         if (sender is PopupViewModel pvm)
                         {
-                            if (e.PropertyName == nameof(PopupViewModel.IsOpen))
-                            {
-                                if (IsPopupOpen != pvm.IsOpen)
-                                {
-                                    IsPopupOpen = pvm.IsOpen;
-                                }
-                            }
-
                             if (e.PropertyName == nameof(PopupViewModel.SelectedPopupSideBarItem))
                             {
                                 if (SelectedPopupSideBarItem != pvm.SelectedPopupSideBarItem)
                                 {
+                                    PopupViewModelPair popupViewModelPair = new()
+                                    {
+                                        ThisPopupViewModel = pvm,
+                                        SelectedPopupSideBarItem = pvm.SelectedPopupSideBarItem
+                                    };
+                                    ThePopupViewModelPair = popupViewModelPair;
+                                  
                                     SelectedPopupSideBarItem = pvm.SelectedPopupSideBarItem;
                                 }
                             }

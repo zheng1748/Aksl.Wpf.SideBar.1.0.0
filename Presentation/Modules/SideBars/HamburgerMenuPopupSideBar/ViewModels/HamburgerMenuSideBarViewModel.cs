@@ -8,8 +8,6 @@ using Prism.Events;
 using Prism.Mvvm;
 
 using Aksl.Infrastructure;
-using System.Diagnostics;
-using System.Reflection;
 
 namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 {
@@ -62,10 +60,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
             }
         }
 
-        public HamburgerMenuSideBarItemViewModel HamburgerMenuSideBarItemOnPopupIsOpen { get; set; }
-        public PopupViewModel NowPopupViewModel { get; set; }
-        public PopupViewModel PreviewPopupViewModel { get; set; }
-        public PopupSideBarItemViewModel SelectedPopupSideBarItem { get; set; }
+        public PopupViewModelPair NowPopupViewModelPair { get; set; }
        
         private bool _isPaneOpen = false;
         public bool IsPaneOpen
@@ -128,45 +123,28 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                 {
                     if (sender is HamburgerMenuSideBarItemViewModel hmbvm)
                     {
-                        if (e.PropertyName == nameof(HamburgerMenuSideBarItemViewModel.IsPopupOpen))
+                        if (e.PropertyName == nameof(HamburgerMenuSideBarItemViewModel.ThePopupViewModelPair))
                         {
-                            if (hmbvm.IsPopupOpen)
+                            if (NowPopupViewModelPair is null)
                             {
-                                if (NowPopupViewModel is null)
-                                {
-                                    NowPopupViewModel = hmbvm.ThePopupViewModel;
-                                }
-
-                                if (NowPopupViewModel is not null && NowPopupViewModel != hmbvm.ThePopupViewModel)
-                                {
-                                    PreviewPopupViewModel = NowPopupViewModel;
-                                    NowPopupViewModel = hmbvm.ThePopupViewModel;
-                                }
-                            }
-                        }
-
-                        if (e.PropertyName == nameof(HamburgerMenuSideBarItemViewModel.SelectedPopupSideBarItem))
-                        {
-                            if (SelectedPopupSideBarItem is null)
-                            {
-                                SelectedPopupSideBarItem = hmbvm.SelectedPopupSideBarItem;
+                                NowPopupViewModelPair = hmbvm.ThePopupViewModelPair;
                             }
 
-                            if (SelectedPopupSideBarItem  is not null && SelectedPopupSideBarItem != hmbvm.SelectedPopupSideBarItem)
+                            if (NowPopupViewModelPair is not null && NowPopupViewModelPair != hmbvm.ThePopupViewModelPair)
                             {
-                                var previewSelectedPopupSideBarItem= SelectedPopupSideBarItem;
+                               
+                                var previewPopupViewModelPair = NowPopupViewModelPair;
 
-                                if (PreviewPopupViewModel is not null && !PreviewPopupViewModel.IsOpen)
+
+                                if (!previewPopupViewModelPair.ThisPopupViewModel.IsOpen && previewPopupViewModelPair.SelectedPopupSideBarItem is not null &&
+                                     hmbvm.ThePopupViewModelPair.ThisPopupViewModel.IsOpen && hmbvm.ThePopupViewModelPair.SelectedPopupSideBarItem is not null && 
+                                     previewPopupViewModelPair.SelectedPopupSideBarItem!= hmbvm.ThePopupViewModelPair.SelectedPopupSideBarItem)
+
                                 {
-                                    if (PreviewPopupViewModel.SelectedPopupSideBarItem is not null && PreviewPopupViewModel.SelectedPopupSideBarItem == previewSelectedPopupSideBarItem)
-                                    {
-                                        PreviewPopupViewModel.ClearSelectedPopupSideBarItems();
-                                    }
-
-                                    previewSelectedPopupSideBarItem = null;
+                                    previewPopupViewModelPair.ThisPopupViewModel.ClearSelectedPopupSideBarItems();
                                 }
-                                SelectedPopupSideBarItem = null;
-                                SelectedPopupSideBarItem = hmbvm.SelectedPopupSideBarItem;
+
+                                NowPopupViewModelPair = hmbvm.ThePopupViewModelPair;
                             }
                         }
                     }

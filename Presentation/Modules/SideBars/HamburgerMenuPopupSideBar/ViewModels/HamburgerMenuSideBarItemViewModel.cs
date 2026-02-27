@@ -48,7 +48,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
             _children = new();
 
             ThePopupViewModel = new();
-
+            ThePopupViewModelPair = new();
             CreatePopupSideBarItemModelsAsync().GetAwaiter().GetResult();
         }
 

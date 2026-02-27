@@ -7,9 +7,10 @@
 			  Name="Homer"
 			  Title="Home"
 			  IconKind="Home"
-			  Level="1">
+			  Level="1"
+		      IsNexOnNotLeaf="False">
 		<MenuItem Id="1"
-				  Name="Home"
+				  Name="MyHome"
 				  Title="主页"
 				  Level="1"
 				  IsHome="True"
