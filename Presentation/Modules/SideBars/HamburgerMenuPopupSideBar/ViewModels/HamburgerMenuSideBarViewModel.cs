@@ -132,9 +132,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 
                             if (NowPopupViewModelPair is not null && NowPopupViewModelPair != hmbvm.ThePopupViewModelPair)
                             {
-                               
                                 var previewPopupViewModelPair = NowPopupViewModelPair;
-
 
                                 if (!previewPopupViewModelPair.ThisPopupViewModel.IsOpen && previewPopupViewModelPair.SelectedPopupSideBarItem is not null &&
                                      hmbvm.ThePopupViewModelPair.ThisPopupViewModel.IsOpen && hmbvm.ThePopupViewModelPair.SelectedPopupSideBarItem is not null && 
