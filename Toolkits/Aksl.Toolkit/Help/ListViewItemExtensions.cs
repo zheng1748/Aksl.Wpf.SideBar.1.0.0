@@ -25,7 +25,7 @@ namespace Aksl.Toolkit.UI
             }
             return index;
         }
-      
+
         public static ListViewItem GetListViewItemFromIndex(this System.Windows.Controls.ListView listView, int index)
         {
             if (listView.ItemContainerGenerator.Status != GeneratorStatus.ContainersGenerated)
