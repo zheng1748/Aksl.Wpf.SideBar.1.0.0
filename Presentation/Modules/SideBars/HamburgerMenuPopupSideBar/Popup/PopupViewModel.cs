@@ -11,7 +11,6 @@ using Prism.Unity;
 using Unity;
 
 using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 {
