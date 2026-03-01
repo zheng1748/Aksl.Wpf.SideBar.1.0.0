@@ -16,5 +16,5 @@ TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 207-1865356736
 Navigations\Drops\DropsExpandHamburgerMenuSubHubView.xaml;Views\ExpandHamburgerMenuSubHubView.xaml;Views\HamburgerMenuItemView.xaml;Views\HamburgerMenuView.xaml;
 
-False
+True
 

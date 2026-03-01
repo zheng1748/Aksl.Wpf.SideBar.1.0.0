@@ -6,7 +6,7 @@
                         xmlns:prism="http://prismlibrary.com/">
     <Application.Resources>
         <ResourceDictionary>
-            <sys:String x:Key="AppName">LiveCharts Samples</sys:String>
+            <sys:String x:Key="AppName">Wpf Samples</sys:String>
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/Converters.xaml" />

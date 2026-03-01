@@ -16,7 +16,7 @@ namespace Aksl.Toolkit.UI
             int index = -1;
             for (int i = 0; i < listView.Items.Count; ++i)
             {
-                ListViewItem item = listView.GetListViewItemByIndex(i);
+                ListViewItem item = listView.GetListViewItemFromIndex(i);
                 if (IsMouseOver(item))
                 {
                     index = i;
@@ -26,7 +26,7 @@ namespace Aksl.Toolkit.UI
             return index;
         }
       
-        public static ListViewItem GetListViewItemByIndex(this System.Windows.Controls.ListView listView, int index)
+        public static ListViewItem GetListViewItemFromIndex(this System.Windows.Controls.ListView listView, int index)
         {
             if (listView.ItemContainerGenerator.Status != GeneratorStatus.ContainersGenerated)
             {
@@ -34,6 +34,16 @@ namespace Aksl.Toolkit.UI
             }
 
             return listView.ItemContainerGenerator.ContainerFromIndex(index) as ListViewItem;
+        }
+
+        public static ListViewItem GetListViewItemFromItem(this System.Windows.Controls.ListView listView, object dataItem)
+        {
+            if (listView.ItemContainerGenerator.Status != GeneratorStatus.ContainersGenerated)
+            {
+                return null;
+            }
+
+            return listView.ItemContainerGenerator.ContainerFromItem(dataItem) as ListViewItem;
         }
 
         public static bool IsMouseOver(Visual target)

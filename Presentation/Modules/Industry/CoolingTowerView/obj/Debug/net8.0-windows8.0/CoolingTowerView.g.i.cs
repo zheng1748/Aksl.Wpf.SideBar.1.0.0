@@ -200,7 +200,7 @@ namespace Aksl.Modules.CoolingTower.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.CoolingTower;component/coolingtowerview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.CoolingTower;V1.0.0.0;component/coolingtowerview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\CoolingTowerView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

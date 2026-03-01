@@ -69,7 +69,7 @@ namespace Aksl.Modules.AirCompresser.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.AirCompresser;component/aircompresserhubview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.AirCompresser;V1.0.0.0;component/aircompresserhubview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\AirCompresserHubView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

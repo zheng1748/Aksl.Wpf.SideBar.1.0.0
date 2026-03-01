@@ -69,8 +69,8 @@ namespace Aksl.Modules.ExpandHamburgerMenuNavigationBar.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.ExpandHamburgerMenuNavigationBar;component/views/groupedmenuview.xa" +
-                    "ml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.ExpandHamburgerMenuNavigationBar;V1.0.0.0;component/views/groupedme" +
+                    "nuview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\GroupedMenuView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
