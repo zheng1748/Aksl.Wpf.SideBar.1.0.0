@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 
@@ -9,8 +10,6 @@ using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Unity;
 using Unity;
-
-using System.Collections.ObjectModel;
 
 namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 {
