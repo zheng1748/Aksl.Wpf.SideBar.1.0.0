@@ -6,10 +6,6 @@ using Prism.Regions;
 
 using Aksl.Infrastructure;
 using Aksl.Modules.Account.Views;
-using Aksl.Modules.HamburgerMenuSideBar.Views;
-using Aksl.Modules.HamburgerMenuNavigationSideBar.Views;
-using Aksl.Modules.HamburgerMenuPopupSideBar;
-using Aksl.Modules.HamburgerMenuPopupSideBar.Views;
 
 namespace Aksl.Modules.Shell
 {
