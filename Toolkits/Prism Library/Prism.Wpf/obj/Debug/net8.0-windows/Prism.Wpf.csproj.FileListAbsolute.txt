@@ -302,3 +302,4 @@ C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Toolkits\Prism Library\Pr
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Toolkits\Prism Library\Prism.Wpf\obj\Debug\net8.0-windows\refint\Prism.Wpf.dll
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Toolkits\Prism Library\Prism.Wpf\obj\Debug\net8.0-windows\Prism.Wpf.pdb
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Toolkits\Prism Library\Prism.Wpf\obj\Debug\net8.0-windows\ref\Prism.Wpf.dll
+C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Toolkits\Prism Library\Prism.Wpf\obj\Debug\net8.0-windows\Prism.Wpf.sourcelink.json

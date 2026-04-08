@@ -16,5 +16,5 @@ TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 2089432941
 Navigations\Animations\AnimationsExpandHamburgerMenuTreeBarHubView.xaml;Navigations\Graphics\GraphicsExpandHamburgerMenuTreeBarHubView.xaml;Views\ExpandHamburgerMenuTreeBarHubView.xaml;Views\TreeBarItemView.xaml;Views\TreeBarView.xaml;
 
-False
+True
 

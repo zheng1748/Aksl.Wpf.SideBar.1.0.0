@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Use xaml behaviors.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8eb89e355d473d788803125632ffb47ace3e27b2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Wpf Behaviors,Converters")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Aksl.Toolkit")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

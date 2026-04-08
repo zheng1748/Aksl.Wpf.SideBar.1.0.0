@@ -32,11 +32,15 @@ using Aksl.Modules.Account;
 using Aksl.Modules.HamburgerMenuSideBar;
 using Aksl.Modules.HamburgerMenuNavigationSideBar;
 using Aksl.Modules.HamburgerMenuTreeSideBar;
+using Aksl.Modules.HamburgerMenuPopupSideBar;
 
 using Aksl.Modules.ExpandHamburgerMenu;
-
+using Aksl.Modules.ExpandHamburgerMenuNavigationBar;
+using Aksl.Modules.ExpandHamburgerMenuTreeBar;
 using Aksl.Modules.ExpandHamburgerMenuTab;
+
 using Aksl.Modules.MenuSub;
+using Aksl.Modules.TabBar;
 
 using Aksl.Modules.Home;
 using Aksl.Modules.AirCompresser;
@@ -44,10 +48,6 @@ using Aksl.Modules.CoolingTower;
 using Aksl.Modules.Others;
 using Aksl.Modules.Pipeline;
 using Aksl.Modules.Thermometer;
-using Aksl.Modules.TabBar;
-using Aksl.Modules.ExpandHamburgerMenuNavigationBar;
-using Aksl.Modules.ExpandHamburgerMenuTreeBar;
-using Aksl.Modules.HamburgerMenuPopupSideBar;
 
 namespace Aksl.Modules.Shell
 {
@@ -103,12 +103,12 @@ namespace Aksl.Modules.Shell
 
             containerRegistry.RegisterInstance<IServiceProvider>(serviceProvider);
 
-            containerRegistry.RegisterSingleton(typeof(IDialogService), typeof(DialogService));
+            //containerRegistry.RegisterSingleton(typeof(IDialogService), typeof(DialogService));
             containerRegistry.RegisterSingleton(typeof(IDialogViewService), typeof(DialogViewService));
 
             containerRegistry.RegisterDialog<ConfirmView, ConfirmViewModel>();
 
-            RegisterMenuFactoryAsync(containerRegistry).GetAwaiter().GetResult();
+            RegisterMenuFactoryAsync(containerRegistry).Await();
            
 
             RegisterBuildWorkspaceViewEventAsync();

@@ -75,17 +75,20 @@ namespace Aksl.Toolkit.Dialogs
         private void ExecuteOKOrCancelCommand(string parameter)
         {
             ButtonResult result = ButtonResult.None;
-
+            IDialogParameters parameters = new DialogParameters();
+           
             if (parameter?.ToLower() == "true")
             {
+                parameters.Add("IsButton", "OK");
                 result = ButtonResult.OK;
             }
             else if (parameter?.ToLower() == "false")
             {
+                parameters.Add("IsButton", "Cancel");
                 result = ButtonResult.Cancel;
             }
-
-            RequestClose?.Invoke(new DialogResult(result));
+          
+           RequestClose?.Invoke(new DialogResult(result,parameters));
         }
         #endregion
 

@@ -146,7 +146,7 @@
 			      WorkspaceViewEventName=""
 			      ModuleName=""
 				  ViewName=""
-			    IsNextNavigation="False"
+			      IsNextNavigation="False"
 				  NavigationName="Others">
 		</MenuItem>
 	</MenuItem>

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Aksl")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4ea0a1132133639ff9cd00afccaec375c9017b91")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Aksl.Wpf.SideBar")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Aksl.Wpf.SideBar")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

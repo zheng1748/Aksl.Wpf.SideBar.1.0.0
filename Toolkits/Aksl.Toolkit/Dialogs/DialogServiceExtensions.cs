@@ -10,6 +10,6 @@ namespace Aksl.Toolkit.Services
             dialogService.ShowDialog(nameof(Dialogs.ConfirmView), new DialogParameters { { "IsConfirm", false }, { "Message", message }, { "Title", title }, { "OkText", okText }, }, callBack);
 
         public static void Confirm(this IDialogService dialogService, string message, string title, string okText, string cancelText, Action<IDialogResult> callBack) => 
-            dialogService.ShowDialog(nameof(Dialogs.ConfirmView), new DialogParameters { { "IsConfirm", true }, { "Message", message }, { "Title", title }, { "OkText", "确定" }, { "CancelText", "取消" } }, callBack);
+            dialogService.ShowDialog(name:nameof(Dialogs.ConfirmView), parameters: new DialogParameters { { "IsConfirm", true }, { "Message", message }, { "Title", title }, { "OkText", "确定" }, { "CancelText", "取消" } }, callback:callBack);
     }
 }

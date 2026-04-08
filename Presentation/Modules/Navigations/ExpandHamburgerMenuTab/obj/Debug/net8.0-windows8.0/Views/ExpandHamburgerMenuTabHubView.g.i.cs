@@ -226,8 +226,8 @@ namespace Aksl.Modules.ExpandHamburgerMenuTab.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.ExpandHamburgerMenuTab;component/views/expandhamburgermenutabhubvie" +
-                    "w.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.ExpandHamburgerMenuTab;V1.0.0.0;component/views/expandhamburgermenu" +
+                    "tabhubview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\ExpandHamburgerMenuTabHubView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
