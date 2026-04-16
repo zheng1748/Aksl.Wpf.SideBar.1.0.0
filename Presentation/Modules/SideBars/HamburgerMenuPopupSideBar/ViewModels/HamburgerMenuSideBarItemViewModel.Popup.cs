@@ -87,8 +87,8 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                                 // Debug.Print($"{listViewItem.GetType()}:MouseLeave:{result.VisualHit}");
                             }
 
-                            var childsInListViewItem = visualTreeFinder.FindVisualChilds<DependencyObject>(listViewItem);
-                            var popup = childsInListViewItem.FirstOrDefault(d => (d is Popup)) as Popup;
+                            var childsToListViewItem = visualTreeFinder.FindVisualChilds<DependencyObject>(listViewItem);
+                            var popup = childsToListViewItem.FirstOrDefault(d => (d is Popup)) as Popup;
                             if (popup is not null)
                             {
                                 System.Windows.Point popupChildPoint = e.GetPosition(popup.Child);
