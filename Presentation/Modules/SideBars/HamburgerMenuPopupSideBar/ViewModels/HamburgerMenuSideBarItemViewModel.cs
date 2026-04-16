@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 using Prism;
 using Prism.Events;
@@ -49,7 +50,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 
             ThePopupViewModel = new();
             ThePopupViewModelPair = new();
-            CreatePopupSideBarItemModelsAsync().GetAwaiter().GetResult();
+            CreatePopupSideBarItemModelsAsync().Await();
         }
 
         public HamburgerMenuSideBarItemViewModel(IEventAggregator eventAggregator, MenuItem menuItem) : this(eventAggregator, menuItem, null)

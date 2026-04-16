@@ -231,7 +231,6 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
             var buildHWorkspaceViewEvent = _eventAggregator.GetEvent(_workspaceViewEventName) as OnBuildWorkspaceViewEventbase;
             Debug.Assert(buildHWorkspaceViewEvent is not null);
 
-            // _eventAggregator.GetEvent<OnBuildHamburgerMenuSideBarWorkspaceViewEvent>().Subscribe(async (bhmsbwve) =>
             buildHWorkspaceViewEvent.Subscribe(async (bmve) =>
              {
                 var currentMenuItem = bmve.CurrentMenuItem;
@@ -494,7 +493,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
             {
                 if (parameters.Count == 0)
                 {
-                    CreateHamburgerMenuSideBarViewModelAsync().GetAwaiter().GetResult();
+                    CreateHamburgerMenuSideBarViewModelAsync().Await();
                 }
                 //else
                 //{
