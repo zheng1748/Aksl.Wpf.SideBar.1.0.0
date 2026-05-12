@@ -17,9 +17,7 @@ using Prism.Regions;
 using Prism.Unity;
 using Unity;
 
-using Aksl.Infrastructure;
-using Aksl.Toolkit.Services;
-using Aksl.Infrastructure.Events;
+using Aksl.Dialogs.Services;
 
 namespace Aksl.Modules.CoolingTower.ViewModels
 {

@@ -10,6 +10,47 @@ namespace Aksl.Toolkit.UI
     public class VisualTreeFinder
     {
         #region Find Visual Child Method
+        public T FindVisualChild<T>(DependencyObject currenyObject) where T : DependencyObject
+        {
+            T child = default;
+
+            try
+            {
+                if (HasChild(currenyObject))
+                {
+                    RecursiveVisualChild(currenyObject);
+                }
+
+                void RecursiveVisualChild(DependencyObject parent)
+                {
+                    if (parent is not null && parent is T t)
+                    {
+                        child = t;
+
+                        return;
+                    }
+
+                    if (HasChild(parent))
+                    {
+                        for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+                        {
+                            DependencyObject child = VisualTreeHelper.GetChild(parent, i);
+
+                            RecursiveVisualChild(child);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            bool HasChild(DependencyObject dep) => dep is not null && VisualTreeHelper.GetChildrenCount(dep) > 0;
+
+            return child;
+        }
+
         public List<T> FindVisualChilds<T>(DependencyObject currenyObject) where T : DependencyObject
         {
             List<T> allChilds = new();
@@ -28,9 +69,9 @@ namespace Aksl.Toolkit.UI
 
                 void RecursiveVisualChild(DependencyObject parent)
                 {
-                    if (!allChilds.Contains(parent) && parent is not null && parent is T tt)
+                    if (!allChilds.Contains(parent) && parent is not null && parent is T t)
                     {
-                        allChilds.Add(tt);
+                        allChilds.Add(t);
                     }
 
                     if (HasChild(parent))
@@ -55,7 +96,42 @@ namespace Aksl.Toolkit.UI
         }
         #endregion
 
-        #region Find Logical Childs Method
+        #region Find Logical Child Method
+        public T FindLogicalChild<T>(DependencyObject currenyObject) where T : DependencyObject
+        {
+            T child = default;
+
+            try
+            {
+                RecursiveVisualChild(currenyObject);
+
+                void RecursiveVisualChild(DependencyObject parent)
+                {
+                    if (parent is not null && parent is T t)
+                    {
+                        child = t;
+
+                        return;
+                    }
+
+                    foreach (var child in LogicalTreeHelper.GetChildren(parent))
+                    {
+                        if (child is DependencyObject dep)
+                        {
+                            RecursiveVisualChild(dep);
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return child;
+        }
+
         public List<T> FindLogicalChilds<T>(DependencyObject currenyObject) where T : DependencyObject
         {
             List<T> allChilds = new();
@@ -95,16 +171,10 @@ namespace Aksl.Toolkit.UI
         }
         #endregion
 
-        #region Find Visual Parents Method
+        #region Find Visual Parent Method
         public T FindVisualParent<T>(DependencyObject currenyObject) where T : FrameworkElement
         {
             T ancestorer = default;
-
-            //DependencyObject parent = VisualTreeHelper.GetParent(currenyObject);
-            //if (parent is not null && parent is T t)
-            //{
-            //    return t;
-            //}
 
             if (HasParent(currenyObject))
             {
@@ -126,15 +196,6 @@ namespace Aksl.Toolkit.UI
                     RecursiveVisualParent(parent);
                 }
             }
-
-            //while (parent is not  null)
-            //{
-            //    if (parent is T t)
-            //    {
-            //        return t;
-            //    }
-            //    parent = VisualTreeHelper.GetParent(parent);
-            //}
 
             bool HasParent(DependencyObject dep) => dep is not null && VisualTreeHelper.GetParent(dep) is not null;
 

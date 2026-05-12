@@ -58,7 +58,7 @@ namespace Aksl.Modules.MenuSub.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.MenuSub;V1.0.0.0;component/views/hierarchicalmenuitemview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.MenuSub;component/views/hierarchicalmenuitemview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\HierarchicalMenuItemView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

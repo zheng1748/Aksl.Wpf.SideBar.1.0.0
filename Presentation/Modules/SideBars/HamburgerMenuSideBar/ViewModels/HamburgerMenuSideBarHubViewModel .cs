@@ -1,13 +1,4 @@
-﻿using Aksl.Infrastructure;
-using Aksl.Infrastructure.Events;
-using Aksl.Toolkit.Services;
-using Prism;
-using Prism.Events;
-using Prism.Ioc;
-using Prism.Mvvm;
-using Prism.Regions;
-using Prism.Unity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -16,7 +7,19 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+
+using Prism;
+using Prism.Events;
+using Prism.Ioc;
+using Prism.Mvvm;
+using Prism.Regions;
+using Prism.Unity;
 using Unity;
+
+using Aksl.Dialogs.Services;
+
+using Aksl.Infrastructure;
+using Aksl.Infrastructure.Events;
 
 namespace Aksl.Modules.HamburgerMenuSideBar.ViewModels
 {
@@ -448,7 +451,7 @@ namespace Aksl.Modules.HamburgerMenuSideBar.ViewModels
 
             try
             {
-                HamburgerMenuSideBar = new(_eventAggregator, _menuService);
+                HamburgerMenuSideBar = new();
                 AddPropertyChanged();
 
                 void AddPropertyChanged()
@@ -465,8 +468,13 @@ namespace Aksl.Modules.HamburgerMenuSideBar.ViewModels
                     };
                 }
 
+                var hamburgerMenuBarItemViewModels = await CreateHamburgerMenuBarItemViewModelsAsync();
+                HamburgerMenuSideBar.AllLeafHamburgerMenuSideBarItems = new ObservableCollection<HamburgerMenuSideBarItemViewModel>(hamburgerMenuBarItemViewModels);
+
                 HamburgerMenuSideBar.WorkspaceViewEventName = _workspaceViewEventName;
-                await HamburgerMenuSideBar.CreateHamburgerMenuBarItemViewModelsAsync();
+                HamburgerMenuSideBar.SetWorkspaceViewEventName();
+
+              //  await HamburgerMenuSideBar.CreateHamburgerMenuBarItemViewModelsAsync();
                 HamburgerMenuSideBar.IsPaneOpen = IsPaneOpen;
                 RaisePropertyChanged(nameof(HamburgerMenuSideBar));
             }
@@ -481,6 +489,97 @@ namespace Aksl.Modules.HamburgerMenuSideBar.ViewModels
                     IsLoading = false;
                 }
             }
+        }
+        #endregion
+
+        #region Create HamburgerMenuItemBar ViewModel Method
+        private async Task<IEnumerable<HamburgerMenuSideBarItemViewModel>> CreateHamburgerMenuBarItemViewModelsAsync()
+        {
+            List<HamburgerMenuSideBarItemViewModel> allLeafs = new();
+
+            var rootMenuItem = await _menuService.GetMenuAsync("All");
+
+            var subMenuItems = rootMenuItem.SubMenus;
+            foreach (var smi in subMenuItems)
+            {
+                var allLeafsOfMenuItem = await GetLeafsOfMenuItem(smi);
+                allLeafs.AddRange(allLeafsOfMenuItem);
+            }
+
+            var allDistinctLeafs = allLeafs.DistinctBy(item => (item.Name, item.Title));
+            allLeafs= new(allDistinctLeafs);
+
+            return allLeafs;
+        }
+        #endregion
+
+        #region Get Leafs Of MenuItem Method
+       private async Task<IEnumerable<HamburgerMenuSideBarItemViewModel>> GetLeafsOfMenuItem(MenuItem menuItem)
+        {
+            List<MenuItem> travelMenuItems = new();
+            List<HamburgerMenuSideBarItemViewModel> leafsOfMenuItem = new();
+
+            await RecursiveSubMenuItem(menuItem);
+
+            async Task RecursiveSubMenuItem(MenuItem currentMenuItem)
+            {
+                var isAddOnLeaf = IsLeaf(currentMenuItem) && (!HasNavigationName(currentMenuItem) || (HasNavigationName(currentMenuItem) && !IsNextNavigation(currentMenuItem)));
+                var isAddOnNotLeaf = !IsLeaf(currentMenuItem) && !IsNexOnNotLeaf(currentMenuItem);
+                if (!AnyEqualsMenuItems(travelMenuItems, currentMenuItem) && HasTitle(currentMenuItem) && (isAddOnLeaf || isAddOnNotLeaf))
+                {
+                    leafsOfMenuItem.Add(new(currentMenuItem, null));
+                    travelMenuItems.Add(currentMenuItem);
+                }
+
+                if (HasNavigationName(currentMenuItem) && IsNextNavigation(currentMenuItem))
+                {
+                    currentMenuItem = await _menuService.GetMenuAsync(currentMenuItem.NavigationName);
+                }
+
+                if (HasSubMenu(currentMenuItem) && IsNexOnNotLeaf(currentMenuItem))
+                {
+                    foreach (var smi in currentMenuItem.SubMenus)
+                    {
+                        await RecursiveSubMenuItem(smi);
+                    }
+                }
+            }
+
+            bool HasSubMenu(MenuItem mi) => (mi is not null) && mi.SubMenus.Any();
+
+            bool IsLeaf(MenuItem mi) => (mi is not null) && mi.SubMenus.Count <= 0;
+
+            bool HasTitle(MenuItem mi) => (mi is not null) && !string.IsNullOrEmpty(mi.Title);
+
+            bool IsNextNavigation(MenuItem mi) => (mi is not null) && mi.IsNextNavigation;
+
+            bool HasNavigationName(MenuItem mi) => (mi is not null) && !string.IsNullOrEmpty(mi.NavigationName);
+
+            bool IsNexOnNotLeaf(MenuItem mi) => (mi is not null) && mi.IsNexOnNotLeaf;
+
+            return leafsOfMenuItem;
+        }
+        #endregion
+
+        #region Contain Methods
+        private bool AnyEqualsMenuItems(IEnumerable<MenuItem> menuItems, MenuItem menuItem)
+        {
+            var isAny = menuItems.Any(mi => IsEqualsNameOrTitle(mi.Name, menuItem.Name) || IsEqualsNameOrTitle(mi.Title, menuItem.Title));
+
+            return isAny;
+        }
+
+        private bool IsEqualsNameOrTitle(string nameOrTitle, string otherNameOrTitle)
+        {
+            if (string.IsNullOrEmpty(nameOrTitle) || string.IsNullOrEmpty(otherNameOrTitle))
+            {
+                return false;
+            }
+
+            var isAny = (!string.IsNullOrEmpty(nameOrTitle) && nameOrTitle.Equals(otherNameOrTitle, StringComparison.InvariantCultureIgnoreCase)) ||
+                        (!string.IsNullOrEmpty(otherNameOrTitle) && otherNameOrTitle.Equals(nameOrTitle, StringComparison.InvariantCultureIgnoreCase));
+
+            return isAny;
         }
         #endregion
 

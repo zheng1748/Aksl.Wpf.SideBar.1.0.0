@@ -82,8 +82,7 @@ namespace Aksl.Modules.TabBar.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.TabBar;V1.0.0.0;component/navigations/pipelines/pipelinestabbarhubv" +
-                    "iew.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.TabBar;component/navigations/pipelines/pipelinestabbarhubview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Navigations\Pipelines\PipelinesTabBarHubView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

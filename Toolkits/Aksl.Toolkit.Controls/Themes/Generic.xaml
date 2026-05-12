@@ -2,9 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Aksl.Toolkit.Controls"
                     xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib">
-
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                   
+                  >
     <ResourceDictionary.MergedDictionaries>
+
+
     </ResourceDictionary.MergedDictionaries>
 
     <system:Boolean x:Key="True">True</system:Boolean>
@@ -31,7 +34,7 @@
                         <Viewbox FlowDirection="{TemplateBinding FlowDirection}">
                             <Canvas Width="24"
                                     Height="24">
-                                <Path Data="{Binding Data,RelativeSource={RelativeSource TemplatedParent}}"
+                                <Path Data="{Binding Data, RelativeSource={RelativeSource TemplatedParent}}"
                                       Fill="{TemplateBinding Foreground}" />
                             </Canvas>
                         </Viewbox>

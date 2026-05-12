@@ -226,8 +226,8 @@ namespace Aksl.Modules.ExpandHamburgerMenuTreeBar.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.ExpandHamburgerMenuTreeBar;V1.0.0.0;component/navigations/animation" +
-                    "s/animationsexpandhamburgermenutreebarhubview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.ExpandHamburgerMenuTreeBar;component/navigations/animations/animati" +
+                    "onsexpandhamburgermenutreebarhubview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Navigations\Animations\AnimationsExpandHamburgerMenuTreeBarHubView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

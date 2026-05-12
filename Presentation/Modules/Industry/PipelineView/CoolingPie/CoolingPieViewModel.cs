@@ -17,8 +17,7 @@ using Prism.Regions;
 using Prism.Unity;
 using Unity;
 
-using Aksl.Toolkit.Services;
-using Aksl.Toolkit;
+using Aksl.Dialogs.Services;
 
 namespace Aksl.Modules.Pipeline.ViewModels
 {

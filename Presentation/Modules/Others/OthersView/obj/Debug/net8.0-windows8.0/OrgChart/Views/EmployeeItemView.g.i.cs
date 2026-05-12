@@ -75,7 +75,7 @@ namespace Aksl.Modules.Others.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.Others;V1.0.0.0;component/orgchart/views/employeeitemview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.Others;component/orgchart/views/employeeitemview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\OrgChart\Views\EmployeeItemView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

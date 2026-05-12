@@ -85,7 +85,7 @@ namespace Aksl.Modules.Account.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.Account;V1.0.0.0;component/loginstatusview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.Account;component/loginstatusview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\LoginStatusView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -226,8 +226,8 @@ namespace Aksl.Modules.ExpandHamburgerMenuSub.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.ExpandHamburgerMenuSub;V1.0.0.0;component/navigations/drops/dropsex" +
-                    "pandhamburgermenusubhubview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.ExpandHamburgerMenuSub;component/navigations/drops/dropsexpandhambu" +
+                    "rgermenusubhubview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Navigations\Drops\DropsExpandHamburgerMenuSubHubView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

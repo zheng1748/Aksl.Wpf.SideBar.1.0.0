@@ -6,7 +6,7 @@ using Prism.Regions;
 
 using Unity;
 
-using Aksl.Toolkit.Services;
+using Aksl.Dialogs.Services;
 
 namespace Aksl.Modules.Others.ViewModels
 {

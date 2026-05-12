@@ -4,7 +4,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
 
-namespace Aksl.Toolkit.Dialogs
+namespace Aksl.Dialogs.ViewModels
 {
     public class ConfirmViewModel : BindableBase, IDialogAware
     {
@@ -50,6 +50,45 @@ namespace Aksl.Toolkit.Dialogs
             get => _title;
             set => SetProperty(ref _title, value);
         }
+
+        private double _width = 300d;
+        public double Width
+        {
+            get => _width;
+            set => SetProperty<double>(ref _width, value);
+        }
+
+        private double _height = 150d;
+        public double Height
+        {
+            get => _height;
+            set => SetProperty<double>(ref _height, value);
+        }
+        #endregion
+
+        #region IDialogAware
+        public event Action<IDialogResult> RequestClose;
+
+        public bool CanCloseDialog()
+        {
+            return true;
+        }
+
+        public void OnDialogClosed()
+        {
+
+        }
+
+        public void OnDialogOpened(IDialogParameters parameters)
+        {
+            IsConfirm = parameters.GetValue<bool?>("IsConfirm") ?? true;
+            Message = parameters.GetValue<string>("Message");
+            Title = parameters.GetValue<string>("Title") ?? "Notification";
+            OkText = parameters.GetValue<string>("OkText") ?? "OK";
+            CancelText = parameters.GetValue<string>("CancelText") ?? "Cancel";
+            Width = parameters.GetValue<double?>("Width") ?? 200d;
+            Height = parameters.GetValue<double?>("Height") ?? 100d;
+        }
         #endregion
 
         #region Create Command
@@ -75,43 +114,17 @@ namespace Aksl.Toolkit.Dialogs
         private void ExecuteOKOrCancelCommand(string parameter)
         {
             ButtonResult result = ButtonResult.None;
-            IDialogParameters parameters = new DialogParameters();
-           
+
             if (parameter?.ToLower() == "true")
             {
-                parameters.Add("IsButton", "OK");
                 result = ButtonResult.OK;
             }
             else if (parameter?.ToLower() == "false")
             {
-                parameters.Add("IsButton", "Cancel");
                 result = ButtonResult.Cancel;
             }
-          
-           RequestClose?.Invoke(new DialogResult(result,parameters));
-        }
-        #endregion
 
-        #region IDialogAware
-        public event Action<IDialogResult> RequestClose;
-
-        public bool CanCloseDialog()
-        {
-            return true;
-        }
-
-        public void OnDialogClosed()
-        {
-
-        }
-
-        public void OnDialogOpened(IDialogParameters parameters)
-        {
-            Message = parameters.GetValue<string>("Message");
-            Title = parameters.GetValue<string>("Title") ?? "Notification";
-            OkText = parameters.GetValue<string>("OkText") ?? "OK";
-            CancelText = parameters.GetValue<string>("CancelText") ?? "Cancel";
-            IsConfirm = parameters.GetValue<bool?>("IsConfirm") ?? true;
+            RequestClose?.Invoke(new DialogResult(result));
         }
         #endregion
     }

@@ -12,22 +12,25 @@ namespace Aksl.Modules.HamburgerMenuSideBar.ViewModels
     public class HamburgerMenuSideBarViewModel : BindableBase
     {
         #region Members
-        protected readonly IEventAggregator _eventAggregator;
         private readonly IMenuService _menuService;
         #endregion
 
         #region Constructors
-        public HamburgerMenuSideBarViewModel(IEventAggregator eventAggregator, IMenuService menuService)
+        public HamburgerMenuSideBarViewModel( IMenuService menuService)
         {
-            _eventAggregator = eventAggregator;
             _menuService = menuService;
 
+            AllLeafHamburgerMenuSideBarItems = new();
+        }
+
+        public HamburgerMenuSideBarViewModel()
+        {
             AllLeafHamburgerMenuSideBarItems = new();
         }
         #endregion
 
         #region Properties
-        public ObservableCollection<HamburgerMenuSideBarItemViewModel> AllLeafHamburgerMenuSideBarItems { get; private set; }
+        public ObservableCollection<HamburgerMenuSideBarItemViewModel> AllLeafHamburgerMenuSideBarItems { get; set; }
         public string WorkspaceViewEventName { get; set; }
 
         //private HamburgerMenuSideBarItemViewModel _previewSelectedHamburgerMenuItem;
@@ -105,15 +108,17 @@ namespace Aksl.Modules.HamburgerMenuSideBar.ViewModels
 
             SetWorkspaceViewEventName();
 
-            void SetWorkspaceViewEventName()
-            {
-                foreach (var hsmi in AllLeafHamburgerMenuSideBarItems)
-                {
-                    hsmi.WorkspaceViewEventName = this.WorkspaceViewEventName;
-                }
-            }
-
             IsLoading = false;
+        }
+        #endregion
+
+        #region Set WorkspaceView EventName Method
+        internal void SetWorkspaceViewEventName()
+        {
+            foreach (var hsmi in AllLeafHamburgerMenuSideBarItems)
+            {
+                hsmi.WorkspaceViewEventName = this.WorkspaceViewEventName;
+            }
         }
         #endregion
 

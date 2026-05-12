@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Aksl.Toolkit.Dialogs
+namespace Aksl.Dialogs.Views
 {
     /// <summary>
     /// ConfirmView.xaml 的交互逻辑

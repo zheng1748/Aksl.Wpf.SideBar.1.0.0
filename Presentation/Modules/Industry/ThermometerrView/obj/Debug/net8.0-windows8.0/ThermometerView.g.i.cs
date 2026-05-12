@@ -96,7 +96,7 @@ namespace Aksl.Modules.Thermometer.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.Thermometer;V1.0.0.0;component/thermometerview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.Thermometer;component/thermometerview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\ThermometerView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

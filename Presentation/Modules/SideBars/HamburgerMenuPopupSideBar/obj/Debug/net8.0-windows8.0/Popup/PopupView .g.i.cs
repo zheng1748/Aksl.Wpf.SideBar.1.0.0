@@ -69,8 +69,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.HamburgerMenuPopupSideBar;V1.0.0.0;component/popup/popupview%20.xam" +
-                    "l", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.HamburgerMenuPopupSideBar;component/popup/popupview%20.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Popup\PopupView .xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

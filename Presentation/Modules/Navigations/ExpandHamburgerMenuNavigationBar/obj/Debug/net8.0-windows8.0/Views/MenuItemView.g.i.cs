@@ -74,8 +74,7 @@ namespace Aksl.Modules.ExpandHamburgerMenuNavigationBar.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.ExpandHamburgerMenuNavigationBar;V1.0.0.0;component/views/menuitemv" +
-                    "iew.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.ExpandHamburgerMenuNavigationBar;component/views/menuitemview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\MenuItemView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

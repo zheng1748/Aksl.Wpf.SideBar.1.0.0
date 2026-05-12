@@ -14,7 +14,8 @@ using Prism.Regions;
 using Prism.Unity;
 using Unity;
 
-using Aksl.Toolkit.Services;
+using Aksl.Dialogs.Services;
+
 using Aksl.Infrastructure;
 
 namespace Aksl.Modules.TabBar.ViewModels

@@ -18,9 +18,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Aksl.Toolkit.Controls\Aksl.Toolkit.Controls.csproj" />
     <ProjectReference Include="..\Prism Library\Prism.Core\Prism.Core.csproj" />
     <ProjectReference Include="..\Prism Library\Prism.Unity.Wpf\Prism.Unity.Wpf.csproj" />
     <ProjectReference Include="..\Prism Library\Prism.Wpf\Prism.Wpf.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Dialogs\FixedSizeDialogWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Dialogs\FixedSizeDialogWindowIconButtonView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

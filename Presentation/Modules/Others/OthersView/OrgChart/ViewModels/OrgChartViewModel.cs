@@ -10,8 +10,9 @@ using Prism.Regions;
 using Prism.Unity;
 using Unity;
 
+using Aksl.Dialogs.Services;
+
 using Aksl.Modules.Others.OrgChart.Models;
-using Aksl.Toolkit.Services;
 
 namespace Aksl.Modules.Others.OrgChart.ViewModels
 {

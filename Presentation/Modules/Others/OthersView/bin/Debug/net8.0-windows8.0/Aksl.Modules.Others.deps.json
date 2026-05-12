@@ -60,6 +60,7 @@
       },
       "Aksl.Toolkit/1.0.0": {
         "dependencies": {
+          "Aksl.Toolkit.Controls": "1.0.0",
           "Microsoft.Xaml.Behaviors.Wpf": "1.1.77",
           "Prism.Core": "1.0.0",
           "Prism.Unity": "1.0.0",

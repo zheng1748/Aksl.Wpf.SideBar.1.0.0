@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <!--<Nullable>enable</Nullable>-->
+    <UseWPF>true</UseWPF>
+    <!--<ImplicitUsings>enable</ImplicitUsings-->
+	<RootNamespace>Aksl.Toolkit</RootNamespace>
+    <Description>Use xaml behaviors.</Description>
+	<PackageTags>xaml</PackageTags>
+    <Authors>zheng ming</Authors>
+	<Company>Aksl</Company>
+	<Product>Wpf Behaviors,Converters</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Prism Library\Prism.Core\Prism.Core.csproj" />
+    <ProjectReference Include="..\Prism Library\Prism.Unity.Wpf\Prism.Unity.Wpf.csproj" />
+    <ProjectReference Include="..\Prism Library\Prism.Wpf\Prism.Wpf.csproj" />
+  </ItemGroup>
+
+</Project>

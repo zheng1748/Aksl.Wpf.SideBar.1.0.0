@@ -11,9 +11,10 @@ using Prism.Regions;
 using Prism.Unity;
 using Unity;
 
+using Aksl.Dialogs.Services;
+
 using Aksl.Infrastructure;
 using Aksl.Infrastructure.Events;
-using Aksl.Toolkit.Services;
 
 namespace Aksl.Modules.MenuSub.ViewModels
 {

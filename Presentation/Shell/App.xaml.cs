@@ -19,9 +19,6 @@ using Prism.Mvvm;
 using Prism.Services.Dialogs;
 using Prism.Events;
 
-using Aksl.Toolkit.Dialogs;
-using Aksl.Toolkit.Services;
-
 using Aksl.Infrastructure;
 using Aksl.Infrastructure.Events;
 
@@ -100,17 +97,15 @@ namespace Aksl.Modules.Shell
             #endregion
 
             var serviceProvider = services.BuildServiceProvider();
-
             containerRegistry.RegisterInstance<IServiceProvider>(serviceProvider);
 
-            //containerRegistry.RegisterSingleton(typeof(IDialogService), typeof(DialogService));
-            containerRegistry.RegisterSingleton(typeof(IDialogViewService), typeof(DialogViewService));
+            containerRegistry.RegisterDialogWindow<Dialogs.Views.FixedSizeDialogWindow>(name: nameof(Dialogs.Views.FixedSizeDialogWindow));
+            containerRegistry.RegisterDialog<Dialogs.Views.ConfirmView, Dialogs.ViewModels.ConfirmViewModel>();
 
-            containerRegistry.RegisterDialog<ConfirmView, ConfirmViewModel>();
+            containerRegistry.RegisterSingleton(typeof(Dialogs.Services.IDialogViewService), typeof(Dialogs.Services.DialogViewService));
 
             RegisterMenuFactoryAsync(containerRegistry).Await();
            
-
             RegisterBuildWorkspaceViewEventAsync().Await();
         }
 
