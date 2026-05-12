@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,7 +19,6 @@ using Aksl.Dialogs.Services;
 
 using Aksl.Infrastructure;
 using Aksl.Infrastructure.Events;
-using System.Diagnostics;
 
 namespace Aksl.Modules.HamburgerMenuTreeSideBar.ViewModels
 {
@@ -29,7 +30,7 @@ namespace Aksl.Modules.HamburgerMenuTreeSideBar.ViewModels
         private readonly IRegionManager _regionManager;
         private readonly IDialogViewService _dialogViewService;
         private readonly IMenuService _menuService;
-        private object _currentView;
+        //private object _currentView;
         private string _workspaceViewEventName;
         #endregion
 
@@ -230,8 +231,8 @@ namespace Aksl.Modules.HamburgerMenuTreeSideBar.ViewModels
 
                 try
                 {
-                    var previewSelectedTreeSideBarItem = TreeSideBar.PreviewSelectedTreeSideBarItem;
-                    var selectedTreeSideBarItem = TreeSideBar.SelectedTreeSideBarItem;
+                    //var previewSelectedTreeSideBarItem = TreeSideBar.PreviewSelectedTreeSideBarItem;
+                    //var selectedTreeSideBarItem = TreeSideBar.SelectedTreeSideBarItem;
 
                     //if (currentMenuItem.RequrePermissons is not null)
                     //{
@@ -263,21 +264,21 @@ namespace Aksl.Modules.HamburgerMenuTreeSideBar.ViewModels
                             var viewName = viewType.Name;
 
                             //_currentView = region.GetView(viewTypeAssemblyQualifiedName);
-                            _currentView = region.Views.FirstOrDefault(v => v.GetType() == viewType);
-                            if (_currentView is null)
+                            var  currentView = region.Views.FirstOrDefault(v => v.GetType() == viewType);
+                            if (currentView is null)
                             {
-                                _currentView = region.GetView(viewType.FullName);
+                                currentView = region.GetView(viewType.FullName);
                             }
 
-                            if (_currentView is not null)
+                            if (currentView is not null)
                             {
                                 if (currentMenuItem.IsCacheable)
                                 {
-                                    region.Activate(_currentView);
+                                    region.Activate(currentView);
                                 }
                                 else
                                 {
-                                    region.Remove(_currentView);
+                                    region.Remove(currentView);
 
                                     AddView();
                                 }
@@ -359,62 +360,62 @@ namespace Aksl.Modules.HamburgerMenuTreeSideBar.ViewModels
         #endregion
 
         #region LoadView Method
-        private async Task LoadViewAsync(Infrastructure.MenuItem currentMenuItem,string regionName = RegionNames.HamburgerMenuTreeSideBarWorkspaceRegion)
-        {
-            string viewTypeAssemblyQualifiedName = currentMenuItem.ViewName;
-            Type viewType = Type.GetType(viewTypeAssemblyQualifiedName);
-            if (viewType is not null)
-            {
-                IRegion region = _regionManager.Regions[regionName];
-                var viewName = viewType.Name;
+        //private async Task LoadViewAsync(Infrastructure.MenuItem currentMenuItem,string regionName = RegionNames.HamburgerMenuTreeSideBarWorkspaceRegion)
+        //{
+        //    string viewTypeAssemblyQualifiedName = currentMenuItem.ViewName;
+        //    Type viewType = Type.GetType(viewTypeAssemblyQualifiedName);
+        //    if (viewType is not null)
+        //    {
+        //        IRegion region = _regionManager.Regions[regionName];
+        //        var viewName = viewType.Name;
 
-                //_currentView = region.GetView(viewTypeAssemblyQualifiedName);
-                _currentView = region.Views.FirstOrDefault(v => v.GetType() == viewType);
-                if (_currentView is null)
-                {
-                    _currentView = region.GetView(viewType.FullName);
-                }
+        //        //_currentView = region.GetView(viewTypeAssemblyQualifiedName);
+        //        _currentView = region.Views.FirstOrDefault(v => v.GetType() == viewType);
+        //        if (_currentView is null)
+        //        {
+        //            _currentView = region.GetView(viewType.FullName);
+        //        }
 
-                if (_currentView is not null)
-                {
-                    if (currentMenuItem.IsCacheable)
-                    {
-                        region.Activate(_currentView);
-                    }
-                    else
-                    {
-                        region.Remove(_currentView);
+        //        if (_currentView is not null)
+        //        {
+        //            if (currentMenuItem.IsCacheable)
+        //            {
+        //                region.Activate(_currentView);
+        //            }
+        //            else
+        //            {
+        //                region.Remove(_currentView);
 
-                        AddView();
-                    }
-                }
-                else
-                {
-                    AddView();
-                }
+        //                AddView();
+        //            }
+        //        }
+        //        else
+        //        {
+        //            AddView();
+        //        }
 
-                void AddView()
-                {
-                    if (CanAddView())
-                    {
-                        NavigationParameters navigationParameters = new()
-                        {
-                           {"CurrentMenuItem", currentMenuItem }
-                        };
+        //        void AddView()
+        //        {
+        //            if (CanAddView())
+        //            {
+        //                NavigationParameters navigationParameters = new()
+        //                {
+        //                   {"CurrentMenuItem", currentMenuItem }
+        //                };
 
-                        _regionManager.RequestNavigate(regionName, viewName, navigationParameters);
-                    }
-                }
+        //                _regionManager.RequestNavigate(regionName, viewName, navigationParameters);
+        //            }
+        //        }
 
-                bool CanAddView() => !string.IsNullOrEmpty(currentMenuItem.ModuleName) && currentMenuItem.SubMenus.Count == 0;
-            }
-            else
-            {
-                //bhmsbwve.CallBack?.Invoke(false);
+        //        bool CanAddView() => !string.IsNullOrEmpty(currentMenuItem.ModuleName) && currentMenuItem.SubMenus.Count == 0;
+        //    }
+        //    else
+        //    {
+        //        //bhmsbwve.CallBack?.Invoke(false);
 
-                await _dialogViewService.AlertAsync(message: $"Unable to find \"{viewTypeAssemblyQualifiedName}\".", title: $"Error:Missing Type");
-            }
-        }
+        //        await _dialogViewService.AlertAsync(message: $"Unable to find \"{viewTypeAssemblyQualifiedName}\".", title: $"Error:Missing Type");
+        //    }
+        //}
         #endregion
 
         #region Register HamburgerMenuBarPaneOpen Event

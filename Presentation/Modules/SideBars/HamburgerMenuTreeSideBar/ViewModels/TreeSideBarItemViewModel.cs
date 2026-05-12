@@ -11,9 +11,10 @@ using Prism.Regions;
 using Prism.Unity;
 using Unity;
 
+using Aksl.Toolkit.Controls;
+
 using Aksl.Infrastructure;
 using Aksl.Infrastructure.Events;
-using Aksl.Toolkit.Controls;
 
 namespace Aksl.Modules.HamburgerMenuTreeSideBar.ViewModels
 {
@@ -79,6 +80,7 @@ namespace Aksl.Modules.HamburgerMenuTreeSideBar.ViewModels
         public int Level => _menuItem.Level;
         public TreeSideBarItemViewModel Parent { get; set; }
         public ObservableCollection<TreeSideBarItemViewModel> Children => _children;
+        public bool HasChildren => (_children is not null) && _children.Any();
         public bool IsLeaf => (_children is not null) && _children.Count <= 0;
         public bool IsTopLevelItem => (Parent is null) && IsLeaf;
         public bool IsTopLevelHeader => (Parent is null) && !IsLeaf;

@@ -35,8 +35,8 @@ namespace Aksl.Modules.HamburgerMenuTreeSideBar.ViewModels
         public ObservableCollection<TreeSideBarItemViewModel> AllTreeSideBarItems { get; }
         public string WorkspaceViewEventName { get; set; }
       
-        internal TreeSideBarItemViewModel _previewSelectedTreeSideBarItem;
-        internal TreeSideBarItemViewModel PreviewSelectedTreeSideBarItem => _previewSelectedTreeSideBarItem;
+        //internal TreeSideBarItemViewModel _previewSelectedTreeSideBarItem;
+        //internal TreeSideBarItemViewModel PreviewSelectedTreeSideBarItem => _previewSelectedTreeSideBarItem;
 
         private TreeSideBarItemViewModel _selectedTreeSideBarItem;
         public TreeSideBarItemViewModel SelectedTreeSideBarItem
@@ -44,13 +44,14 @@ namespace Aksl.Modules.HamburgerMenuTreeSideBar.ViewModels
             get => _selectedTreeSideBarItem;
             set
             {
-                if (SetProperty(ref _selectedTreeSideBarItem, value))
-                {
-                    if (_selectedTreeSideBarItem is not null)
-                    {
-                        _selectedTreeSideBarItem.IsSelected = true;
-                    }
-                }
+                SetProperty(ref _selectedTreeSideBarItem, value);
+                //if (SetProperty(ref _selectedTreeSideBarItem, value))
+                //{
+                //    if (_selectedTreeSideBarItem is not null)
+                //    {
+                //        _selectedTreeSideBarItem.IsSelected = true;
+                //    }
+                //}
             }
         }
 
@@ -69,7 +70,7 @@ namespace Aksl.Modules.HamburgerMenuTreeSideBar.ViewModels
             {
                 SelectedTreeSideBarItem.IsSelected = false;
                 SelectedTreeSideBarItem = null;
-                _previewSelectedTreeSideBarItem = null;
+                //_previewSelectedTreeSideBarItem = null;
             }
         }
 
@@ -82,7 +83,7 @@ namespace Aksl.Modules.HamburgerMenuTreeSideBar.ViewModels
                     _selectedTreeSideBarItem.IsSelected = false;
                 }
 
-                _previewSelectedTreeSideBarItem = null;
+                // _previewSelectedTreeSideBarItem = null;
                 _selectedTreeSideBarItem = selectedTreeSideBarItem;
                 _selectedTreeSideBarItem.IsSelected = true;
             }
@@ -107,8 +108,7 @@ namespace Aksl.Modules.HamburgerMenuTreeSideBar.ViewModels
                 //List<MenuItem> allTravelMenuItems = new();
                 //await GetAllTreeBarItemSubViewModelsAsync(smi, allTravelMenuItems, parent);
 
-                List<MenuItem> allTravelMenuItems = new();
-                var treeSideBarItemViewModel = await GetAllTreeSideBarItemViewModelsByMenuItem(smi, allTravelMenuItems);
+                var treeSideBarItemViewModel = await GetAllTreeSideBarItemViewModelsByMenuItem(smi);
                 AllTreeSideBarItems.Add(treeSideBarItemViewModel);
             }
 
@@ -116,7 +116,6 @@ namespace Aksl.Modules.HamburgerMenuTreeSideBar.ViewModels
 
             void SetWorkspaceViewEventNameAndPropertyChanged()
             {
-                //foreach (var tbi in TopTreeSideBarItems)
                 foreach (var tbi in AllTreeSideBarItems)
                 {
                     RecursiveSubMenuItem(tbi);
@@ -131,7 +130,7 @@ namespace Aksl.Modules.HamburgerMenuTreeSideBar.ViewModels
                         treeSideBarItemViewModel.WorkspaceViewEventName = this.WorkspaceViewEventName;
                     }
 
-                    if (HasChild(treeSideBarItemViewModel))
+                    if (treeSideBarItemViewModel.HasChildren)
                     {
                         foreach (var smi in treeSideBarItemViewModel.Children)
                         {
@@ -149,28 +148,42 @@ namespace Aksl.Modules.HamburgerMenuTreeSideBar.ViewModels
                     {
                         if (e.PropertyName == nameof(TreeSideBarItemViewModel.IsSelected))
                         {
-                            if (tsbivm.IsSelected)
+                            if (SelectedTreeSideBarItem is null &&
+                                       (tsbivm is not null && tsbivm.IsSelected && tsbivm != SelectedTreeSideBarItem))
                             {
-                                _selectedTreeSideBarItem = tsbivm;
+                                SelectedTreeSideBarItem = tsbivm;
                             }
-                            else
+
+                            if (SelectedTreeSideBarItem is not null &&
+                                      (tsbivm is not null && tsbivm.IsSelected && tsbivm != SelectedTreeSideBarItem))
                             {
-                                _previewSelectedTreeSideBarItem = tsbivm;
+                                SelectedTreeSideBarItem.IsSelected = false;
+
+                                SelectedTreeSideBarItem = tsbivm;
                             }
+                            //if (tsbivm.IsSelected)
+                            //{
+                            //    _selectedTreeSideBarItem = tsbivm;
+                            //}
+                            //else
+                            //{
+                            //    _previewSelectedTreeSideBarItem = tsbivm;
+                            //}
                         }
                     }
                 };
             }
 
-            bool HasChild(TreeSideBarItemViewModel tsbivm) => (tsbivm is not null) && tsbivm.Children.Any();
+            //bool HasChild(TreeSideBarItemViewModel tsbivm) => (tsbivm is not null) && tsbivm.Children.Any();
 
             IsLoading = false;
         }
         #endregion
 
         #region Get All TreeSideBarItemViewModels Method
-        internal async Task<TreeSideBarItemViewModel> GetAllTreeSideBarItemViewModelsByMenuItem(MenuItem menuItem, IList<MenuItem> travelMenuItems)
+        internal async Task<TreeSideBarItemViewModel> GetAllTreeSideBarItemViewModelsByMenuItem(MenuItem menuItem)
         {
+            List<MenuItem> travelMenuItems = new();
             TreeSideBarItemViewModel virtualParent = new();
 
             await RecursiveSubMenuItem(menuItem, virtualParent);
@@ -212,108 +225,21 @@ namespace Aksl.Modules.HamburgerMenuTreeSideBar.ViewModels
 
             bool IsNexOnNotLeaf(MenuItem mi) => (mi is not null) && mi.IsNexOnNotLeaf;
 
-            var child = virtualParent.Children.FirstOrDefault();
-            if (child is not null)
+            var topHeaderItem = virtualParent.Children.FirstOrDefault();
+            if (topHeaderItem is not null)
             {
-                child.Parent = null;
+                topHeaderItem.Parent = null;
             }
-            return child;
-        }
-        #endregion
-
-        #region Get All TreeBarItem SubViewModels Methods
-        private async Task GetAllTreeBarItemSubViewModelsAsync(MenuItem menuItem, IList<MenuItem> travelMenuItems, TreeSideBarItemViewModel currentTreeBarItemViewModel)
-        {
-            #region Method
-
-            await RecursiveSubMenuItem(menuItem);
-
-            async Task RecursiveSubMenuItem(MenuItem currentMenuItem)
-            {
-                if (!AnyEqualsMenuItems(travelMenuItems, currentMenuItem))
-                {
-                    travelMenuItems.Add(currentMenuItem);
-                }
-
-                var matchResult = FindMatchTreeSideBarItemViewModel(currentTreeBarItemViewModel, currentMenuItem);
-                Debug.Assert(matchResult.IsTrue);
-                if (HasNavigationName(currentMenuItem) && IsNextNavigation(currentMenuItem) && IsLeaf(currentMenuItem) && matchResult.FindTreeSideBarItemViewModel.IsLeaf)
-                {
-                    currentMenuItem = await _menuService.GetMenuAsync(currentMenuItem.NavigationName);
-
-                    if (HasSubMenu(currentMenuItem))
-                    {
-                        var parent = matchResult.FindTreeSideBarItemViewModel;
-
-                        foreach (var smi in currentMenuItem.SubMenus)
-                        {
-                            TreeSideBarItemViewModel barItemViewModel = new(_eventAggregator, smi, parent);
-                            parent.Children.Add(barItemViewModel);
-                        }
-                    }
-                }
-
-                if (HasSubMenu(currentMenuItem))
-                {
-                    foreach (var smi in currentMenuItem.SubMenus)
-                    {
-                        await RecursiveSubMenuItem(smi);
-                    }
-                }
-            }
-            #endregion
-
-            bool HasSubMenu(MenuItem mi) => (mi is not null) && mi.SubMenus.Any();
-
-            bool IsLeaf(MenuItem mi) => (mi is not null) && mi.SubMenus.Count <= 0;
-
-            bool IsNextNavigation(MenuItem mi) => (mi is not null) && mi.IsNextNavigation;
-
-            bool HasNavigationName(MenuItem mi) => (mi is not null) && !string.IsNullOrEmpty(mi.NavigationName);
-        }
-
-        private (TreeSideBarItemViewModel FindTreeSideBarItemViewModel, bool IsTrue) FindMatchTreeSideBarItemViewModel(TreeSideBarItemViewModel treeBarItemViewModel, MenuItem menuItem)
-        {
-            var findViewModel = FindTreeSideBarItemViewModelByMenuItem(treeBarItemViewModel, menuItem);
-
-            return (FindTreeSideBarItemViewModel: findViewModel, IsTrue: (findViewModel is not null));
-        }
-
-        private TreeSideBarItemViewModel FindTreeSideBarItemViewModelByMenuItem(TreeSideBarItemViewModel treeBarItemViewModel, MenuItem menuItem)
-        {
-            TreeSideBarItemViewModel findTreeSideBarItemViewModel = null;
-
-            RecursiveSubMenuItemViewModel(treeBarItemViewModel);
-
-            void RecursiveSubMenuItemViewModel(TreeSideBarItemViewModel parent)
-            {
-                if (IsEqualsNameOrTitle(parent.Name, menuItem.Name) || IsEqualsNameOrTitle(parent.Title, menuItem.Title))
-                {
-                    findTreeSideBarItemViewModel = parent;
-                    return;
-                }
-
-                if (HasChild(parent))
-                {
-                    foreach (var children in parent.Children)
-                    {
-                        RecursiveSubMenuItemViewModel(children);
-                    }
-                }
-            }
-
-            bool HasChild(TreeSideBarItemViewModel tsbivm) => (tsbivm is not null) && tsbivm.Children.Any();
-
-            return findTreeSideBarItemViewModel;
+            return topHeaderItem;
         }
         #endregion
 
         #region Contain Methods
         private bool AnyEqualsMenuItems(IEnumerable<MenuItem> menuItems, MenuItem menuItem)
         {
-            var isEquals = menuItems.Any(mi => IsEqualsNameOrTitle(mi.Title, menuItem.Title) || IsEqualsNameOrTitle(mi.Name, menuItem.Name));
+            var isAny = menuItems.Any(mi => IsEqualsNameOrTitle(mi.Title, menuItem.Title) || IsEqualsNameOrTitle(mi.Name, menuItem.Name));
 
-            return isEquals;
+            return isAny;
         }
 
         private bool IsEqualsNameOrTitle(string nameOrTitle, string otherNameOrTitle)
@@ -323,10 +249,10 @@ namespace Aksl.Modules.HamburgerMenuTreeSideBar.ViewModels
                 return false;
             }
 
-            var isEquals = (!string.IsNullOrEmpty(nameOrTitle) && nameOrTitle.Equals(otherNameOrTitle, StringComparison.InvariantCultureIgnoreCase)) ||
-                           (!string.IsNullOrEmpty(otherNameOrTitle) && otherNameOrTitle.Equals(nameOrTitle, StringComparison.InvariantCultureIgnoreCase));
+            var isAny = (!string.IsNullOrEmpty(nameOrTitle) && nameOrTitle.Equals(otherNameOrTitle, StringComparison.InvariantCultureIgnoreCase)) ||
+                        (!string.IsNullOrEmpty(otherNameOrTitle) && otherNameOrTitle.Equals(nameOrTitle, StringComparison.InvariantCultureIgnoreCase));
 
-            return isEquals;
+            return isAny;
         }
         #endregion
     }
