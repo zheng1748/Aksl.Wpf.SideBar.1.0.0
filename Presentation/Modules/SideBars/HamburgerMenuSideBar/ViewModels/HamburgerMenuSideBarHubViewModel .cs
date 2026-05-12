@@ -116,9 +116,9 @@ namespace Aksl.Modules.HamburgerMenuSideBar.ViewModels
                 {
                     if (HamburgerMenuSideBar is not null)
                     {
-                        HamburgerMenuSideBar.IsPaneOpen = value; 
+                        HamburgerMenuSideBar.IsPaneOpen = value;
                     }
-                        
+
                     VisualState = GetVisualState();
                 }
             }
@@ -166,7 +166,7 @@ namespace Aksl.Modules.HamburgerMenuSideBar.ViewModels
             get => _visualState;
             set => SetProperty<string>(ref _visualState, value);
         }
-      
+
         private bool _isLoading;
 
         #endregion
@@ -225,142 +225,140 @@ namespace Aksl.Modules.HamburgerMenuSideBar.ViewModels
         #endregion
 
         #region Register BuildWorkspaceView Event
-        //private object _activeView = default;
-        //private static bool isSignIning = false;
         private void RegisterBuildWorkspaceViewEvents()
         {
             var buildHWorkspaceViewEvent = _eventAggregator.GetEvent(_workspaceViewEventName) as OnBuildWorkspaceViewEventbase;
             Debug.Assert(buildHWorkspaceViewEvent is not null);
 
-           // _eventAggregator.GetEvent<OnBuildHamburgerMenuSideBarWorkspaceViewEvent>().Subscribe(async (bhmsbwve) =>
-             buildHWorkspaceViewEvent.Subscribe(async (bmve) =>
-             {
+            // _eventAggregator.GetEvent<OnBuildHamburgerMenuSideBarWorkspaceViewEvent>().Subscribe(async (bhmsbwve) =>
+            buildHWorkspaceViewEvent.Subscribe(async (bmve) =>
+            {
                 var currentMenuItem = bmve.CurrentMenuItem;
 
                 try
                 {
-                     //var previewSelectedHamburgerMenuItem = HamburgerMenuSideBar.PreviewSelectedHamburgerMenuItem;
-                     //var selectedHamburgerMenuItem = HamburgerMenuSideBar.SelectedHamburgerMenuSideBarItem;
+                    //var previewSelectedHamburgerMenuItem = HamburgerMenuSideBar.PreviewSelectedHamburgerMenuItem;
+                    //var selectedHamburgerMenuItem = HamburgerMenuSideBar.SelectedHamburgerMenuSideBarItem;
 
-                     //if (currentMenuItem.RequrePermissons is not null)
-                     //{
-                     //    isSignIning = true;
+                    //if (currentMenuItem.RequrePermissons is not null)
+                    //{
+                    //    isSignIning = true;
 
-                     //    NavigatedToLoginView();
-                     //}
-                     //else
-                     //{
-                     //    if (isSignIning)
-                     //    {
-                     //        isSignIning = false;
-                     //        // await LoadViewAsync();
-                     //    }
-                     //    else
-                     //    {
-                     //await LoadViewAsync(currentMenuItem);
-                     //    }
-                     //}
-                     await LoadViewAsync();
+                    //    NavigatedToLoginView();
+                    //}
+                    //else
+                    //{
+                    //    if (isSignIning)
+                    //    {
+                    //        isSignIning = false;
+                    //        // await LoadViewAsync();
+                    //    }
+                    //    else
+                    //    {
+                    //await LoadViewAsync(currentMenuItem);
+                    //    }
+                    //}
+                    await LoadViewAsync();
 
-                     #region LoadView Method
-                     async Task LoadViewAsync()
-                     {
-                         string viewTypeAssemblyQualifiedName = currentMenuItem.ViewName;
-                         Type viewType = Type.GetType(viewTypeAssemblyQualifiedName);
-                         if (viewType is not null)
-                         {
-                             IRegion region = _regionManager.Regions[WorkspaceRegionName];
-                             var viewName = viewType.Name;
+                    #region LoadView Method
+                    async Task LoadViewAsync()
+                    {
+                        string viewTypeAssemblyQualifiedName = currentMenuItem.ViewName;
+                        Type viewType = Type.GetType(viewTypeAssemblyQualifiedName);
+                        if (viewType is not null)
+                        {
+                            IRegion region = _regionManager.Regions[WorkspaceRegionName];
+                            var viewName = viewType.Name;
 
-                             //_currentView = region.GetView(viewTypeAssemblyQualifiedName);
-                             var currentView = region.Views.FirstOrDefault(v => v.GetType() == viewType);
-                             if (currentView is null)
-                             {
-                                 currentView = region.GetView(viewType.FullName);
-                             }
+                            //_currentView = region.GetView(viewTypeAssemblyQualifiedName);
+                            var currentView = region.Views.FirstOrDefault(v => v.GetType() == viewType);
+                            if (currentView is null)
+                            {
+                                currentView = region.GetView(viewType.FullName);
+                            }
 
-                             if (currentView is not null)
-                             {
-                                 if (currentMenuItem.IsCacheable)
-                                 {
-                                     region.Activate(currentView);
-                                 }
-                                 else
-                                 {
-                                     region.Remove(currentView);
+                            if (currentView is not null)
+                            {
+                                if (currentMenuItem.IsCacheable)
+                                {
+                                    region.Activate(currentView);
+                                }
+                                else
+                                {
+                                    region.Remove(currentView);
 
-                                     AddView();
-                                 }
-                             }
-                             else
-                             {
-                                 AddView();
-                             }
+                                    AddView();
+                                }
+                            }
+                            else
+                            {
+                                AddView();
+                            }
 
-                             void AddView()
-                             {
-                                 if (CanAddView())
-                                 {
-                                     NavigationParameters navigationParameters = new()
-                                     {
+                            void AddView()
+                            {
+                                if (CanAddView())
+                                {
+                                    NavigationParameters navigationParameters = new()
+                                    {
                                         { "CurrentMenuItem", currentMenuItem }
-                                     };
+                                    };
 
-                                     _regionManager.RequestNavigate(WorkspaceRegionName, viewName, navigationParameters);
-                                 }
-                             }
+                                    _regionManager.RequestNavigate(WorkspaceRegionName, viewName, navigationParameters);
+                                }
+                            }
 
-                             bool CanAddView() => !string.IsNullOrEmpty(currentMenuItem.ModuleName);
-                         }
-                         else
-                         {
-                             await _dialogViewService.AlertAsync(message: $"Unable to find \"{viewTypeAssemblyQualifiedName}\".", title: $"Error:Missing Type");
-                         }
-                     }
-                     #endregion
+                            bool CanAddView() => !string.IsNullOrEmpty(currentMenuItem.ModuleName);
+                        }
+                        else
+                        {
+                            await _dialogViewService.AlertAsync(message: $"Unable to find \"{viewTypeAssemblyQualifiedName}\".", title: $"Error:Missing Type");
+                        }
+                    }
+                    #endregion
 
-                     #region Navigated To LoginView Method
-                     //void NavigatedToLoginView()
-                     //{
-                     //    var contentRegion = _regionManager.Regions[RegionNames.ShellContentRegion];
-                     //    var activeViews = contentRegion.ActiveViews;
-                     //    if (activeViews is not null && activeViews.Any())
-                     //    {
-                     //        _activeView = activeViews.FirstOrDefault();
-                     //    }
+                    #region Navigated To LoginView Method
+                    //void NavigatedToLoginView()
+                    //{
+                    //    var contentRegion = _regionManager.Regions[RegionNames.ShellContentRegion];
+                    //    var activeViews = contentRegion.ActiveViews;
+                    //    if (activeViews is not null && activeViews.Any())
+                    //    {
+                    //        _activeView = activeViews.FirstOrDefault();
+                    //    }
 
-                     //    var viewName = GetViewName();
+                    //    var viewName = GetViewName();
 
-                     //    var loginViewName = "LoginView";
-                     //    (string ViewName, Infrastructure.MenuItem CurrentMenuItem, string LoginViewName, object ActiveView, object SelectedHamburgerMenuItem, object PreviewSelectedHamburgerMenuItem) parameters = (viewName, currentMenuItem, loginViewName, _activeView, selectedHamburgerMenuItem, previewSelectedHamburgerMenuItem);
+                    //    var loginViewName = "LoginView";
+                    //    (string ViewName, Infrastructure.MenuItem CurrentMenuItem, string LoginViewName, object ActiveView, object SelectedHamburgerMenuItem, object PreviewSelectedHamburgerMenuItem) parameters = (viewName, currentMenuItem, loginViewName, _activeView, selectedHamburgerMenuItem, previewSelectedHamburgerMenuItem);
 
-                     //    NavigationParameters navigationParameters = new()
-                     //    {
-                     //       {NavigationParameterNames.NavToSignIn,parameters},
-                     //    };
+                    //    NavigationParameters navigationParameters = new()
+                    //    {
+                    //       {NavigationParameterNames.NavToSignIn,parameters},
+                    //    };
 
-                     //    _regionManager.RequestNavigate(RegionNames.ShellContentRegion, loginViewName, navigationParameters);
-                     //}
-                     #endregion
+                    //    _regionManager.RequestNavigate(RegionNames.ShellContentRegion, loginViewName, navigationParameters);
+                    //}
+                    #endregion
 
-                     #region GetViewName Method
-                     //string GetViewName()
-                     //{
-                     //    string viewName = default;
+                    #region GetViewName Method
+                    //string GetViewName()
+                    //{
+                    //    string viewName = default;
 
-                     //    string viewTypeAssemblyQualifiedName = currentMenuItem.ViewName;
-                     //    Type viewType = Type.GetType(viewTypeAssemblyQualifiedName);
-                     //    if (viewType is not null)
-                     //    {
-                     //        viewName = viewType.Name;
-                     //    }
+                    //    string viewTypeAssemblyQualifiedName = currentMenuItem.ViewName;
+                    //    Type viewType = Type.GetType(viewTypeAssemblyQualifiedName);
+                    //    if (viewType is not null)
+                    //    {
+                    //        viewName = viewType.Name;
+                    //    }
 
-                     //    return viewName;
-                     //}
-                     #endregion
+                    //    return viewName;
+                    //}
+                    #endregion
 
-                 }
-                 catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     await _dialogViewService.AlertAsync(message: $"Unable to loading \"{currentMenuItem.ModuleName}\" module.: \"{ex.Message}\"", title: "Error: Load Module");
                 }
@@ -474,7 +472,7 @@ namespace Aksl.Modules.HamburgerMenuSideBar.ViewModels
                 HamburgerMenuSideBar.WorkspaceViewEventName = _workspaceViewEventName;
                 HamburgerMenuSideBar.SetWorkspaceViewEventName();
 
-              //  await HamburgerMenuSideBar.CreateHamburgerMenuBarItemViewModelsAsync();
+                //  await HamburgerMenuSideBar.CreateHamburgerMenuBarItemViewModelsAsync();
                 HamburgerMenuSideBar.IsPaneOpen = IsPaneOpen;
                 RaisePropertyChanged(nameof(HamburgerMenuSideBar));
             }
@@ -507,14 +505,14 @@ namespace Aksl.Modules.HamburgerMenuSideBar.ViewModels
             }
 
             var allDistinctLeafs = allLeafs.DistinctBy(item => (item.Name, item.Title));
-            allLeafs= new(allDistinctLeafs);
+            allLeafs = new(allDistinctLeafs);
 
             return allLeafs;
         }
         #endregion
 
         #region Get Leafs Of MenuItem Method
-       private async Task<IEnumerable<HamburgerMenuSideBarItemViewModel>> GetLeafsOfMenuItem(MenuItem menuItem)
+        private async Task<IEnumerable<HamburgerMenuSideBarItemViewModel>> GetLeafsOfMenuItem(MenuItem menuItem)
         {
             List<MenuItem> travelMenuItems = new();
             List<HamburgerMenuSideBarItemViewModel> leafsOfMenuItem = new();
