@@ -8,13 +8,13 @@ C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Modules\Navi
 Aksl.Modules.ExpandHamburgerMenu
 none
 false
-TRACE;DEBUG;NET;NET8_0;NETCOREAPP
+TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS8_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS8_0_OR_GREATER;WINDOWS7_0_OR_GREATER
 
 41114167152
 
 161160206687
-2089432941
+208281833653
 Navigations\Axes\AxesExpandHamburgerMenuHubView.xaml;Views\ExpandHamburgerMenuHubView.xaml;Views\HamburgerMenuItemView.xaml;Views\HamburgerMenuView.xaml;
 
-True
+False
 

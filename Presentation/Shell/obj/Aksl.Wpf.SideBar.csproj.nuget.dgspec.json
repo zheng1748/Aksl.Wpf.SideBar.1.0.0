@@ -30,6 +30,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Toolkits\\Prism Library\\Prism.Core\\Prism.Core.csproj": {
@@ -42,10 +43,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "imports": [
             "net461",
@@ -66,7 +74,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -96,6 +104,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -123,10 +132,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "imports": [
             "net461",
@@ -147,7 +163,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -177,6 +193,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -204,10 +221,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "imports": [
             "net461",
@@ -228,7 +252,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -258,6 +282,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -285,10 +310,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "imports": [
             "net461",
@@ -309,7 +341,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -339,6 +371,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -366,10 +399,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "imports": [
             "net461",
@@ -390,7 +430,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -420,6 +460,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -447,10 +488,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "imports": [
             "net461",
@@ -471,7 +519,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -501,6 +549,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -528,10 +577,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "imports": [
             "net461",
@@ -552,7 +608,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -582,6 +638,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -609,10 +666,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "dependencies": {
             "Microsoft.Xaml.Behaviors.Wpf": {
@@ -643,7 +707,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -673,6 +737,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -700,10 +765,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "dependencies": {
             "Microsoft.Xaml.Behaviors.Wpf": {
@@ -730,7 +802,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -760,6 +832,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -787,10 +860,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "dependencies": {
             "AutoMapper": {
@@ -833,7 +913,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -863,6 +943,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -890,10 +971,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "dependencies": {
             "AutoMapper": {
@@ -924,7 +1012,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -954,6 +1042,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -981,10 +1070,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "dependencies": {
             "AutoMapper": {
@@ -1019,7 +1115,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -1049,6 +1145,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -1076,10 +1173,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "dependencies": {
             "Unity": {
@@ -1106,7 +1210,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -1136,6 +1240,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -1163,10 +1268,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "dependencies": {
             "AutoMapper": {
@@ -1209,7 +1321,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -1239,6 +1351,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -1266,10 +1379,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "imports": [
             "net461",
@@ -1290,7 +1410,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -1320,6 +1440,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -1347,10 +1468,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "dependencies": {
             "AutoMapper": {
@@ -1393,7 +1521,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -1423,6 +1551,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -1450,10 +1579,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "dependencies": {
             "AutoMapper": {
@@ -1496,7 +1632,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -1526,6 +1662,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -1553,10 +1690,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "dependencies": {
             "AutoMapper": {
@@ -1599,7 +1743,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -1629,6 +1773,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -1656,10 +1801,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "dependencies": {
             "AutoMapper": {
@@ -1690,7 +1842,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -1720,6 +1872,7 @@
         },
         "frameworks": {
           "net8.0-windows8.0": {
+            "framework": "net8.0-windows8.0",
             "targetAlias": "net8.0-windows8.0",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Infrastructure\\Aksl.Infrastructure\\Aksl.Infrastructure.csproj": {
@@ -1801,10 +1954,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0-windows8.0": {
+          "framework": "net8.0-windows8.0",
           "targetAlias": "net8.0-windows8.0",
           "dependencies": {
             "CommonServiceLocator": {
@@ -1931,7 +2091,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -1960,7 +2120,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0-windows7.0": {
+          "net8.0-windows": {
+            "framework": "net8.0-windows7.0",
             "targetAlias": "net8.0-windows",
             "projectReferences": {}
           }
@@ -1969,10 +2130,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
-        "net8.0-windows7.0": {
+        "net8.0-windows": {
+          "framework": "net8.0-windows7.0",
           "targetAlias": "net8.0-windows",
           "imports": [
             "net461",
@@ -1993,7 +2161,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -2022,7 +2190,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0-windows7.0": {
+          "net8.0-windows": {
+            "framework": "net8.0-windows7.0",
             "targetAlias": "net8.0-windows",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Toolkits\\Prism Library\\Prism.Core\\Prism.Core.csproj": {
@@ -2041,10 +2210,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
-        "net8.0-windows7.0": {
+        "net8.0-windows": {
+          "framework": "net8.0-windows7.0",
           "targetAlias": "net8.0-windows",
           "dependencies": {
             "Microsoft.Xaml.Behaviors.Wpf": {
@@ -2071,7 +2247,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -2102,6 +2278,7 @@
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {}
           }
@@ -2110,10 +2287,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "imports": [
             "net461",
@@ -2131,7 +2315,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -2161,7 +2345,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0-windows7.0": {
+          "net8.0-windows": {
+            "framework": "net8.0-windows7.0",
             "targetAlias": "net8.0-windows",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Toolkits\\Prism Library\\Prism.Core\\Prism.Core.csproj": {
@@ -2177,10 +2362,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
-        "net8.0-windows7.0": {
+        "net8.0-windows": {
+          "framework": "net8.0-windows7.0",
           "targetAlias": "net8.0-windows",
           "dependencies": {
             "Unity.Container": {
@@ -2207,7 +2399,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -2237,7 +2429,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0-windows7.0": {
+          "net8.0-windows": {
+            "framework": "net8.0-windows7.0",
             "targetAlias": "net8.0-windows",
             "projectReferences": {
               "C:\\Users\\zheng\\Documents\\GitHub\\Aksl.Wpf.SideBar.1.0.0\\Toolkits\\Prism Library\\Prism.Core\\Prism.Core.csproj": {
@@ -2250,10 +2443,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
-        "net8.0-windows7.0": {
+        "net8.0-windows": {
+          "framework": "net8.0-windows7.0",
           "targetAlias": "net8.0-windows",
           "dependencies": {
             "Microsoft.Xaml.Behaviors.Wpf": {
@@ -2280,7 +2480,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

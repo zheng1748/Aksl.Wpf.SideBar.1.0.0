@@ -25,7 +25,9 @@
       },
       "Prism.Core/1.0.0": {
         "runtime": {
-          "Prism.dll": {}
+          "Prism.dll": {
+            "fileVersion": "0.0.0.0"
+          }
         }
       }
     }

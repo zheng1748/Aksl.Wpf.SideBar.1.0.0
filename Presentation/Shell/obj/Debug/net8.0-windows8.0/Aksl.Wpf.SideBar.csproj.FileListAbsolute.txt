@@ -99,7 +99,6 @@ C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Shell\obj\De
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Shell\obj\Debug\net8.0-windows8.0\Aksl.Wpf.SideBar.AssemblyInfoInputs.cache
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Shell\obj\Debug\net8.0-windows8.0\Aksl.Wpf.SideBar.AssemblyInfo.cs
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Shell\obj\Debug\net8.0-windows8.0\Aksl.Wpf.SideBar.csproj.CoreCompileInputs.cache
-C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Shell\obj\Debug\net8.0-windows8.0\Aksl.Wpf.SideBar.csproj.CopyComplete
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Shell\obj\Debug\net8.0-windows8.0\Aksl.Wpf.SideBar.dll
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Shell\obj\Debug\net8.0-windows8.0\refint\Aksl.Wpf.SideBar.dll
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Shell\obj\Debug\net8.0-windows8.0\Aksl.Wpf.SideBar.pdb
@@ -124,3 +123,4 @@ C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Shell\bin\De
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Shell\bin\Debug\net8.0-windows8.0\Aksl.Modules.HamburgerMenuPopupSideBar.dll
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Shell\bin\Debug\net8.0-windows8.0\Aksl.Modules.HamburgerMenuPopupSideBar.pdb
 C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Shell\obj\Debug\net8.0-windows8.0\Aksl.Wpf.SideBar.sourcelink.json
+C:\Users\zheng\Documents\GitHub\Aksl.Wpf.SideBar.1.0.0\Presentation\Shell\obj\Debug\net8.0-windows8.0\Aksl.Wpf.FCD07B89.Up2Date
