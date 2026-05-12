@@ -99,7 +99,7 @@ namespace Aksl.Modules.Shell.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Wpf.SideBar;V1.0.0.0;component/shellview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Wpf.SideBar;component/shellview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\ShellView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
