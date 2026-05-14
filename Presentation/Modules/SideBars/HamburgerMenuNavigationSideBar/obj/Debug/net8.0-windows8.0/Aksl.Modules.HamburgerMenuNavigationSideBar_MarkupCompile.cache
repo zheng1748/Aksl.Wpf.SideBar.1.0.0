@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS8_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS8_0_OR_GREATER;WINDOWS7_0_OR_GREATER
 
-6-570618710
+8-1519488449
 
-17-1240120927
+22-978127762
 210-1859058764
-Views\GroupedMenusView.xaml;Views\GroupedMenuView.xaml;Views\HamburgerMenuNavigationSideBarHubView.xaml;Views\MenuContentView.xaml;Views\MenuItemHeader.xaml;Views\MenuItemView.xaml;
+Views\GroupedMenusView.xaml;Views\GroupedMenuView.xaml;Views\HamburgerMenuNavigationSideBarHubView.xaml;Views\MenuContentView.xaml;Views\MenuItemHeader.xaml;Views\MenuItemView.xaml;Views\NoGroupedMenuItem.xaml;Views\NoGroupedMenuView.xaml;
 
 False
 

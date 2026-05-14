@@ -11,14 +11,15 @@ namespace Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels
     public class MenuContentViewModel : BindableBase
     {
         #region Members
-        protected readonly IEventAggregator _eventAggregator;
         private IEnumerable<MenuItem> _leafMenuItems;
         #endregion
 
         #region Constructors
-        public MenuContentViewModel(IEventAggregator eventAggregator, int groupIndex, IEnumerable<MenuItem> leafMenuItems)
+        public MenuContentViewModel()
         {
-            _eventAggregator = eventAggregator;
+        }
+        public MenuContentViewModel(int groupIndex, IEnumerable<MenuItem> leafMenuItems)
+        {
             GroupIndex = groupIndex;
             _leafMenuItems = leafMenuItems;
 
@@ -29,7 +30,7 @@ namespace Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels
         #region Properties
         public int GroupIndex { get; }
 
-        public ObservableCollection<MenuItemViewModel> MenuItems { get; private set; }
+        public ObservableCollection<MenuItemViewModel> MenuItems { get;  set; }
 
         private MenuItemViewModel _selectedMenuItem;
         public MenuItemViewModel SelectedMenuItem
@@ -37,20 +38,21 @@ namespace Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels
             get => _selectedMenuItem;
             set
             {
-                var previewSelectedMenuItem = _selectedMenuItem;
+                SetProperty(ref _selectedMenuItem, value);
+                //var previewSelectedMenuItem = _selectedMenuItem;
 
-                if (SetProperty(ref _selectedMenuItem, value))
-                {
-                    if (previewSelectedMenuItem is not null && previewSelectedMenuItem.IsSelected)
-                    {
-                        previewSelectedMenuItem.IsSelected = false;
-                    }
+                //if (SetProperty(ref _selectedMenuItem, value))
+                //{
+                //    if (previewSelectedMenuItem is not null && previewSelectedMenuItem.IsSelected)
+                //    {
+                //        previewSelectedMenuItem.IsSelected = false;
+                //    }
 
-                    if (_selectedMenuItem is not null && !_selectedMenuItem.IsSelected)
-                    {
-                        _selectedMenuItem.IsSelected = true;
-                    }
-                }
+                //    if (_selectedMenuItem is not null && !_selectedMenuItem.IsSelected)
+                //    {
+                //        _selectedMenuItem.IsSelected = true;
+                //    }
+                //}
             }
         }
 
@@ -83,7 +85,7 @@ namespace Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels
         {
             if (SelectedMenuItem is not null)
             {
-                SelectedMenuItem.IsSelected = false; 
+                //SelectedMenuItem.IsSelected = false; 
                 SelectedMenuItem = null;
             }
         }
@@ -106,22 +108,7 @@ namespace Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels
 
             foreach (var menuItem in _leafMenuItems)
             {
-                MenuItemViewModel menuItemViewModel = new(_eventAggregator, GroupIndex, index++, menuItem);
-                //AddPropertyChanged(menuItemViewModel);
-
-                //void AddPropertyChanged(MenuItemViewModel menuItemvm)
-                //{
-                //    menuItemvm.PropertyChanged += (sender, e) =>
-                //    {
-                //        if (sender is MenuItemViewModel mivm)
-                //        {
-                //            if (e.PropertyName == nameof(MenuItemViewModel.IsSelected))
-                //            {
-                //                SelectedMenuItem = mivm;
-                //            }
-                //        }
-                //    };
-                //}
+                MenuItemViewModel menuItemViewModel = new(GroupIndex, index++, menuItem);
 
                 MenuItems.Add(menuItemViewModel);
             }

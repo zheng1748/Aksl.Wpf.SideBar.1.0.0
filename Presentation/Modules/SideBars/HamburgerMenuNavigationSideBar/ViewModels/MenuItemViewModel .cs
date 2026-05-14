@@ -1,12 +1,17 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
-using Prism.Commands;
+using Prism;
 using Prism.Events;
-using Prism.Modularity;
+using Prism.Ioc;
 using Prism.Mvvm;
+using Prism.Unity;
+using Unity;
 
 using Aksl.Toolkit.Controls;
+
 using Aksl.Infrastructure;
 using Aksl.Infrastructure.Events;
 
@@ -20,14 +25,9 @@ namespace Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels
         #endregion
 
         #region Constructors
-        //public MenuItemViewModel(MenuItem menuItem)
-        //{
-        //    _menuItem = menuItem;
-        //}
-
-        public MenuItemViewModel(IEventAggregator eventAggregator, int groupIndex, int index, MenuItem menuItem)
+        public MenuItemViewModel(int groupIndex, int index, MenuItem menuItem)
         {
-            _eventAggregator = eventAggregator;
+            _eventAggregator = (PrismApplication.Current as PrismApplicationBase).Container.Resolve<IEventAggregator>();
             GroupIndex = groupIndex;
             Index = index;
             _menuItem = menuItem;
@@ -36,9 +36,9 @@ namespace Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels
 
         #region Properties
         public MenuItem MenuItem => _menuItem;
-        public string WorkspaceViewEventName { get; set; }
         public int GroupIndex { get; }
         public int Index { get; }
+        public string WorkspaceViewEventName { get; set; }
         public string Name => _menuItem.Name;
         public string Title => _menuItem.Title;
         public bool IsLeaf => _menuItem.SubMenus.Count <= 0;
@@ -57,10 +57,8 @@ namespace Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels
                     var isSelectedOnLeaf = IsLeaf && (!HasNavigationName || (HasNavigationName && !IsNextNavigation));
                     var isSelectedOnNotLeaf = !IsLeaf && !IsNexOnNotLeaf;
 
-                    //if (IsLeaf && _isSelected)
                     if (isSelectedOnLeaf && _isSelected)
                     {
-                        //_eventAggregator.GetEvent<OnBuildHamburgerMenuNavigationSideBarWorkspaceViewEvent>().Publish(new() { CurrentMenuItem = _menuItem });
                         var buildHWorkspaceViewEvent = _eventAggregator.GetEvent(WorkspaceViewEventName) as OnBuildWorkspaceViewEventbase;
                         buildHWorkspaceViewEvent.Publish(new() { CurrentMenuItem = _menuItem });
                     }

@@ -12,7 +12,7 @@
              xmlns:a="clr-namespace:Aksl.Modules.HamburgerMenuNavigationSideBar"
              xmlns:sv="clr-namespace:Aksl.Modules.HamburgerMenuNavigationSideBar"
              mc:Ignorable="d"
-             x:Name="hamburgerMenuNavigationSideBarContainer"
+             x:Name="HamburgerMenuNavigationSideBarContainer"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources>
 
@@ -951,7 +951,7 @@
                                         VerticalAlignment="Stretch"
                                         Margin="0,0,2,2"
                                         RenderTransformOrigin="0.5,0.5">
-                            <views:GroupedMenusView DataContext="{Binding Path=NavigationSideBar}" />
+                            <views:GroupedMenusView DataContext="{Binding Path=GroupedMenu}" />
                             <ContentControl.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform />

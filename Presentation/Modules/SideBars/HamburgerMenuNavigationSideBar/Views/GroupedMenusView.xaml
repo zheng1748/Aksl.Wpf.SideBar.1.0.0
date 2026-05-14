@@ -4,31 +4,54 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:Aksl.Modules.HamburgerMenuNavigationSideBar.Views"
+             xmlns:viewmodels="clr-namespace:Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
     <UserControl.Resources>
-        
-        <CollectionViewSource x:Key="menusSource"
-                              Source="{Binding Path=GroupedMenus}" />
 
-        <DataTemplate x:Key="itemTemplate">
+        <!--<CollectionViewSource x:Key="menusSource"
+                           Source="{Binding Path=GroupedMenus}" />-->
+
+        <!--<DataTemplate x:Key="groupedMenusDataTemplate">
+         <views:GroupedMenuView />
+     </DataTemplate>-->
+
+        <CollectionViewSource x:Key="menusSource"
+                              Source="{Binding Path=AllMenus}" />
+
+        <DataTemplate DataType="{x:Type viewmodels:GroupedMenuViewModel}">
             <views:GroupedMenuView />
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewmodels:NoGroupedMenuViewModel}">
+            <views:NoGroupedMenuView />
+        </DataTemplate>
     </UserControl.Resources>
-    
+
     <ScrollViewer HorizontalScrollBarVisibility="Auto"
                   VerticalScrollBarVisibility="Auto">
         <Border SnapsToDevicePixels="True"
-                Background="WhiteSmoke"
+                Background="White"
                 BorderBrush="LightGray"
                 BorderThickness="2"
                 CornerRadius="5">
-            <ItemsControl x:Name="groupedMenusItemsControl"
-                          ItemsSource="{Binding Source={StaticResource menusSource}}"
-                          ItemTemplate="{Binding Source={StaticResource itemTemplate}}">
+            <ItemsControl ItemsSource="{Binding Source={StaticResource menusSource}}">
             </ItemsControl>
         </Border>
     </ScrollViewer>
+
+    <!--<ScrollViewer HorizontalScrollBarVisibility="Auto"
+               VerticalScrollBarVisibility="Auto">
+     <Border SnapsToDevicePixels="True"
+             Background="WhiteSmoke"
+             BorderBrush="LightGray"
+             BorderThickness="2"
+             CornerRadius="5">
+         <ItemsControl x:Name="GroupedMenusItemsControl"
+                       ItemsSource="{Binding Source={StaticResource menusSource}}"
+                       ItemTemplate="{Binding Source={StaticResource groupedMenusDataTemplate}}">
+         </ItemsControl>
+     </Border>
+ </ScrollViewer>-->
 </UserControl>

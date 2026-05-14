@@ -29,7 +29,6 @@ namespace Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly IDialogViewService _dialogViewService;
         private readonly IMenuService _menuService;
-        private object _currentView;
         private string _workspaceViewEventName;
         #endregion
 
@@ -56,7 +55,7 @@ namespace Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels
         #endregion
 
         #region Properties
-        public GroupedMenusViewModel NavigationSideBar { get; private set; }
+        public GroupedMenusViewModel GroupedMenu { get; private set; }
 
         private string _workspaceRegionName;
         public string WorkspaceRegionName
@@ -113,9 +112,9 @@ namespace Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels
             {
                 if (SetProperty<bool>(ref _isPaneOpen, value))
                 {
-                    if (NavigationSideBar is not null)
+                    if (GroupedMenu is not null)
                     {
-                        NavigationSideBar.IsPaneOpen = value;
+                        GroupedMenu.IsPaneOpen = value;
                     }
 
                     VisualState = GetVisualState();
@@ -232,8 +231,8 @@ namespace Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels
 
                 try
                 {
-                     var previewSelectedMenuItem = NavigationSideBar.PreviewSelectedMenuItem;
-                     var selectedMenuItem = NavigationSideBar.SelectedMenuItem;
+                     //var previewSelectedMenuItem = NavigationSideBar.PreviewSelectedMenuItem;
+                     //var selectedMenuItem = NavigationSideBar.SelectedMenuItem;
 
                      await LoadViewAsync();
 
@@ -248,21 +247,21 @@ namespace Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels
                              var viewName = viewType.Name;
 
                              //_currentView = region.GetView(viewTypeAssemblyQualifiedName);
-                             _currentView = region.Views.FirstOrDefault(v => v.GetType() == viewType);
-                             if (_currentView is null)
+                             var currentView = region.Views.FirstOrDefault(v => v.GetType() == viewType);
+                             if (currentView is null)
                              {
-                                 _currentView = region.GetView(viewType.FullName);
+                                 currentView = region.GetView(viewType.FullName);
                              }
 
-                             if (_currentView is not null)
+                             if (currentView is not null)
                              {
                                  if (currentMenuItem.IsCacheable)
                                  {
-                                     region.Activate(_currentView);
+                                     region.Activate(currentView);
                                  }
                                  else
                                  {
-                                     region.Remove(_currentView);
+                                     region.Remove(currentView);
 
                                      AddView();
                                  }
@@ -327,12 +326,12 @@ namespace Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels
 
             try
             {
-                NavigationSideBar = new(_eventAggregator, _menuService);
+                GroupedMenu = new(_eventAggregator, _menuService);
                 AddPropertyChanged();
 
                 void AddPropertyChanged()
                 {
-                    NavigationSideBar.PropertyChanged += (sender, e) =>
+                    GroupedMenu.PropertyChanged += (sender, e) =>
                     {
                         if (sender is GroupedMenusViewModel gmvm)
                         {
@@ -344,9 +343,9 @@ namespace Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels
                     };
                 }
 
-                NavigationSideBar.WorkspaceViewEventName = _workspaceViewEventName;
-                await NavigationSideBar.CreateGroupedMenuViewModelsAsync();
-                RaisePropertyChanged(nameof(NavigationSideBar));
+                GroupedMenu.WorkspaceViewEventName = _workspaceViewEventName;
+                await GroupedMenu.CreateGroupedMenuViewModelsAsync();
+                RaisePropertyChanged(nameof(GroupedMenu));
             }
             catch (Exception ex)
             {
@@ -370,7 +369,7 @@ namespace Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels
             {
                 if (parameters.Count == 0)
                 {
-                    CreateGroupedMenusViewModelAsync().GetAwaiter().GetResult();
+                    CreateGroupedMenusViewModelAsync().Await();
                 }
                 //else
                 //{
