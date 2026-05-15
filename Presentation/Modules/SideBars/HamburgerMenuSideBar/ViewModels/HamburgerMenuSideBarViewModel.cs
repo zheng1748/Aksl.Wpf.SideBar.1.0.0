@@ -18,7 +18,7 @@ namespace Aksl.Modules.HamburgerMenuSideBar.ViewModels
         #endregion
 
         #region Constructors
-        public HamburgerMenuSideBarViewModel( IMenuService menuService)
+        public HamburgerMenuSideBarViewModel(IMenuService menuService)
         {
             _menuService = menuService;
 

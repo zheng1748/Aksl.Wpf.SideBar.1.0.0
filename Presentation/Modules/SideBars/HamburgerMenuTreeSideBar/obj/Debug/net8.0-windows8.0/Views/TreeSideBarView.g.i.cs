@@ -54,7 +54,8 @@ namespace Aksl.Modules.HamburgerMenuTreeSideBar.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.HamburgerMenuTreeSideBar;component/views/treesidebarview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.HamburgerMenuTreeSideBar;V1.0.0.0;component/views/treesidebarview.x" +
+                    "aml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\TreeSideBarView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

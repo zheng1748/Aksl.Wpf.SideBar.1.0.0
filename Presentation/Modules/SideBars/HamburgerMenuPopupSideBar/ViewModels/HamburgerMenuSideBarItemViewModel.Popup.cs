@@ -19,15 +19,6 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
     public partial class HamburgerMenuSideBarItemViewModel : BindableBase
     {
         #region Popup Properties
-        public PopupViewModel ThePopupViewModel { get; set; }
-
-        private bool _isPopupOpen = false;
-        public bool IsPopupOpen
-        {
-            get => _isPopupOpen;
-            set => SetProperty<bool>(ref _isPopupOpen, value);
-        }
-
         private PopupSideBarItemViewModel _popupSideBarItemViewModel = default;
         public PopupSideBarItemViewModel SelectedPopupSideBarItem
         {
@@ -35,11 +26,28 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
             set => SetProperty<PopupSideBarItemViewModel>(ref _popupSideBarItemViewModel, value);
         }
 
+        public PopupViewModel ThePopupViewModel { get; set; }
+
         private PopupViewModelPair _popupViewModelPair = default;
         public PopupViewModelPair ThePopupViewModelPair
         {
             get => _popupViewModelPair;
             set => SetProperty<PopupViewModelPair>(ref _popupViewModelPair, value);
+        }
+
+        public Visibility PopupVisibility
+        {
+            get
+            {
+                return ThePopupViewModel.AllLeafPopupSideBarItems is not null && ThePopupViewModel.AllLeafPopupSideBarItems.Any() ? Visibility.Visible : Visibility.Hidden;
+            }
+        }
+
+        private bool _isPopupOpen = false;
+        public bool IsPopupOpen
+        {
+            get => _isPopupOpen;
+            set => SetProperty<bool>(ref _isPopupOpen, value);
         }
         #endregion
 
@@ -57,6 +65,11 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                     {
                         if (sender is System.Windows.Controls.ListViewItem listViewItem)
                         {
+                            if (!ThePopupViewModel.AllLeafPopupSideBarItems.Any())
+                            {
+                                return;
+                            }
+
                             listViewItem.Background = new SolidColorBrush(Colors.Honeydew);
 
                             System.Windows.Point pos = e.GetPosition(uc);
@@ -78,6 +91,11 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                     {
                         if (sender is System.Windows.Controls.ListViewItem listViewItem)
                         {
+                            if (!ThePopupViewModel.AllLeafPopupSideBarItems.Any())
+                            {
+                                return;
+                            }
+
                             listViewItem.Background = new SolidColorBrush(Colors.White);
 
                             System.Windows.Point point = e.GetPosition(listViewItem);
@@ -163,17 +181,19 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
             ObservableCollection<PopupSideBarItemViewModel> allLeafPopupSideBarItems = new();
             IEnumerable<Infrastructure.MenuItem> subMenuItems = default;
 
-            List<Infrastructure.MenuItem> allLeafMenuItems = new();
-
-            if (!string.IsNullOrEmpty(_menuItem.NavigationName))
+            await GetSubMenuAsync();
+            async Task GetSubMenuAsync()
             {
-                var parentMenuItem = await _menuService.GetMenuAsync(_menuItem.NavigationName);
-                subMenuItems = parentMenuItem.SubMenus;
-            }
+                if (!string.IsNullOrEmpty(_menuItem.NavigationName))
+                {
+                    var parentMenuItem = await _menuService.GetMenuAsync(_menuItem.NavigationName);
+                    subMenuItems = parentMenuItem.SubMenus;
+                }
 
-            if (string.IsNullOrEmpty(_menuItem.NavigationName) && HasSubMenu(_menuItem) && IsExistsViewInSubMenu(_menuItem))
-            {
-                subMenuItems = _menuItem.SubMenus.Where(sm => !string.IsNullOrEmpty(sm.ViewName)).ToList();
+                if (string.IsNullOrEmpty(_menuItem.NavigationName) && HasSubMenu(_menuItem) && IsExistsViewInSubMenu(_menuItem))
+                {
+                    subMenuItems = _menuItem.SubMenus.Where(sm => !string.IsNullOrEmpty(sm.ViewName)).ToList();
+                }
             }
 
             bool HasSubMenu(MenuItem mi) => (mi is not null) && mi.SubMenus.Any();
@@ -184,16 +204,15 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
             {
                 foreach (var smi in subMenuItems)
                 {
-                    List<MenuItem> travelMenuItems = new();
-                    var allLeafPopupSideBarItemViewModels = await GetAllLeafPopupSideBarItemViewModels(smi, travelMenuItems);
-                    allLeafPopupSideBarItems.AddRange(allLeafPopupSideBarItemViewModels);
+                    var allLeafsOfMenuItem= await GetLeafsPopupSideBarItemOfMenuItem(smi);
+                   allLeafPopupSideBarItems.AddRange(allLeafsOfMenuItem);
                 }
 
-                var allDistinctLeafPopupSideBarItems = allLeafPopupSideBarItems.DistinctBy(item => (item.Name, item.Title)).ToList();
-                allLeafPopupSideBarItems = new ObservableCollection<PopupSideBarItemViewModel>(allDistinctLeafPopupSideBarItems);
+                var allDistinctLeafs = allLeafPopupSideBarItems.DistinctBy(item => (item.Name, item.Title)).ToList();
+                allLeafPopupSideBarItems = new ObservableCollection<PopupSideBarItemViewModel>(allDistinctLeafs);
 
                 ThePopupViewModel.AllLeafPopupSideBarItems = allLeafPopupSideBarItems;
-                ThePopupViewModel.AddPropertyChanged();
+               // ThePopupViewModel.AddPropertyChanged();
                 AddPopupPropertyChanged();
 
                 void AddPopupPropertyChanged()
@@ -223,10 +242,11 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
         }
         #endregion
 
-        #region Get All Leaf PopupSideBarItemViewModels Method
-        internal async Task<IEnumerable<PopupSideBarItemViewModel>> GetAllLeafPopupSideBarItemViewModels(MenuItem menuItem, IList<MenuItem> travelMenuItems)
+        #region Get Leafs PopupSideBarItem Of MenuItem Method
+        internal async Task<IEnumerable<PopupSideBarItemViewModel>> GetLeafsPopupSideBarItemOfMenuItem(MenuItem menuItem)
         {
-            List<PopupSideBarItemViewModel> leafHamburgerMenuSideBarItemViewModels = new();
+            List<MenuItem> travelMenuItems = new();
+            List<PopupSideBarItemViewModel> leafsOfMenuItem = new();
 
             await RecursiveSubMenuItem(menuItem);
 
@@ -237,7 +257,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                 if (!AnyEqualsMenuItems(travelMenuItems, currentMenuItem) && HasTitle(currentMenuItem) && (isAddOnLeaf || isAddOnNotLeaf))
                 {
                     travelMenuItems.Add(currentMenuItem);
-                    leafHamburgerMenuSideBarItemViewModels.Add(new(currentMenuItem, null));
+                    leafsOfMenuItem.Add(new(currentMenuItem, null));
                 }
 
                 if (HasNavigationName(currentMenuItem) && IsNextNavigation(currentMenuItem))
@@ -266,16 +286,16 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 
             bool IsNexOnNotLeaf(MenuItem mi) => (mi is not null) && mi.IsNexOnNotLeaf;
 
-            return leafHamburgerMenuSideBarItemViewModels;
+            return leafsOfMenuItem;
         }
         #endregion
 
         #region Contain Methods
         private bool AnyEqualsMenuItems(IEnumerable<MenuItem> menuItems, MenuItem menuItem)
         {
-            var isEquals = menuItems.Any(mi => IsEqualsNameOrTitle(mi.Name, menuItem.Name) || IsEqualsNameOrTitle(mi.Title, menuItem.Title));
+            var isAny = menuItems.Any(mi => IsEqualsNameOrTitle(mi.Name, menuItem.Name) || IsEqualsNameOrTitle(mi.Title, menuItem.Title));
 
-            return isEquals;
+            return isAny;
         }
 
         private bool IsEqualsNameOrTitle(string nameOrTitle, string otherNameOrTitle)
@@ -285,10 +305,10 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                 return false;
             }
 
-            var isEquals = (!string.IsNullOrEmpty(nameOrTitle) && nameOrTitle.Equals(otherNameOrTitle, StringComparison.InvariantCultureIgnoreCase)) ||
-                           (!string.IsNullOrEmpty(otherNameOrTitle) && otherNameOrTitle.Equals(nameOrTitle, StringComparison.InvariantCultureIgnoreCase));
+            var isAny = (!string.IsNullOrEmpty(nameOrTitle) && nameOrTitle.Equals(otherNameOrTitle, StringComparison.InvariantCultureIgnoreCase)) ||
+                        (!string.IsNullOrEmpty(otherNameOrTitle) && otherNameOrTitle.Equals(nameOrTitle, StringComparison.InvariantCultureIgnoreCase));
 
-            return isEquals;
+            return isAny;
         }
         #endregion
     }

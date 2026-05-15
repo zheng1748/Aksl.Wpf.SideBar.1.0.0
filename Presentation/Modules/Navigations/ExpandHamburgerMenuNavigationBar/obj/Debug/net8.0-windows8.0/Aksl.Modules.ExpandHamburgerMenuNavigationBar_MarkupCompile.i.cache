@@ -16,5 +16,5 @@ TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS8_0;NET5_0_OR_GREATER;NET6_0_OR
 207-1592956024
 Views\ExpandHamburgerMenuNavigationBarHubView.xaml;Views\GroupedMenusView.xaml;Views\GroupedMenuView.xaml;Views\MenuContentView.xaml;Views\MenuItemHeader.xaml;Views\MenuItemView.xaml;
 
-False
+True
 

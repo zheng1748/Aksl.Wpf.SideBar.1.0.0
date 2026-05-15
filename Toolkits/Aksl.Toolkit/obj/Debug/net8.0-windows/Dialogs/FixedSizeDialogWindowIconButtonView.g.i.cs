@@ -58,7 +58,8 @@ namespace Aksl.Dialogs.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Toolkit;component/dialogs/fixedsizedialogwindowiconbuttonview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Toolkit;V1.0.0.0;component/dialogs/fixedsizedialogwindowiconbuttonview.xaml" +
+                    "", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Dialogs\FixedSizeDialogWindowIconButtonView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

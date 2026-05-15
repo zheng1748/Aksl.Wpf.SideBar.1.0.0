@@ -237,8 +237,8 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 
                 try
                 {
-                     var previewSelectedHamburgerMenuItem = HamburgerMenuSideBar.PreviewSelectedHamburgerMenuItem;
-                     var selectedHamburgerMenuItem = HamburgerMenuSideBar.SelectedHamburgerMenuSideBarItem;
+                     //var previewSelectedHamburgerMenuItem = HamburgerMenuSideBar.PreviewSelectedHamburgerMenuItem;
+                     //var selectedHamburgerMenuItem = HamburgerMenuSideBar.SelectedHamburgerMenuSideBarItem;
 
                      //if (currentMenuItem.RequrePermissons is not null)
                      //{
@@ -449,7 +449,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 
             try
             {
-                HamburgerMenuSideBar = new(_eventAggregator, _menuService);
+                HamburgerMenuSideBar = new(_menuService);
                 AddPropertyChanged();
 
                 void AddPropertyChanged()

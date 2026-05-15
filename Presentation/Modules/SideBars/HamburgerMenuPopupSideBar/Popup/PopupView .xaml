@@ -64,7 +64,8 @@
                   ItemContainerStyle="{StaticResource PopupSideBarItemListViewItem}"
                   ItemsSource="{Binding Path=AllLeafPopupSideBarItems}"
                   ItemTemplate="{Binding Source={StaticResource PopupSideBarItemDataTemplate}}"
-                  SelectionMode="Single">
+                  SelectionMode="Single"
+                  SelectedItem="{Binding Path=SelectedPopupSideBarItem,Mode=TwoWay}">
         </ListView>
     </Popup>
 

@@ -16,5 +16,5 @@ TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS8_0;NET5_0_OR_GREATER;NET6_0_OR
 210-1859058764
 Navigations\Axes\AxesExpandHamburgerMenuTabHubView.xaml;Tab\TabItemHeaderView.xaml;Tab\TabItemView.xaml;Tab\TabView.xaml;Views\ExpandHamburgerMenuTabHubView.xaml;Views\HamburgerMenuItemView.xaml;Views\HamburgerMenuView.xaml;
 
-False
+True
 

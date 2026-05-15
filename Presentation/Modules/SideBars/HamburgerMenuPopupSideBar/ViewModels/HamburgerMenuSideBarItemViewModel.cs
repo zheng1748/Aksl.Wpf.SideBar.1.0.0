@@ -100,7 +100,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
         public bool HasChildren => (_children is not null) && _children.Any();
         public bool HasTitle => !string.IsNullOrEmpty(_menuItem.Title);
         public bool IsLeaf => (_children is not null) && _children.Count <= 0;
-        public bool HasSubMenu => ThePopupViewModel.AllLeafPopupSideBarItems.Any();
+        public bool HasPPopupSideBar => ThePopupViewModel.AllLeafPopupSideBarItems.Any();
 
         private bool _isSelected = false;
         public bool IsSelected
@@ -110,7 +110,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
             {
                 if (SetProperty<bool>(ref _isSelected, value))
                 {
-                    if (IsLeaf && _isSelected && !HasSubMenu)
+                    if (IsLeaf && _isSelected && !HasPPopupSideBar)
                     {
                         var buildHWorkspaceViewEvent = _eventAggregator.GetEvent(WorkspaceViewEventName) as OnBuildWorkspaceViewEventbase;
                         buildHWorkspaceViewEvent.Publish(new() { CurrentMenuItem = _menuItem });

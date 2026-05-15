@@ -12,7 +12,7 @@
              xmlns:a="clr-namespace:Aksl.Modules.HamburgerMenuPopupSideBar"
              xmlns:sv="clr-namespace:Aksl.Modules.HamburgerMenuPopupSideBar"
              mc:Ignorable="d"
-             x:Name="hamburgerMenuSideBarContainer"
+             x:Name="HamburgerMenPopupSideBarHubContainer"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources>
 

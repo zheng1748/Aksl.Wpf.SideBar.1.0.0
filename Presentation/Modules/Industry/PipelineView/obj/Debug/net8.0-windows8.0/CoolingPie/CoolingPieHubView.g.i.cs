@@ -84,7 +84,7 @@ namespace Aksl.Modules.Pipeline.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.Pipeline;component/coolingpie/coolingpiehubview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.Pipeline;V1.0.0.0;component/coolingpie/coolingpiehubview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\CoolingPie\CoolingPieHubView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

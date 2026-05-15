@@ -34,7 +34,9 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
             get => _popupSideBarItemViewModel;
             set => SetProperty<PopupSideBarItemViewModel>(ref _popupSideBarItemViewModel, value);
         }
+        #endregion
 
+        #region Popup Properties
         private bool _allowsTransparency = true;
         public bool AllowsTransparency
         {
@@ -109,7 +111,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
         public void ClearSelectedPopupSideBarItems()
         {
             SelectedPopupSideBarItem.IsSelected = false;
-            SelectedPopupSideBarItem = null;
+            //SelectedPopupSideBarItem = null;
            // AllLeafPopupSideBarItems.Where(pi => pi.IsSelected).ToList().ForEach(psbi => 
            //{
            //    SelectedPopupSideBarItem=null;

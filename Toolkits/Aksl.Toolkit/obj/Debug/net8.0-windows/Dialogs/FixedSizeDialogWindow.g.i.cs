@@ -69,7 +69,7 @@ namespace Aksl.Dialogs.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Toolkit;component/dialogs/fixedsizedialogwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Toolkit;V1.0.0.0;component/dialogs/fixedsizedialogwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Dialogs\FixedSizeDialogWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -35,7 +35,8 @@
 			  ItemType="Item"
 			  IconKind="ThermometerAlert"
 			  ModuleName=""
-			  ViewName=""
+			  ViewName="" 
+			  IsNextNavigation="True"
 			  NavigationName="Thermometers">
 	</MenuItem>
 	<MenuItem Id="1"
@@ -46,6 +47,7 @@
 			  IconKind="TowerFire"
 			  ModuleName=""
 			  ViewName=""
+			  IsNextNavigation="True"
 			  NavigationName="CoolingTowers">
 	</MenuItem>
 	<MenuItem Id="1"
@@ -56,6 +58,7 @@
 			  IconKind="Compress"
 			  ModuleName=""
 			  ViewName=""
+		      IsNextNavigation="True"
 			  NavigationName="AirCompressers">
 	</MenuItem>
 </MenuItem>

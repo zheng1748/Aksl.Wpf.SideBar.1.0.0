@@ -62,7 +62,7 @@ namespace Aksl.Modules.Others.OrgChart.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.Others;component/orgchart/views/orgchartview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.Others;V1.0.0.0;component/orgchart/views/orgchartview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\OrgChart\Views\OrgChartView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

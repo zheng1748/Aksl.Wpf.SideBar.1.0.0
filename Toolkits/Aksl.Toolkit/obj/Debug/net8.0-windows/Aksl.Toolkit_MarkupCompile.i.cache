@@ -16,5 +16,5 @@ TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR
 205873755598
 Dialogs\ConfirmView.xaml;Dialogs\FixedSizeDialogWindow.xaml;Dialogs\FixedSizeDialogWindowIconButtonView.xaml;
 
-False
+True
 

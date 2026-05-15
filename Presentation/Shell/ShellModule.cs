@@ -33,10 +33,10 @@ namespace Aksl.Modules.Shell
         {
 
           // _regionManager.RequestNavigate(RegionNames.ShellContentRegion, nameof(Aksl.Modules.HamburgerMenuSideBar.Views.HamburgerMenuSideBarHubView));
-            _regionManager.RequestNavigate(RegionNames.ShellContentRegion, nameof(HamburgerMenuNavigationSideBar.Views.HamburgerMenuNavigationSideBarHubView));
+          //  _regionManager.RequestNavigate(RegionNames.ShellContentRegion, nameof(HamburgerMenuNavigationSideBar.Views.HamburgerMenuNavigationSideBarHubView));
           // _regionManager.RequestNavigate(RegionNames.ShellContentRegion, nameof(Aksl.Modules.HamburgerMenuTreeSideBar.Views.HamburgerMenuTreeSideBarHubView));
 
-           // _regionManager.RequestNavigate(RegionNames.ShellContentRegion, nameof(Aksl.Modules.HamburgerMenuPopupSideBar.Views.HamburgerMenPopupSideBarHubView));
+            _regionManager.RequestNavigate(RegionNames.ShellContentRegion, nameof(Aksl.Modules.HamburgerMenuPopupSideBar.Views.HamburgerMenPopupSideBarHubView));
 
             _regionManager.RequestNavigate(RegionNames.ShellLoginRegion, nameof(LoginStatusView));
         }
