@@ -13,26 +13,11 @@ using Unity;
 
 namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 {
-    public class PopupViewModel : BindableBase
+    public class PopupViewModelBase : BindableBase
     {
-        #region Members
-        #endregion
-
         #region Constructors
-        public PopupViewModel()
+        public PopupViewModelBase()
         {
-            AllLeafPopupSideBarItems = new();
-        }
-        #endregion
-
-        #region Properties
-        public ObservableCollection<PopupSideBarItemViewModel> AllLeafPopupSideBarItems { get; set; }
-
-        private PopupSideBarItemViewModel _popupSideBarItemViewModel = default;
-        public PopupSideBarItemViewModel SelectedPopupSideBarItem
-        {
-            get => _popupSideBarItemViewModel;
-            set => SetProperty<PopupSideBarItemViewModel>(ref _popupSideBarItemViewModel, value);
         }
         #endregion
 
@@ -79,8 +64,32 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
             set => SetProperty<System.Windows.Controls.Primitives.PopupAnimation>(ref _popupAnimation, value);
         }
         #endregion
+    }
 
-        #region Clear Selected Method
+    public class PopupViewModel : PopupViewModelBase
+    {
+        #region Members
+        #endregion
+
+        #region Constructors
+        public PopupViewModel() : base()
+        {
+            AllLeafPopupSideBarItems = new();
+        }
+        #endregion
+
+        #region Properties
+        public ObservableCollection<PopupSideBarItemViewModel> AllLeafPopupSideBarItems { get; set; }
+
+        private PopupSideBarItemViewModel _popupSideBarItemViewModel = default;
+        public PopupSideBarItemViewModel SelectedPopupSideBarItem
+        {
+            get => _popupSideBarItemViewModel;
+            set => SetProperty<PopupSideBarItemViewModel>(ref _popupSideBarItemViewModel, value);
+        }
+        #endregion
+
+        #region Add PropertyChanged Method
         public void AddPropertyChanged()
         {
             foreach (var psivm in AllLeafPopupSideBarItems)
@@ -112,11 +121,11 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
         {
             SelectedPopupSideBarItem.IsSelected = false;
             //SelectedPopupSideBarItem = null;
-           // AllLeafPopupSideBarItems.Where(pi => pi.IsSelected).ToList().ForEach(psbi => 
-           //{
-           //    SelectedPopupSideBarItem=null;
-           //    psbi.IsSelected = false;
-           //});
+            // AllLeafPopupSideBarItems.Where(pi => pi.IsSelected).ToList().ForEach(psbi => 
+            //{
+            //    SelectedPopupSideBarItem=null;
+            //    psbi.IsSelected = false;
+            //});
         }
         #endregion
     }

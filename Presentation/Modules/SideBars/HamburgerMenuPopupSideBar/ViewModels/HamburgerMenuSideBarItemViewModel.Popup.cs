@@ -227,6 +227,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                                 {
                                     PopupViewModelPair popupViewModelPair = new()
                                     {
+                                        HamburgerMenuSideBarItem=this,
                                         ThisPopupViewModel = pvm,
                                         SelectedPopupSideBarItem = pvm.SelectedPopupSideBarItem
                                     };

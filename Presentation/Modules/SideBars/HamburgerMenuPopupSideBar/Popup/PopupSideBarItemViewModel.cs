@@ -13,9 +13,9 @@ using Prism.Mvvm;
 using Prism.Unity;
 using Unity;
 
-using Aksl.Infrastructure;
 using Aksl.Toolkit.Controls;
 using Aksl.Toolkit.UI;
+using Aksl.Infrastructure;
 using Aksl.Infrastructure.Events;
 
 namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
@@ -110,12 +110,12 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                     {
                         if (sender is System.Windows.Controls.ListViewItem listViewItem)
                         {
-                           // listViewItem.Background = new SolidColorBrush(Colors.White);
+                            // listViewItem.Background = new SolidColorBrush(Colors.White);
 
                             var parentsToListViewItem = visualTreeFinder.FindVisualParents<DependencyObject>(listViewItem);
                             var listView = parentsToListViewItem.FirstOrDefault(d => d is System.Windows.Controls.ListView) as System.Windows.Controls.ListView;
-                           
-                           var popupRoot = parentsToListViewItem.FirstOrDefault(d => d.GetType().Name == "PopupRoot") as FrameworkElement;
+
+                            var popupRoot = parentsToListViewItem.FirstOrDefault(d => d.GetType().Name == "PopupRoot") as FrameworkElement;
                             if (popupRoot is not null)
                             {
                                 var popup = visualTreeFinder.FindLogicalParent<System.Windows.Controls.Primitives.Popup>(popupRoot);
@@ -128,7 +128,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                                         var popupViewModel = popup.DataContext as PopupViewModel;
                                         if (popupViewModel is not null)
                                         {
-                                          //  popupViewModel.ClearSelectedPopupSideBarItems();
+                                            //  popupViewModel.ClearSelectedPopupSideBarItems();
 
                                             popupViewModel.PlacementTarget = null;
                                             popupViewModel.IsOpen = false;

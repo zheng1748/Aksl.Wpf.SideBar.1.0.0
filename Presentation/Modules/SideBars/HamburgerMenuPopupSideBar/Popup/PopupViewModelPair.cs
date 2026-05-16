@@ -9,6 +9,7 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
 {
     public class PopupViewModelPair
     {
+        public HamburgerMenuSideBarItemViewModel HamburgerMenuSideBarItem { get; set; }
         public PopupViewModel ThisPopupViewModel { get; set; }
         public PopupSideBarItemViewModel SelectedPopupSideBarItem { get; set; }
     }

@@ -112,11 +112,11 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
                                 if (!previewPopupViewModelPair.ThisPopupViewModel.IsOpen && previewPopupViewModelPair.SelectedPopupSideBarItem is not null &&
                                      hmbvm.ThePopupViewModelPair.ThisPopupViewModel.IsOpen && hmbvm.ThePopupViewModelPair.SelectedPopupSideBarItem is not null && 
                                      previewPopupViewModelPair.SelectedPopupSideBarItem!= hmbvm.ThePopupViewModelPair.SelectedPopupSideBarItem)
-
                                 {
                                     previewPopupViewModelPair.ThisPopupViewModel.ClearSelectedPopupSideBarItems();
                                 }
 
+                                SetSelectedHamburgerMenuSideBarItem(hmbvm.ThePopupViewModelPair.HamburgerMenuSideBarItem);
                                 NowPopupViewModelPair = hmbvm.ThePopupViewModelPair;
                             }
                         }
@@ -202,6 +202,18 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
             bool HasChild(HamburgerMenuSideBarItemViewModel hmivm) => (hmivm is not null) && hmivm.Children.Any();
 
             return topLeafHamburgerMenuSideBarItemViewModels;
+        }
+        #endregion
+
+        #region Set Selected Method
+        public void SetSelectedHamburgerMenuSideBarItem(HamburgerMenuSideBarItemViewModel hamburgerMenuSideBarItemViewModel)
+        {
+            var selectedHamburgerMenuSideBarItem = AllLeafHamburgerMenuSideBarItems.FirstOrDefault(hsmi =>  hsmi.IsSelected);
+            if (selectedHamburgerMenuSideBarItem is not null && hamburgerMenuSideBarItemViewModel != selectedHamburgerMenuSideBarItem)
+            {
+                selectedHamburgerMenuSideBarItem.IsSelected = false;
+                hamburgerMenuSideBarItemViewModel.IsSelected = true;
+            }
         }
         #endregion
 

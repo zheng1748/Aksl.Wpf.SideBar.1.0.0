@@ -54,7 +54,7 @@ namespace Aksl.Modules.TabBar.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.TabBar;component/tab/tabview%20.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Aksl.Modules.TabBar;V1.0.0.0;component/tab/tabview%20.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Tab\TabView .xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
