@@ -139,7 +139,7 @@
         <TextBlock Grid.Column="1"
                    Text="{Binding Path=Title,Mode=OneWay}" FontSize="16"
                    IsEnabled="{Binding Path=IsEnabled}"
-                   Margin="20,0,0,0"
+                   Margin="10,0,0,0"
                    VerticalAlignment="Center" HorizontalAlignment="Left"
                    TextTrimming="CharacterEllipsis"
                    TextWrapping="NoWrap">

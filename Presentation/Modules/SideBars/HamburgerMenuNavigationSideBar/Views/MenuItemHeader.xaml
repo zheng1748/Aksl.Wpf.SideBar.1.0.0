@@ -3,18 +3,77 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="clr-namespace:Aksl.Toolkit.Controls;assembly=Aksl.Toolkit.Controls"
              mc:Ignorable="d"
              d:DesignHeight="400"
-             d:DesignWidth="400"
-             x:Name="headerTextContainer">
-    <StackPanel Orientation="Horizontal"
+             d:DesignWidth="400">
+    <UserControl.Resources>
+
+        <Storyboard x:Key="IndicatorStoryboard">
+            <DoubleAnimation Storyboard.TargetName="IndicatorRectangle"
+                             Storyboard.TargetProperty="(UIElement.Opacity)"
+                             Duration="0:0:2"
+                             From="0.0"
+                             To="2.0" />
+        </Storyboard>
+
+        <Style x:Key="rectangleStyle"
+               TargetType="{x:Type Rectangle}">
+            <Setter Property="Fill"
+                    Value="Red" />
+            <Setter Property="Width"
+                    Value="5" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Left" />
+        </Style>
+
+        <Style x:Key="labelStyle"
+               TargetType="{x:Type Label}">
+            <Setter Property="Margin"
+                    Value="0,0,0,0" />
+            <!--<Setter Property="FontSize"
+                 Value="14" />-->
+            <Setter Property="IsEnabled"
+                    Value="{Binding IsEnabled,Mode=TwoWay}" />
+            <Setter Property="Content">
+                <Setter.Value>
+                    <materialDesign:PackIcon Kind="{Binding Path=IconKind,Mode=OneWay}"
+                                             Foreground="Gray"
+                                             Background="Transparent"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <!--<StackPanel Orientation="Horizontal"
                 HorizontalAlignment="Stretch">
-        <TextBlock x:Name="headerTextBlock"
-                   Text="{Binding Path=Title,ElementName=headerTextContainer}"
+        <TextBlock Text="{Binding Path=HeaderTitle}"
                    FontSize="18"
                    FontWeight="Bold"
                    Margin="1,1,1,1"
                    Padding="18,2,0,2">
         </TextBlock>
-    </StackPanel>
+    </StackPanel>-->
+    <Grid Height="30">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="48" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        
+        <Label Grid.Column="0"
+               Style="{StaticResource labelStyle}">
+        </Label>
+
+        <TextBlock Grid.Column="1"
+                   Text="{Binding Path=HeaderTitle,Mode=OneWay}"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   IsEnabled="{Binding Path=IsEnabled}"
+                   Margin="10,0,0,0"
+                   VerticalAlignment="Center"
+                   TextTrimming="CharacterEllipsis"
+                   TextWrapping="NoWrap">
+        </TextBlock>
+    </Grid>
 </UserControl>

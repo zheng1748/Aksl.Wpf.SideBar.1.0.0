@@ -18,6 +18,7 @@ namespace Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels
             GroupIndex = groupIndex;
             _leafMenuItems = leafMenuItems;
             _headerMenuItem = headerMenuItem;
+            MenuItemHeader=new(headerMenuItem);
         }
         #endregion
 
@@ -25,7 +26,7 @@ namespace Aksl.Modules.HamburgerMenuNavigationSideBar.ViewModels
         public int GroupIndex { get; }
 
         public string HeaderTitle => _headerMenuItem.Title;
-
+        public MenuItemHeaderViewModel MenuItemHeader { get; set; }
         public MenuContentViewModel MenuContent { get; private set; }
 
         private MenuItemViewModel _selectedMenuItem;

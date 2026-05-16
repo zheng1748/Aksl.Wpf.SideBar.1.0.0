@@ -143,40 +143,40 @@ namespace Aksl.Modules.HamburgerMenuPopupSideBar.ViewModels
         //{
         //    if (sender is System.Windows.Controls.UserControl uc)
         //    {
-        //        System.Windows.Point pos = e.GetPosition(uc);
-        //        HitTestResult result = VisualTreeHelper.HitTest(uc, pos);
+        //        //System.Windows.Point pos = e.GetPosition(uc);
+        //        //HitTestResult result = VisualTreeHelper.HitTest(uc, pos);
 
-        //        VisualTreeFinder visualTreeFinder = new();
+        //        //VisualTreeFinder visualTreeFinder = new();
 
-        //        var listViewItem = visualTreeFinder.FindVisualParent<System.Windows.Controls.ListViewItem>(uc);
+        //        //var listViewItem = visualTreeFinder.FindVisualParent<System.Windows.Controls.ListViewItem>(uc);
 
-        //        Debug.Print($"{uc.GetType()}:MouseEnter");
+        //        //Debug.Print($"{uc.GetType()}:MouseEnter");
 
-        //        PopupViewModel.PlacementTarget = listViewItem;
-        //        //if (PopupViewModel.IsOpen)
-        //        //{
-        //        //    PopupViewModel.IsOpen = false;
-        //        //}
-        //        PopupViewModel.IsOpen = !PopupViewModel.IsOpen;
+        //        //PopupViewModel.PlacementTarget = listViewItem;
+        //        ////if (PopupViewModel.IsOpen)
+        //        ////{
+        //        ////    PopupViewModel.IsOpen = false;
+        //        ////}
+        //        //PopupViewModel.IsOpen = !PopupViewModel.IsOpen;
         //    }
         //}
         #endregion
 
-        #region ExecuteMouseLeave Event
-        //public void ExecuteMouseLeave(object sender, MouseEventArgs e)
-        //{
-        //    if (sender is System.Windows.Controls.UserControl uc)
-        //    {
-        //        Debug.Print($"{uc.GetType()}:MouseLeave");
+#region ExecuteMouseLeave Event
+//public void ExecuteMouseLeave(object sender, MouseEventArgs e)
+//{
+//    if (sender is System.Windows.Controls.UserControl uc)
+//    {
+//        Debug.Print($"{uc.GetType()}:MouseLeave");
 
-        //        PopupViewModel.PlacementTarget = null;
-        //        PopupViewModel.IsOpen = false;
-        //    }
-        //}
-        #endregion
+//        PopupViewModel.PlacementTarget = null;
+//        PopupViewModel.IsOpen = false;
+//    }
+//}
+#endregion
 
-        #region Create PopupSideBarItem ViewModels Method
-        internal async Task CreatePopupSideBarItemModelsAsync()
+#region Create PopupSideBarItem ViewModels Method
+internal async Task CreatePopupSideBarItemModelsAsync()
         {
             ObservableCollection<PopupSideBarItemViewModel> allLeafPopupSideBarItems = new();
             IEnumerable<Infrastructure.MenuItem> subMenuItems = default;
